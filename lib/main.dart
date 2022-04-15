@@ -9,7 +9,7 @@ void main() async {
       title: 'HyperRemedy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/login',
+      initialRoute: '/home',
       onGenerateRoute: createRoute,
     ),
   );

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hyperremedy/screens/login/login_viewmodel.dart';
 
 import '../../models/user.dart';
-import '../register/register.dart';
+import '../home/home_screen.dart';
+import '../register/register_screen.dart';
 import '../view.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +18,9 @@ class _LoginScreenState extends State<LoginScreen> {
   void _onLogin(BuildContext context, LoginViewmodel viewmodel) async {
     final User _user = await viewmodel.authenticate();
 
-    if (_user != null) Navigator.pop(context, _user);
+    if (_user != null) {
+      Navigator.push(context, HomeScreen.route(data: _user));
+    }
   }
 
   @override

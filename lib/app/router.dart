@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/home/home_screen.dart';
 import '../screens/login/login_screen.dart';
-import '../screens/register/register.dart';
+import '../screens/register/register_screen.dart';
 
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
@@ -11,10 +11,10 @@ Route<dynamic> createRoute(settings) {
     //   return FoodScreen.route();
     case '/home':
       return HomeScreen.route();
-    case '/register':
-      return RegisterScreen.route();
     case '/login':
       return LoginScreen.route();
+    case '/register':
+      return RegisterScreen.route();
   }
   return null;
 }

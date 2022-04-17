@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../models/user.dart';
+import 'widget/body.dart';
+
 class HomeScreen extends StatefulWidget {
-  static Route route() => MaterialPageRoute(builder: (context) => HomeScreen());
+  HomeScreen({data}) : _data = data;
+  static Route route({data}) =>
+      MaterialPageRoute(builder: (context) => HomeScreen(data: data));
+  User _data;
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -26,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
           ),
-          body: Container(),
+          body: Body(),
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
             selectedItemColor: Colors.greenAccent,

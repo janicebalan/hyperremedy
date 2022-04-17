@@ -11,6 +11,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  String validateEmail(String value) {
+    String pattern =
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?)*$";
+    RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+      return 'Enter a valid email address';
+    } else {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -95,35 +108,135 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const SizedBox(
                           height: 60,
                         ),
-                        const Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                isDense: true,
                                 contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none,
-                                hintText: "Phone Number/Email",
-                                hintStyle: TextStyle(color: Colors.grey)),
+                                    EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                labelText: "Name",
+                              ),
+                            ),
                           ),
                         ),
                         const Divider(
                           thickness: 0.5,
                           height: 10,
                         ),
-                        const Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            child: TextFormField(
+                              decoration: InputDecoration(
                                 contentPadding:
                                     EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.grey)),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                labelText: "Password",
+                              ),
+                            ),
                           ),
                         ),
-                        // login_button
                         const Divider(
                           thickness: 0.5,
-                          height: 50,
+                          height: 10,
                         ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                // enabledBorder: OutlineInputBorder(
+                                //   borderRadius: BorderRadius.circular(5.0),
+                                //   borderSide: BorderSide(
+                                //     color: Colors.blue[900],
+                                //   ),
+                                // ),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                labelText: "Phone Number",
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 0.5,
+                          height: 10,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            child: TextFormField(
+                              validator: (value) => validateEmail(value),
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                labelText: "Email",
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 0.5,
+                          height: 10,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                labelText: "Year Born",
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 0.5,
+                          height: 10,
+                        ),
+                        // login_button
                         Expanded(
                           child: MaterialButton(
                             onPressed: () {},

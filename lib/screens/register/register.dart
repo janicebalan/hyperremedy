@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import '../login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
-  static const String id = "sign_up_page";
-  const RegisterScreen({Key? key}) : super(key: key);
-
   static Route route() =>
-      MaterialPageRoute(builder: (context) => const RegisterScreen());
+      MaterialPageRoute(builder: (context) => RegisterScreen());
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-
 import '../../models/user.dart';
-import 'widget/body.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({data}) : _data = data;
+class SymptomsScreen extends StatefulWidget {
+  SymptomsScreen({data}) : _data = data;
   static Route route({data}) =>
-      MaterialPageRoute(builder: (context) => HomeScreen(data: data));
+      MaterialPageRoute(builder: (context) => SymptomsScreen(data: data));
   User _data;
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _SymptomsScreenState createState() => _SymptomsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SymptomsScreenState extends State<SymptomsScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -22,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           appBar: AppBar(
             title: const Text(
-              'HyperRemedy',
+              'symptoms',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
@@ -30,17 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.logout, color: Colors.white),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/login");
-                },
-              )
-            ],
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
           ),
-          body: Body(),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hyperremedy/screens/login/login_viewmodel.dart';
 
+import '../../bottomNav.dart';
 import '../../models/user.dart';
 import '../home/home_screen.dart';
 import '../register/register_screen.dart';
@@ -19,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final User _user = await viewmodel.authenticate();
 
     if (_user != null) {
-      Navigator.push(context, HomeScreen.route(data: _user));
+      Navigator.push(context, BottomNav.route(user: _user));
     }
   }
 

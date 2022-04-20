@@ -17,7 +17,15 @@ GetIt dependency = GetIt.instance;
 void init() {
   // Services
   dependency.registerLazySingleton<RestService>(
-    () => RestService(baseUrl: 'http://192.168.0.112:3000'),
+    //localhost
+    // () => RestService(baseUrl: 'http://192.168.0.112:3000'),
+    // //firebase
+    // () => RestService(
+    //     baseUrl: 'http://192.168.0.112:5001/hyperremedy-61c71/us-central1/api'),
+    //firebase online
+    () => RestService(
+        baseUrl:
+            'https://us-central1-hyperremedy-61c71.cloudfunctions.net/api'),
   );
 
   //Dependency Inversion Principle

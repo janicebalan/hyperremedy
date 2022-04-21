@@ -1,5 +1,5 @@
 import '../../models/user.dart';
 
 abstract class AuthServiceSignup {
-  Future<User> signUp({String email, String password, String username});
+  Future<User> signUp(User users);
 }

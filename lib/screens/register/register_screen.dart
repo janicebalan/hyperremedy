@@ -110,12 +110,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            padding: const EdgeInsets.only(
+                                left: 12, right: 12, top: 12),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(10, 10, 10, 0),
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),

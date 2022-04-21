@@ -4,12 +4,12 @@ const Model = require('./model');
 
 // Here, we are implementing the class with Singleton design pattern
 
-class CounterModel extends Model {
+class MedicineModel extends Model {
 	constructor() {
-		super('counters');
+		super('medicines');
 		if (this.instance) return this.instance;
-		CounterModel.instance = this;
+		MedicineModel.instance = this;
 	}
 }
 
-module.exports = new CounterModel();
+module.exports = new MedicineModel();

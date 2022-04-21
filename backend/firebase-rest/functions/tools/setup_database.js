@@ -1,10 +1,5 @@
 // Script:  setup_database.js
 // Purpose: An helper tool to upload stock data to firestore
-//
-// Author: Jumail
-// Email: jumail@utm.my
-// Github:  github.com/jumail-utm
-// Update: 4 Jun 2021
 
 // Add collections and their documents to the database
 // Setup the data first manually

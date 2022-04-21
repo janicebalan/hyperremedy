@@ -1,5 +1,9 @@
 import 'package:get_it/get_it.dart';
 
+import '../screens/food/food_viewmodel.dart';
+import '../screens/register/register_viewmodel.dart';
+import '../services/food/food_service.dart';
+import '../services/food/food_service_rest.dart';
 import '../services/rest.dart';
 import '../screens/user/user_viewmodel.dart';
 
@@ -37,11 +41,15 @@ void init() {
 
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceRest());
   dependency.registerLazySingleton<AuthService>(() => AuthServiceRest());
+  dependency.registerLazySingleton<FoodService>(() => FoodServiceRest());
   dependency
       .registerLazySingleton<AuthServiceSignup>(() => AuthServiceSignupRest());
+
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceMock());
   // dependency.registerLazySingleton<AuthService>(() => AuthServiceMock());
 
   // Viewmodels
   dependency.registerLazySingleton(() => UserViewmodel());
+  dependency.registerLazySingleton(() => RegisterViewmodel());
+  dependency.registerLazySingleton(() => FoodViewmodel());
 }

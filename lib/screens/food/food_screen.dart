@@ -14,12 +14,18 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
+  var _index = 0;
+
+  get index => _index;
+  set index(value) => setState(() => _index = value);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => Future.value(false),
+      onWillPop: () => Future.value(true),
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: Color.fromRGBO(216, 212, 212, 1),
           appBar: AppBar(
             title: const Text(
               'HyperRemedy',
@@ -32,7 +38,7 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
           ),
-          body: Body(),
+          body: Body(state: this, index:index),
         ),
       ),
     );

@@ -1,16 +1,11 @@
 class User {
   dynamic
-      _id; // Use dynamic type because json-server id is int and firestore id is string
+      id; // Use dynamic type because json-server id is int and firestore id is string
   String _name;
   String _phoneNo;
   String _yearBorn;
   String _password;
   String _email;
-
-  // ignore: unnecessary_getters_setters
-  get id => _id;
-  // ignore: unnecessary_getters_setters
-  set id(value) => _id = value;
 
   get name => _name;
   set name(value) => _name = value;
@@ -28,14 +23,13 @@ class User {
   set password(value) => _password = value;
 
   User(
-      {dynamic id,
+      {this.id,
       String name = '',
       String phoneNo = '',
       String yearBorn = '',
       String password = '',
       String email = ""})
-      : _id = id,
-        _name = name,
+      : _name = name,
         _phoneNo = phoneNo,
         _yearBorn = yearBorn,
         _password = password,

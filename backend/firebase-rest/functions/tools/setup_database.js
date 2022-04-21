@@ -51,6 +51,14 @@ const _collectionsJson = {
 			foodName: 'Eggs',
 			foodDetails:
 				'Egg yolk significantly increased blood pressure. This helps improve both your cholesterol and your blood pressure while keeping you satisfied'
+		},
+		{
+			id: 'food4',
+			range: 'low',
+			photoUrl: 'https://www.jessicagavin.com/wp-content/uploads/2020/09/how-to-fry-an-egg-3-1200.jpg',
+			foodName: 'Eggs',
+			foodDetails:
+				'Egg yolk significantly increased blood pressure. This helps improve both your cholesterol and your blood pressure while keeping you satisfied'
 		}
 	],
 	symptoms: [

@@ -7,6 +7,7 @@ import '../../models/user.dart';
 class AuthServiceSignupRest implements AuthServiceSignup {
   RestService get rest => dependency();
 
+  @override
   Future<User> signUp(User users) async {
     final json = await rest.post('users', data: users);
     return User.fromJson(json);

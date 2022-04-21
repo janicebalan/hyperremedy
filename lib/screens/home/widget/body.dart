@@ -124,7 +124,9 @@ class Body extends StatelessWidget {
                     children: [
                       Expanded(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushReplacementNamed(context, "/food");
+                          },
                           child: Container(
                             height: 130,
                             width: 200,

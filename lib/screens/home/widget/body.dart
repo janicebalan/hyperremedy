@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import '../../food/food_screen.dart';
+import '/screens/user/user_viewmodel.dart';
 import 'package:intl/intl.dart';
 
+import '../../../models/user.dart';
+import '../../view.dart';
+
 class Body extends StatelessWidget {
+  Body({data}) : _data = data;
+  User _data;
+
+  UserViewmodel viewmodel = UserViewmodel();
+
   String formattedDate =
       DateFormat('EEEEE, d MMMM yyyy').format(DateTime.now().toLocal());
   @override
@@ -15,7 +25,7 @@ class Body extends StatelessWidget {
             style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
           Text(
-            'Welcome Alex!',
+            _data != null ? 'Welcome ${_data.name}' : 'Welcome unknown!',
             textAlign: TextAlign.left,
             style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
           ),
@@ -30,7 +40,10 @@ class Body extends StatelessWidget {
                     children: [
                       Expanded(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, "/medicine",
+                                arguments: _data);
+                          },
                           child: Container(
                             height: 130,
                             width: 200,
@@ -72,7 +85,10 @@ class Body extends StatelessWidget {
                       ),
                       Expanded(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, "/symptoms",
+                                arguments: _data);
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -125,7 +141,8 @@ class Body extends StatelessWidget {
                       Expanded(
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, "/food");
+                            Navigator.push(
+                                context, FoodScreen.route(data: _data));
                           },
                           child: Container(
                             height: 130,
@@ -168,7 +185,10 @@ class Body extends StatelessWidget {
                       ),
                       Expanded(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, "/report",
+                                arguments: _data);
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -215,7 +235,10 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, "/bloodpressure",
+                        arguments: _data);
+                  },
                   child: Container(
                     height: 130,
                     width: 200,

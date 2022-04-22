@@ -21,6 +21,9 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // if (widget._data != null) {
+    //   print(widget._data.email);
+    // }
     return WillPopScope(
       onWillPop: () => Future.value(true),
       child: SafeArea(
@@ -38,7 +41,7 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
           ),
-          body: Body(state: this, index:index),
+          body: Body(state: this, index: index),
         ),
       ),
     );

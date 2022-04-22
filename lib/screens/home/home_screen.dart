@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hyperremedy/screens/user/user_viewmodel.dart';
 
 import '../../models/user.dart';
 import 'widget/body.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({data}) : _data = data;
-  static Route route({data}) =>
-      MaterialPageRoute(builder: (context) => HomeScreen(data: data));
-  User _data;
+class HomeScreen extends StatelessWidget {
+  static Route route({user}) =>
+      MaterialPageRoute(builder: (context) => HomeScreen(user: user));
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+  HomeScreen({user}) : _viewmodel = user;
+  User _viewmodel;
 
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -34,13 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
               IconButton(
                 icon: Icon(Icons.logout, color: Colors.white),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/login");
+                  Navigator.pushNamed(context, "/login");
                 },
               )
             ],
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
           ),
-          body: Body(),
+          body: Body(data: _viewmodel),
         ),
       ),
     );

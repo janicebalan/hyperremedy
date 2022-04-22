@@ -20,7 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
     final User _user = await viewmodel.authenticate();
 
     if (_user != null) {
-      Navigator.push(context, BottomNav.route(user: _user));
+      //print(_user.id);
+      Navigator.push(context, HomeScreen.route(user: _user));
     }
   }
 
@@ -116,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 10),
                                     border: InputBorder.none,
-                                    hintText: "Phone Number/Email",
+                                    hintText: "Email",
                                     hintStyle: TextStyle(color: Colors.grey)),
                                 onChanged: (value) => viewmodel.email = value),
                           ),

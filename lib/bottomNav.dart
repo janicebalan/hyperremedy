@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'app/router.dart';
+import 'models/user.dart';
+import 'screens/home/home_screen.dart';
 import 'screens/user/user_viewmodel.dart';
 import 'screens/view.dart';
 
 class BottomNav extends StatelessWidget {
   static Route route({user}) =>
       MaterialPageRoute(builder: (context) => BottomNav(user: user));
-  final user;
-  BottomNav({this.user});
+  //final user;
+  BottomNav({user}) : _user = user;
+  User _user;
+
   @override
   Widget build(BuildContext context) {
+    print(_user.id);
     final _navigatorKey = GlobalKey<NavigatorState>();
     return Scaffold(
       body: Navigator(
@@ -65,37 +70,41 @@ class BottomNav extends StatelessWidget {
                 switch (index) {
                   case 0:
                     {
-                      _navigatorKey.currentState.pushNamed('/home');
+                      // _navigatorKey.currentState
+                      //     .push(HomeScreen.route(data: _user));
+                      print(_user.name);
+                      _navigatorKey.currentState
+                          .pushNamed('/home', arguments: _user);
                     }
                     break;
                   case 1:
                     {
                       _navigatorKey.currentState
-                          .pushNamed('/medicine', arguments: user);
+                          .pushNamed('/medicine', arguments: _user);
                     }
                     break;
                   case 2:
                     {
                       _navigatorKey.currentState
-                          .pushNamed('/food', arguments: user);
+                          .pushNamed('/food', arguments: _user);
                     }
                     break;
                   case 3:
                     {
                       _navigatorKey.currentState
-                          .pushNamed('/bloodpressure', arguments: user);
+                          .pushNamed('/bloodpressure', arguments: _user);
                     }
                     break;
                   case 4:
                     {
                       _navigatorKey.currentState
-                          .pushNamed('/symptoms', arguments: user);
+                          .pushNamed('/symptoms', arguments: _user);
                     }
                     break;
                   case 5:
                     {
                       _navigatorKey.currentState
-                          .pushNamed('/report', arguments: user);
+                          .pushNamed('/report', arguments: _user);
                     }
                     break;
                 }

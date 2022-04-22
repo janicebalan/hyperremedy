@@ -21,6 +21,10 @@ class UserViewmodel extends Viewmodel {
   set user(value) => _user = value;
   bool get isUserSignedIn => _user != null;
 
+  dynamic _id;
+  get id => _id;
+  set id(value) => _id = value;
+
   // get name => _name;
   // set name(value) => _name = value;
 

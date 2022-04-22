@@ -17,7 +17,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   RegisterViewmodel _viewmodel;
 
-  void _onSave(viewmodel) {
+  String _onSave(viewmodel) {
     var _users = new User(
         name: viewmodel.name,
         password: viewmodel.password,
@@ -28,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (_users != null) {
       viewmodel.signUp(_users);
       Navigator.push(context, LoginScreen.route());
+      return "done";
     }
   }
 
@@ -249,7 +250,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: MaterialButton(
                                 onPressed: () {
                                   if (_formKey.currentState.validate()) {
-                                    _onSave(_viewmodel);
+                                    var result = _onSave(_viewmodel);
+                                    if (result == "done") {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                'Account successfully created')),
+                                      );
+                                    }
                                   }
                                 },
                                 height: 45,

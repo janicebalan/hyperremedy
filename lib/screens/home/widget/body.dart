@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../food/food_screen.dart';
+import '../../symptoms/symptoms_screen.dart';
 import '/screens/user/user_viewmodel.dart';
 import 'package:intl/intl.dart';
 
@@ -86,8 +87,8 @@ class Body extends StatelessWidget {
                       Expanded(
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, "/symptoms",
-                                arguments: _data);
+                            Navigator.push(
+                                context, SymptomsScreen.route(data: _data));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

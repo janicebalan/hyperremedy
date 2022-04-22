@@ -18,11 +18,10 @@ class SymptomsScreen extends StatefulWidget {
 class _SymptomsScreenState extends State<SymptomsScreen> {
   @override
   Widget build(BuildContext context) {
-    // if (widget._data != null) {
-    //   print("printing email id");
-    //   print(widget._data.id);
-    //   print("end printng");
-    // }
+    // print("printing email id");
+    // print(widget._data.id);
+    // print("end printng");
+
     return View(
       viewmodel:
           SymptomsViewmodel.overloadedContructorNamedArguemnts(widget._data.id),
@@ -46,8 +45,9 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
             body: widget._data != null
                 ? Body(data: _viewmodel)
                 : Body(data: widget._data),
-            floatingActionButton:
-                widget._data != null ? Float(data: _viewmodel) : null,
+            floatingActionButton: widget._data != null
+                ? Float(data: _viewmodel, user: widget._data.id)
+                : null,
           ),
         ),
       ),

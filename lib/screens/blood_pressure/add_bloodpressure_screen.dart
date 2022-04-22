@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:hyperremedy/screens/symptoms/symptoms_viewmodel.dart';
 import 'package:intl/intl.dart';
 
-import '../../models/symptom.dart';
+import '../../models/bloodpressure.dart';
 import '../view.dart';
+import 'bloodpressure_viewmodel.dart';
 
-class AddSymptomsScreen extends StatelessWidget {
-  AddSymptomsScreen({data, viewmodel})
+class AddBloodPressureScreen extends StatelessWidget {
+  AddBloodPressureScreen({data, viewmodel})
       : _data = data,
         _viewmodel = viewmodel;
   String _data;
-  SymptomsViewmodel _viewmodel;
+  BloodPressureViewmodel _viewmodel;
 
   String _selectedDate;
-  void _onSave(context, _viewmode, _data) {
-    var _symptoms = new Symptom(
-        type: _viewmodel.type,
+  void _onSave(context, _viewmodel, _data) {
+    var _bloodpressures = new BloodPressure(
+        range: _viewmodel.range,
         date: _viewmodel.date,
-        description: _viewmodel.description,
+        diastolic: 0,
+        systolic: 0,
+        pulse: 0,
         userID: _data);
-    Navigator.pop(context, _symptoms);
+    Navigator.pop(context, _bloodpressures);
   }
 
   @override
@@ -30,7 +32,7 @@ class AddSymptomsScreen extends StatelessWidget {
           return new Scaffold(
             appBar: new AppBar(
               title: Text(
-                'Add New Symptoms',
+                'Add New Readings',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
@@ -50,12 +52,7 @@ class AddSymptomsScreen extends StatelessWidget {
                     _buildTextLisTile(
                       leading: const Icon(Icons.sports_tennis_rounded),
                       label: 'Type',
-                      onChanged: (value) => _viewmodel.type = value,
-                    ),
-                    _buildTextLisTile(
-                      leading: const Icon(Icons.article_outlined),
-                      label: 'Description',
-                      onChanged: (value) => _viewmodel.description = value,
+                      onChanged: (value) => _viewmodel.range = value,
                     ),
                     ElevatedButton(
                       child: Text(
@@ -75,7 +72,7 @@ class AddSymptomsScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel, _data)
+                    _buildButtons(context, _viewmodel)
                   ],
                 ),
               ),
@@ -98,8 +95,7 @@ class AddSymptomsScreen extends StatelessWidget {
     );
   }
 
-  Row _buildButtons(
-      BuildContext context, SymptomsViewmodel viewmodel, String data) {
+  Row _buildButtons(BuildContext context, BloodPressureViewmodel viewmodel) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -119,7 +115,7 @@ class AddSymptomsScreen extends StatelessWidget {
         SizedBox(width: 100.0),
         ElevatedButton(
           child: Text('Save'),
-          onPressed: () => _onSave(context, viewmodel, data),
+          onPressed: () => _onSave(context, viewmodel, _data),
           style: ElevatedButton.styleFrom(
             primary: Color.fromRGBO(0, 102, 102, 1),
             onPrimary: Colors.white,
@@ -135,7 +131,7 @@ class AddSymptomsScreen extends StatelessWidget {
   }
 
   Future<void> _selectDate(
-      BuildContext context, SymptomsViewmodel viewmodel) async {
+      BuildContext context, BloodPressureViewmodel viewmodel) async {
     DateTime newSelectedDate = await showDatePicker(
         context: context,
         initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../view.dart';
-import '../symptoms_viewmodel.dart';
+import '../bloodpressure_viewmodel.dart';
 
 class Body extends StatelessWidget {
   Body({data}) : _viewmodel = data;
-  final SymptomsViewmodel _viewmodel;
+  final BloodPressureViewmodel _viewmodel;
   String _data;
   //FoodViewmodel _foodViewmodel = FoodViewmodel();
   //SymptomsViewmodel _symptomsViewmodel = SymptomsViewmodel(_data);
@@ -84,7 +84,7 @@ class Body extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Text(
-                                'List of Symptoms',
+                                'List of Readings',
                                 textAlign: TextAlign.center,
                                 style: new TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -110,10 +110,10 @@ class Body extends StatelessWidget {
     );
   }
 
-  ListView _buildListView(SymptomsViewmodel _viewmodel) {
-    //print(_viewmodel.symptomList.length);
+  ListView _buildListView(BloodPressureViewmodel _viewmodel) {
+    print(_viewmodel.bloodpressureList.length);
     return ListView.separated(
-      itemCount: _viewmodel.symptomList.length,
+      itemCount: _viewmodel.bloodpressureList.length,
       separatorBuilder: (context, index) => Divider(
         color: Colors.blueGrey,
       ),
@@ -122,7 +122,7 @@ class Body extends StatelessWidget {
   }
 
   ListTile _listTile(
-      int index, BuildContext context, SymptomsViewmodel _viewmodel) {
+      int index, BuildContext context, BloodPressureViewmodel _viewmodel) {
     return ListTile(
       title: Card(
         color: Color.fromRGBO(0, 48, 97, 1),
@@ -147,11 +147,11 @@ class Body extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Text(
-                '${_viewmodel.symptomListById[index].type}',
+                '${_viewmodel.bloodpressureListById[index].range}',
                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
-            subtitle: Text(' ${_viewmodel.symptomListById[index].description}',
+            subtitle: Text(' ${_viewmodel.bloodpressureListById[index].date}',
                 style: const TextStyle(
                   color: Colors.white,
                 ),
@@ -162,12 +162,12 @@ class Body extends StatelessWidget {
                   context: context,
                   builder: (context) => AlertDialog(
                     title:
-                        Text('Are you sure you want to remove this symptom?'),
+                        Text('Are you sure you want to remove this reading?'),
                     actions: [
                       ElevatedButton(
                           onPressed: () {
-                            _viewmodel.removeSymptom(
-                                _viewmodel.symptomListById[index], index);
+                            _viewmodel.removeBloodPressure(
+                                _viewmodel.bloodpressureListById[index], index);
                             Navigator.pop(context);
                           },
                           child: Text('Yes')),

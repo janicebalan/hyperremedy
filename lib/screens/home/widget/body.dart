@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../blood_pressure/bloodpressure_screen.dart';
 import '../../food/food_screen.dart';
 import '../../symptoms/symptoms_screen.dart';
 import '/screens/user/user_viewmodel.dart';
@@ -237,8 +238,8 @@ class Body extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, "/bloodpressure",
-                        arguments: _data);
+                    Navigator.push(
+                        context, BloodPressureScreen.route(data: _data));
                   },
                   child: Container(
                     height: 130,

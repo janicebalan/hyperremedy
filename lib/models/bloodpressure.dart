@@ -3,7 +3,7 @@ class BloodPressure {
       _id; // Use dynamic type because json-server id is int and firestore id is string
   int _diastolic;
   int _systolic;
-  String _pulse;
+  int _pulse;
   String _date;
   String _range;
   dynamic _userID;
@@ -36,7 +36,7 @@ class BloodPressure {
       {dynamic id,
       int diastolic = 0,
       int systolic = 0,
-      String pulse = '',
+      int pulse = 0,
       String date = '',
       String range = "",
       dynamic userID})

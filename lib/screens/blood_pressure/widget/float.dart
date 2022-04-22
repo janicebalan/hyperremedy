@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hyperremedy/screens/symptoms/symptoms_viewmodel.dart';
 
 import '../../view.dart';
-import '../add_symptoms_screen.dart';
+import '../add_bloodpressure_screen.dart';
+import '../bloodpressure_viewmodel.dart';
 
 class Float extends StatelessWidget {
   Float({data, user})
@@ -10,20 +10,18 @@ class Float extends StatelessWidget {
         _data = user;
 
   String _data;
-  SymptomsViewmodel _viewmodel;
+  BloodPressureViewmodel _viewmodel;
 
-  void _onPlusPressed(
-      BuildContext context, String data, SymptomsViewmodel viewmodel) async {
-    print("printing id");
-    print(data);
-    final symptoms = await Navigator.push(
+  void _onPlusPressed(BuildContext context, String data,
+      BloodPressureViewmodel viewmodel) async {
+    final bloodpressures = await Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) =>
-                AddSymptomsScreen(data: data, viewmodel: viewmodel)));
+                AddBloodPressureScreen(data: data, viewmodel: viewmodel)));
 
-    if (symptoms != null) {
-      viewmodel.addSymptoms(symptoms);
+    if (bloodpressures != null) {
+      viewmodel.addBloodPressures(bloodpressures);
     } else {
       print("Null value");
     }
@@ -31,7 +29,6 @@ class Float extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(_data);
     return View(
       viewmodel: _viewmodel,
       builder: (_context, _viewmodel, _) {
@@ -39,8 +36,8 @@ class Float extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton.extended(
-              tooltip: 'Add a new symptom',
-              label: Text('Add Symptoms'),
+              tooltip: 'Add a new readings',
+              label: Text('Add Readings'),
               icon: Icon(Icons.add),
               heroTag: null,
               onPressed: () => _onPlusPressed(context, _data, _viewmodel),

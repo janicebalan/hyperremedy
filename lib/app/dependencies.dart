@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import '../screens/food/food_viewmodel.dart';
 import '../screens/register/register_viewmodel.dart';
 import '../screens/symptoms/symptoms_viewmodel.dart';
+import '../services/bloodpressure/bloodpressure_service.dart';
+import '../services/bloodpressure/bloodpressure_service_rest.dart';
 import '../services/food/food_service.dart';
 import '../services/food/food_service_rest.dart';
 import '../services/rest.dart';
@@ -45,6 +47,8 @@ void init() {
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceRest());
   dependency.registerLazySingleton<AuthService>(() => AuthServiceRest());
   dependency.registerLazySingleton<FoodService>(() => FoodServiceRest());
+  dependency.registerLazySingleton<BloodPressureService>(
+      () => BloodPressureServiceRest());
   dependency
       .registerLazySingleton<SymptomsService>(() => SymptomsServiceRest());
   dependency

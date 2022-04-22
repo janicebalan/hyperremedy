@@ -5,8 +5,8 @@ import '../../view.dart';
 import '../symptoms_viewmodel.dart';
 
 class Body extends StatelessWidget {
-  Body({data}) : _data = data;
-
+  Body({data}) : _viewmodel = data;
+  final SymptomsViewmodel _viewmodel;
   String _data;
   //FoodViewmodel _foodViewmodel = FoodViewmodel();
   //SymptomsViewmodel _symptomsViewmodel = SymptomsViewmodel(_data);
@@ -15,10 +15,8 @@ class Body extends StatelessWidget {
       DateFormat('EEEEE, d MMMM yyyy').format(DateTime.now().toLocal());
   @override
   Widget build(BuildContext context) {
-    // print("printing");
-    // print(_data);
     return View(
-      viewmodel: SymptomsViewmodel.overloadedContructorNamedArguemnts(_data),
+      viewmodel: _viewmodel,
       builder: (_context, _viewmodel, _child) => Container(
           height: MediaQuery.of(context).size.height,
           child: Column(
@@ -113,6 +111,7 @@ class Body extends StatelessWidget {
   }
 
   ListView _buildListView(SymptomsViewmodel _viewmodel) {
+    print(_viewmodel.symptomList.length);
     return ListView.separated(
       itemCount: _viewmodel.symptomList.length,
       separatorBuilder: (context, index) => Divider(

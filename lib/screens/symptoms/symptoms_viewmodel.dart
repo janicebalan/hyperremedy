@@ -7,9 +7,29 @@ class SymptomsViewmodel extends Viewmodel {
   SymptomsService get _service => dependency();
 
   Symptom _symptom;
+  String _type;
+  String _date;
+  String _description;
+  String _userID;
 
   get symptom => _symptom;
   set symptom(value) => _symptom = value;
+
+  get type => _type;
+  set type(value) => _type = value;
+
+  get date => _date;
+  set date(value) {
+    turnBusy();
+    _date = value;
+    turnIdle();
+  }
+
+  get description => _description;
+  set description(value) => _description = value;
+
+  get userID => _userID;
+  set userID(value) => _userID = value;
 
   List<Symptom> symptomListById;
   get symptomList => symptomListById;
@@ -23,6 +43,7 @@ class SymptomsViewmodel extends Viewmodel {
     //print(id);
     turnBusy();
     symptomListById = await _service.getSymptomsById(id);
+    // print(symptomListById);
     turnIdle();
   }
 
@@ -31,6 +52,13 @@ class SymptomsViewmodel extends Viewmodel {
     //print(symptoms.id);
     await _service.removeSymptoms(symptoms);
     symptomListById.removeAt(index);
+    turnIdle();
+  }
+
+  void addSymptoms(Symptom symptoms) async {
+    turnBusy();
+    final Symptom symptom = await _service.addSymptoms(symptoms);
+    symptomListById.add(symptoms);
     turnIdle();
   }
 }

@@ -7,9 +7,11 @@ class SymptomsServiceRest implements SymptomsService {
   RestService get rest => dependency();
 
   Future<List<Symptom>> getSymptomsById(dynamic id) async {
-    //print(id);
+    // print('print id in service');
+    // print(id);
     final List listJson = await rest.get('symptoms?userID=$id');
-    //print(listJson);
+    // print('print json in service');
+    // print(listJson);
     return listJson.map((json) => Symptom.fromJson(json)).toList();
   }
 

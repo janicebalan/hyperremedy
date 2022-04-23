@@ -14,10 +14,10 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
-  var _index = 0;
+  // var _index = 0;
 
-  get index => _index;
-  set index(value) => setState(() => _index = value);
+  // get index => _index;
+  // set index(value) => setState(() => _index = value);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
             backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
           ),
-          body: Body(state: this, index: index),
+          body: Body(),
         ),
       ),
     );

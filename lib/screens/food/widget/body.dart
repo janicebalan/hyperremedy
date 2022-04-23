@@ -6,11 +6,11 @@ import '/screens/food/food_viewmodel.dart';
 import 'package:intl/intl.dart';
 
 class Body extends StatelessWidget {
-  Body({index, state})
-      : _index = index,
-        _state = state;
-  var _index;
-  final _state;
+  // Body({index, state})
+  //     : _index = index,
+  //       _state = state;
+  // var _index;
+  // final _state;
   FoodViewmodel _foodViewmodel = FoodViewmodel();
 
   String formattedDate =
@@ -101,295 +101,345 @@ class Body extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                height: 50,
-                width: 500,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+              // Container(
+              //   height: 50,
+              //   width: 500,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       ElevatedButton(
+              //         style: ButtonStyle(
+              //           shape:
+              //               MaterialStateProperty.all<RoundedRectangleBorder>(
+              //             RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(20.0),
+              //             ),
+              //           ),
+              //           backgroundColor:
+              //               MaterialStateProperty.all(Colors.transparent),
+              //           // elevation: MaterialStateProperty.all(3),
+              //           shadowColor:
+              //               MaterialStateProperty.all(Colors.transparent),
+              //         ),
+              //         onPressed: () {
+              //           _viewmodel.range = 1;
+              //         },
+              //         child: Padding(
+              //           padding: const EdgeInsets.only(
+              //             top: 10,
+              //             bottom: 10,
+              //           ),
+              //           child: Text(
+              //             "Low",
+              //             style: TextStyle(
+              //               fontSize: 20,
+              //               // fontWeight: FontWeight.w700,
+              //               color: Colors.black87,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       ElevatedButton(
+              //         style: ButtonStyle(
+              //           shape:
+              //               MaterialStateProperty.all<RoundedRectangleBorder>(
+              //             RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(20.0),
+              //             ),
+              //           ),
+              //           backgroundColor:
+              //               MaterialStateProperty.all(Colors.transparent),
+              //           // elevation: MaterialStateProperty.all(3),
+              //           shadowColor:
+              //               MaterialStateProperty.all(Colors.transparent),
+              //         ),
+              //         onPressed: () {
+              //           _viewmodel.range = 2;
+              //         },
+              //         child: Padding(
+              //           padding: const EdgeInsets.only(
+              //             top: 10,
+              //             bottom: 10,
+              //           ),
+              //           child: Text(
+              //             "Normal",
+              //             style: TextStyle(
+              //               fontSize: 20,
+              //               // fontWeight: FontWeight.w700,
+              //               color: Colors.black87,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       ElevatedButton(
+              //         style: ButtonStyle(
+              //           shape:
+              //               MaterialStateProperty.all<RoundedRectangleBorder>(
+              //             RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(20.0),
+              //             ),
+              //           ),
+              //           backgroundColor:
+              //               MaterialStateProperty.all(Colors.transparent),
+              //           // elevation: MaterialStateProperty.all(3),
+              //           shadowColor:
+              //               MaterialStateProperty.all(Colors.transparent),
+              //         ),
+              //         onPressed: () {
+              //           _index = 3;
+              //         },
+              //         child: Padding(
+              //           padding: const EdgeInsets.only(
+              //             top: 10,
+              //             bottom: 10,
+              //           ),
+              //           child: Text(
+              //             "High",
+              //             style: TextStyle(
+              //               fontSize: 20,
+              //               // fontWeight: FontWeight.w700,
+              //               color: Colors.black87,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Expanded(
+              //   child: Container(
+              //       height: double.infinity,
+              //       width: double.infinity,
+              //       child: _buildListView(_viewmodel)),
+              // ),
+              DefaultTabController(
+                  length: 3, // length of tabs
+                  initialIndex: 0,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: [
+                              Text(
+                                'Blood Pressures',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
+                              ),
+                              TabBar(
+                                labelColor: Colors.blue,
+                                unselectedLabelColor: Colors.black,
+                                tabs: [
+                                  Tab(text: 'Low'),
+                                  Tab(text: 'Normal'),
+                                  Tab(text: 'High'),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        // elevation: MaterialStateProperty.all(3),
-                        shadowColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {
-                        _index = 1;
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: Text(
-                          "Low",
-                          style: TextStyle(
-                            fontSize: 20,
-                            // fontWeight: FontWeight.w700,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        // elevation: MaterialStateProperty.all(3),
-                        shadowColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {
-                        _index = 2;
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: Text(
-                          "Normal",
-                          style: TextStyle(
-                            fontSize: 20,
-                            // fontWeight: FontWeight.w700,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        // elevation: MaterialStateProperty.all(3),
-                        shadowColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {
-                        _index = 3;
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        child: Text(
-                          "High",
-                          style: TextStyle(
-                            fontSize: 20,
-                            // fontWeight: FontWeight.w700,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: _buildListView(_viewmodel)),
-              ),
+                        Container(
+                            height: 400, //height of TabBarView
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    top: BorderSide(
+                                        color: Colors.grey, width: 0.5))),
+                            child: TabBarView(children: <Widget>[
+                              Container(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  child:
+                                      _buildListView(_viewmodel.foodListLow)),
+                              Container(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  child: _buildListView(
+                                      _viewmodel.foodListNormal)),
+                              Container(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  child:
+                                      _buildListView(_viewmodel.foodListHigh)),
+                            ]))
+                      ])),
             ],
           )),
     );
   }
 
-  ListView _buildListView(FoodViewmodel _viewmodel) {
+  ListView _buildListView(
+    List _foodList,
+  ) {
     return ListView.separated(
-      itemCount: _viewmodel.foodList.length,
+      itemCount: _foodList.length,
       separatorBuilder: (context, index) => Divider(
         color: Colors.blueGrey,
       ),
-      itemBuilder: (context, index) => _listTile(index, context, _viewmodel),
+      itemBuilder: (context, index) => _listTile(index, context, _foodList),
     );
   }
 
-  ListTile _listTile(
-      int index, BuildContext context, FoodViewmodel _viewmodel) {
-    if (_index == 0) {
-      return ListTile(
-        title: Card(
-          color: Color.fromRGBO(0, 48, 97, 1),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: 44,
-                  minHeight: 70,
-                  maxWidth: 80,
-                  maxHeight: 80,
-                ),
-                child: Image.network(
-                  _viewmodel.foodList[index].photoUrl,
-                  fit: BoxFit.cover,
-                ),
+  ListTile _listTile(int index, BuildContext context, List _foodList) {
+    return ListTile(
+      title: Card(
+        color: Color.fromRGBO(0, 48, 97, 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+            leading: ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: 44,
+                minHeight: 70,
+                maxWidth: 80,
+                maxHeight: 80,
               ),
-              title: Padding(
-                padding: const EdgeInsets.only(bottom: 15.0),
-                child: Text(
-                  '${_viewmodel.foodList[index].foodName}',
-                  style: const TextStyle(color: Colors.white, fontSize: 20.0),
-                ),
+              child: Image.network(
+                _foodList[index].photoUrl,
+                fit: BoxFit.cover,
               ),
-              subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.justify),
             ),
+            title: Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Text(
+                '${_foodList[index].foodName}',
+                style: const TextStyle(color: Colors.white, fontSize: 20.0),
+              ),
+            ),
+            subtitle: Text(' ${_foodList[index].foodDetails}',
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.justify),
           ),
         ),
-      );
-    }
-    if (_index == 1) {
-      if (_viewmodel.foodList[index].range == 'low') {
-        return ListTile(
-          title: Card(
-            color: Color.fromRGBO(0, 48, 97, 1),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 44,
-                    minHeight: 70,
-                    maxWidth: 80,
-                    maxHeight: 80,
-                  ),
-                  child: Image.network(
-                    _viewmodel.foodList[index].photoUrl,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
-                  child: Text(
-                    '${_viewmodel.foodList[index].foodName}',
-                    style: const TextStyle(color: Colors.white, fontSize: 20.0),
-                  ),
-                ),
-                subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.justify),
-              ),
-            ),
-          ),
-        );
-      }
-    }
-    if (_index == 2) {
-      if (_viewmodel.foodList[index].range == 'normal') {
-        return ListTile(
-          title: Card(
-            color: Color.fromRGBO(0, 48, 97, 1),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 44,
-                    minHeight: 70,
-                    maxWidth: 80,
-                    maxHeight: 80,
-                  ),
-                  child: Image.network(
-                    _viewmodel.foodList[index].photoUrl,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
-                  child: Text(
-                    '${_viewmodel.foodList[index].foodName}',
-                    style: const TextStyle(color: Colors.white, fontSize: 20.0),
-                  ),
-                ),
-                subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.justify),
-              ),
-            ),
-          ),
-        );
-      }
-    }
-    if (_index == 3) {
-      if (_viewmodel.foodList[index].range == 'high') {
-        return ListTile(
-          title: Card(
-            color: Color.fromRGBO(0, 48, 97, 1),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 44,
-                    minHeight: 70,
-                    maxWidth: 80,
-                    maxHeight: 80,
-                  ),
-                  child: Image.network(
-                    _viewmodel.foodList[index].photoUrl,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
-                  child: Text(
-                    '${_viewmodel.foodList[index].foodName}',
-                    style: const TextStyle(color: Colors.white, fontSize: 20.0),
-                  ),
-                ),
-                subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.justify),
-              ),
-            ),
-          ),
-        );
-      }
-    }
+      ),
+    );
   }
+  // else
+  // if (_viewmodel.range == 1) {
+  //   print('print range 2  ${_viewmodel.range}');
+  //   print(_viewmodel.foodList[index].range);
+  //   if (_viewmodel.foodList[index].range == 'low') {
+  //     return ListTile(
+  //       title: Card(
+  //         color: Color.fromRGBO(0, 48, 97, 1),
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(15.0),
+  //         ),
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: ListTile(
+  //             leading: ConstrainedBox(
+  //               constraints: BoxConstraints(
+  //                 minWidth: 44,
+  //                 minHeight: 70,
+  //                 maxWidth: 80,
+  //                 maxHeight: 80,
+  //               ),
+  //               child: Image.network(
+  //                 _viewmodel.foodList[index].photoUrl,
+  //                 fit: BoxFit.cover,
+  //               ),
+  //             ),
+  //             title: Padding(
+  //               padding: const EdgeInsets.only(bottom: 15.0),
+  //               child: Text(
+  //                 '${_viewmodel.foodList[index].foodName}',
+  //                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
+  //               ),
+  //             ),
+  //             subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
+  //                 style: const TextStyle(
+  //                   color: Colors.white,
+  //                 ),
+  //                 textAlign: TextAlign.justify),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // } else if (_viewmodel.range == 2) {
+  //   if (_viewmodel.foodList[index].range == 'normal') {
+  //     return ListTile(
+  //       title: Card(
+  //         color: Color.fromRGBO(0, 48, 97, 1),
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(15.0),
+  //         ),
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: ListTile(
+  //             leading: ConstrainedBox(
+  //               constraints: BoxConstraints(
+  //                 minWidth: 44,
+  //                 minHeight: 70,
+  //                 maxWidth: 80,
+  //                 maxHeight: 80,
+  //               ),
+  //               child: Image.network(
+  //                 _viewmodel.foodList[index].photoUrl,
+  //                 fit: BoxFit.cover,
+  //               ),
+  //             ),
+  //             title: Padding(
+  //               padding: const EdgeInsets.only(bottom: 15.0),
+  //               child: Text(
+  //                 '${_viewmodel.foodList[index].foodName}',
+  //                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
+  //               ),
+  //             ),
+  //             subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
+  //                 style: const TextStyle(
+  //                   color: Colors.white,
+  //                 ),
+  //                 textAlign: TextAlign.justify),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // } else if (_viewmodel.range == 3) {
+  //   if (_viewmodel.foodList[index].range == 'high') {
+  //     return ListTile(
+  //       title: Card(
+  //         color: Color.fromRGBO(0, 48, 97, 1),
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(15.0),
+  //         ),
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: ListTile(
+  //             leading: ConstrainedBox(
+  //               constraints: BoxConstraints(
+  //                 minWidth: 44,
+  //                 minHeight: 70,
+  //                 maxWidth: 80,
+  //                 maxHeight: 80,
+  //               ),
+  //               child: Image.network(
+  //                 _viewmodel.foodList[index].photoUrl,
+  //                 fit: BoxFit.cover,
+  //               ),
+  //             ),
+  //             title: Padding(
+  //               padding: const EdgeInsets.only(bottom: 15.0),
+  //               child: Text(
+  //                 '${_viewmodel.foodList[index].foodName}',
+  //                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
+  //               ),
+  //             ),
+  //             subtitle: Text(' ${_viewmodel.foodList[index].foodDetails}',
+  //                 style: const TextStyle(
+  //                   color: Colors.white,
+  //                 ),
+  //                 textAlign: TextAlign.justify),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
 }

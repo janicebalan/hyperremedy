@@ -1,4 +1,4 @@
-class User {
+class Medicine {
   dynamic
       _id; // Use dynamic type because json-server id is int and firestore id is string
   String _medicineName;
@@ -6,11 +6,11 @@ class User {
   int _totalPills;
   String _datetime;
   int _pillsLeft;
-  String pillsNotify;
-  String medsNotify;
-  String userID;
-  String duration;
-  int dose;
+  String _pillsNotify;
+  String _medsNotify;
+  String _userID;
+  String _duration;
+  int _dose;
 
   // ignore: unnecessary_getters_setters
   get id => _id;
@@ -32,29 +32,60 @@ class User {
   get datetime => _datetime;
   set datetime(value) => _datetime = value;
 
-  User(
+  get pillsNotify => _pillsNotify;
+  set pillsNotify(value) => _pillsNotify = value;
+
+  get medsNotify => _medsNotify;
+  set medsNotify(value) => _medsNotify = value;
+
+  get userID => _userID;
+  set userID(value) => _userID = value;
+
+  get duration => _duration;
+  set duration(value) => _duration = value;
+
+  get dose => _dose;
+  set dose(value) => _dose = value;
+
+  Medicine(
       {dynamic id,
       String medicineName = '',
       String freqIntake = '',
       int totalPills = 0,
       String datetime = '',
-      int pillsLeft = 0})
+      int pillsLeft = 0,
+      String pillsNotify = '',
+      String medsNotify = '',
+      String userID = '',
+      String duration = '',
+      int dose = 0})
       : _id = id,
         _medicineName = medicineName,
         _freqIntake = freqIntake,
         _totalPills = totalPills,
         _datetime = datetime,
-        _pillsLeft = pillsLeft;
-  User.copy(User from)
+        _pillsLeft = pillsLeft,
+        _pillsNotify = pillsNotify,
+        _medsNotify = medsNotify,
+        _userID = userID,
+        _duration = duration,
+        _dose = dose;
+  Medicine.copy(Medicine from)
       : this(
-            id: from.id,
-            medicineName: from.medicineName,
-            freqIntake: from.freqIntake,
-            totalPills: from.totalPills,
-            datetime: from.datetime,
-            pillsLeft: from.pillsLeft);
+          id: from.id,
+          medicineName: from.medicineName,
+          freqIntake: from.freqIntake,
+          totalPills: from.totalPills,
+          datetime: from.datetime,
+          pillsLeft: from.pillsLeft,
+          pillsNotify: from.pillsNotify,
+          medsNotify: from.medsNotify,
+          userID: from.userID,
+          duration: from.duration,
+          dose: from.dose,
+        );
 
-  User.fromJson(Map<String, dynamic> json)
+  Medicine.fromJson(Map<String, dynamic> json)
       : this(
           id: json['id'],
           medicineName: json['medicineName'],
@@ -62,6 +93,11 @@ class User {
           totalPills: json['totalPills'],
           datetime: json['datetime'],
           pillsLeft: json['pillsLeft'],
+          pillsNotify: json['pillsNotify'],
+          medsNotify: json['medsNotify'],
+          userID: json['userID'],
+          duration: json['duration'],
+          dose: json['dose'],
         );
 
   Map<String, dynamic> toJson() => {
@@ -71,5 +107,10 @@ class User {
         'totalPills': totalPills,
         'datetime': datetime,
         'pillsLeft': pillsLeft,
+        'pillsNotify': pillsNotify,
+        'medsNotify': medsNotify,
+        'userID': userID,
+        'duration': duration,
+        'dose': dose,
       };
 }

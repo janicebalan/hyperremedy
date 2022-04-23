@@ -1,12 +1,15 @@
 import 'package:get_it/get_it.dart';
 
 import '../screens/food/food_viewmodel.dart';
+import '../screens/medicine/medicine_viewmodel.dart';
 import '../screens/register/register_viewmodel.dart';
 import '../screens/symptoms/symptoms_viewmodel.dart';
 import '../services/bloodpressure/bloodpressure_service.dart';
 import '../services/bloodpressure/bloodpressure_service_rest.dart';
 import '../services/food/food_service.dart';
 import '../services/food/food_service_rest.dart';
+import '../services/medicine/medicine_service.dart';
+import '../services/medicine/medicine_service_rest.dart';
 import '../services/rest.dart';
 import '../screens/user/user_viewmodel.dart';
 
@@ -47,6 +50,8 @@ void init() {
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceRest());
   dependency.registerLazySingleton<AuthService>(() => AuthServiceRest());
   dependency.registerLazySingleton<FoodService>(() => FoodServiceRest());
+  dependency
+      .registerLazySingleton<MedicineService>(() => MedicineServiceRest());
   dependency.registerLazySingleton<BloodPressureService>(
       () => BloodPressureServiceRest());
   dependency
@@ -62,4 +67,5 @@ void init() {
   dependency.registerLazySingleton(() => RegisterViewmodel());
   dependency.registerLazySingleton(() => FoodViewmodel());
   dependency.registerLazySingleton(() => SymptomsViewmodel());
+  dependency.registerLazySingleton(() => MedicineViewmodel());
 }

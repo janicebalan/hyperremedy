@@ -11,6 +11,14 @@ class RegisterViewmodel extends Viewmodel {
   String _yearBorn;
   String _password;
   String _email;
+  bool _showPassword = false;
+
+  get showPassword => _showPassword;
+  set showPassword(value) {
+    turnBusy();
+    _showPassword = value;
+    turnIdle();
+  }
 
   get name => _name;
   set name(value) => _name = value;

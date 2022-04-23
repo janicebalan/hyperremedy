@@ -176,6 +176,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   decoration: InputDecoration(
                                     fillColor: Colors.white,
                                     hintText: "Password",
+                                    suffixIcon: IconButton(
+                                        padding: EdgeInsets.zero,
+                                        icon: !_viewmodel.showPassword
+                                            ? Icon(
+                                                Icons.visibility_off,
+                                                color: Colors.black,
+                                              )
+                                            : Icon(
+                                                Icons.visibility,
+                                                color: Colors.black,
+                                              ),
+                                        onPressed: () =>
+                                            _viewmodel.showPassword =
+                                                !_viewmodel.showPassword),
                                   ),
                                 ),
                               ),
@@ -189,6 +203,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 padding: const EdgeInsets.only(
                                     left: 12, right: 12, top: 12),
                                 child: TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your phone number';
+                                    }
+                                    return null;
+                                  },
                                   onChanged: (value) =>
                                       _viewmodel.phoneNo = value,
                                   decoration: InputDecoration(

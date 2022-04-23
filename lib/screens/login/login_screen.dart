@@ -127,7 +127,22 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           Expanded(
                             child: TextField(
+                                obscureText: !viewmodel.showPassword,
                                 decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                        padding: EdgeInsets.zero,
+                                        icon: !viewmodel.showPassword
+                                            ? Icon(
+                                                Icons.visibility_off,
+                                                color: Colors.black,
+                                              )
+                                            : Icon(
+                                                Icons.visibility,
+                                                color: Colors.black,
+                                              ),
+                                        onPressed: () =>
+                                            viewmodel.showPassword =
+                                                !viewmodel.showPassword),
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 10),
                                     border: InputBorder.none,

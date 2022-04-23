@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
                   Container(
                     height: 120,
                     width: MediaQuery.of(context).size.width,
-                    color: const Color.fromRGBO(216, 212, 212, 1),
+                    color: Color.fromRGBO(221, 223, 237, 0.25),
                     child: Column(
                       children: <Widget>[
                         Expanded(
@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(216, 212, 212, 1),
+                              color: Color.fromRGBO(221, 223, 237, 0.25),
                             ),
                           ),
                         ),
@@ -125,7 +125,11 @@ class Body extends StatelessWidget {
       int index, BuildContext context, BloodPressureViewmodel _viewmodel) {
     return ListTile(
       title: Card(
-        color: Color.fromRGBO(0, 48, 97, 1),
+        color: _viewmodel.bloodpressureListById[index].range == "High"
+            ? Color.fromRGBO(181, 9, 9, 0.7)
+            : _viewmodel.bloodpressureListById[index].range == "Low"
+                ? Color.fromRGBO(4, 25, 136, 0.7)
+                : Color.fromRGBO(5, 233, 49, 0.7),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -147,15 +151,24 @@ class Body extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Text(
-                '${_viewmodel.bloodpressureListById[index].range}',
+                '${_viewmodel.bloodpressureListById[index].systolic} sys / ${_viewmodel.bloodpressureListById[index].diastolic} dia / ${_viewmodel.bloodpressureListById[index].pulse} pulse',
                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
-            subtitle: Text(' ${_viewmodel.bloodpressureListById[index].date}',
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.justify),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(' ${_viewmodel.bloodpressureListById[index].date}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.justify),
+                ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                        "${_viewmodel.bloodpressureListById[index].range}"))
+              ],
+            ),
             trailing: RaisedButton(
               onPressed: () {
                 showDialog(

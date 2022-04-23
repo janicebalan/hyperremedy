@@ -25,6 +25,7 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
         onWillPop: () => Future.value(true),
         child: SafeArea(
           child: Scaffold(
+            backgroundColor: Color.fromRGBO(216, 212, 212, 1),
             appBar: AppBar(
               title: const Text(
                 'blood pressure',

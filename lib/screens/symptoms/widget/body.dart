@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
                   Container(
                     height: 120,
                     width: MediaQuery.of(context).size.width,
-                    color: const Color.fromRGBO(216, 212, 212, 1),
+                    color: const Color.fromRGBO(221, 223, 237, 0.25),
                     child: Column(
                       children: <Widget>[
                         Expanded(
@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(216, 212, 212, 1),
+                              color: Color.fromRGBO(221, 223, 237, 0.25),
                             ),
                           ),
                         ),
@@ -125,7 +125,7 @@ class Body extends StatelessWidget {
       int index, BuildContext context, SymptomsViewmodel _viewmodel) {
     return ListTile(
       title: Card(
-        color: Color.fromRGBO(0, 48, 97, 1),
+        color: Color.fromRGBO(4, 25, 136, 0.7),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -151,12 +151,17 @@ class Body extends StatelessWidget {
                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
-            subtitle: Text(' ${_viewmodel.symptomListById[index].description}',
+            subtitle: Text(
+                ' ${_viewmodel.symptomListById[index].description}\n\n${_viewmodel.symptomListById[index].date}',
                 style: const TextStyle(
                   color: Colors.white,
                 ),
                 textAlign: TextAlign.justify),
+
             trailing: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.red)),
               onPressed: () {
                 showDialog(
                   context: context,
@@ -180,8 +185,11 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-              color: Colors.yellow,
-              child: Text('Remove'),
+              color: Color.fromRGBO(211, 62, 62, 1),
+              child: Text(
+                'Remove',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),

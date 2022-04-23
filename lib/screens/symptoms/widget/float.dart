@@ -14,8 +14,6 @@ class Float extends StatelessWidget {
 
   void _onPlusPressed(
       BuildContext context, String data, SymptomsViewmodel viewmodel) async {
-    print("printing id");
-    print(data);
     final symptoms = await Navigator.push(
         context,
         MaterialPageRoute(
@@ -31,7 +29,7 @@ class Float extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(_data);
+    //print(_data);
     return View(
       viewmodel: _viewmodel,
       builder: (_context, _viewmodel, _) {

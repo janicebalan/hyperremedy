@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hyperremedy/screens/symptoms/symptoms_viewmodel.dart';
 import 'package:intl/intl.dart';
-
+import 'package:ionicons/ionicons.dart';
 import '../../models/symptom.dart';
 import '../view.dart';
 
@@ -21,6 +21,25 @@ class AddSymptomsScreen extends StatelessWidget {
         userID: _data);
     Navigator.pop(context, _symptoms);
   }
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Body pain"), value: "Body pain"),
+      DropdownMenuItem(child: Text("Cramps"), value: "Cramps"),
+      DropdownMenuItem(child: Text("Coughs"), value: "Coughs"),
+      DropdownMenuItem(child: Text("Fatigue"), value: "Fatigue"),
+      DropdownMenuItem(child: Text("Headaches"), value: "Headaches"),
+      DropdownMenuItem(child: Text("Allergies"), value: "Allergies"),
+      DropdownMenuItem(child: Text("Memory loss"), value: "Memory loss"),
+      DropdownMenuItem(child: Text("Cough"), value: "Cough"),
+      DropdownMenuItem(child: Text("Fever"), value: "Fever"),
+      DropdownMenuItem(child: Text("Sore throat"), value: "Sore throat"),
+      DropdownMenuItem(child: Text("Others"), value: "Others"),
+    ];
+    return menuItems;
+  }
+
+  //String selectedValue = "USA";
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +66,32 @@ class AddSymptomsScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: new Column(
                   children: <Widget>[
-                    _buildTextLisTile(
-                      leading: const Icon(Icons.sports_tennis_rounded),
-                      label: 'Type',
-                      onChanged: (value) => _viewmodel.type = value,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Type'),
+                          DropdownButtonFormField(
+                            value: _viewmodel.selectedValue,
+                            items: dropdownItems,
+                            onChanged: (value) {
+                              _viewmodel.type = value;
+                              _viewmodel.selectedValue = value;
+                            },
+                          ),
+                        ],
+                      ),
                     ),
+
+                    // _buildTextLisTile(
+                    //   leading: const Icon(Icons.sports_tennis_rounded),
+                    //   label: 'Type',
+                    //   onChanged: (value) => _viewmodel.type = value,
+                    // ),
                     _buildTextLisTile(
-                      leading: const Icon(Icons.article_outlined),
+                      leading: null,
                       label: 'Description',
                       onChanged: (value) => _viewmodel.description = value,
                     ),
@@ -88,7 +126,7 @@ class AddSymptomsScreen extends StatelessWidget {
     return new ListTile(
       leading: leading,
       title: TextFormField(
-        autofocus: true,
+        autofocus: false,
         decoration: InputDecoration(
           labelText: label,
         ),
@@ -159,7 +197,7 @@ class AddSymptomsScreen extends StatelessWidget {
     if (newSelectedDate != null) {
       viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
       _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
-      print(viewmodel.date);
+      //print(viewmodel.date);
     }
   }
 }

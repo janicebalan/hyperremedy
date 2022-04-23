@@ -11,6 +11,7 @@ class SymptomsViewmodel extends Viewmodel {
   String _date;
   String _description;
   String _userID;
+  String _selectedValue = "Body pain";
 
   get symptom => _symptom;
   set symptom(value) => _symptom = value;
@@ -30,6 +31,13 @@ class SymptomsViewmodel extends Viewmodel {
 
   get userID => _userID;
   set userID(value) => _userID = value;
+
+  get selectedValue => _selectedValue;
+  set selectedValue(value) {
+    turnBusy();
+    _selectedValue = value;
+    turnIdle();
+  }
 
   List<Symptom> symptomListById;
   get symptomList => symptomListById;

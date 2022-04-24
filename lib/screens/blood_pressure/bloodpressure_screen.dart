@@ -28,7 +28,7 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
             backgroundColor: Color.fromRGBO(216, 212, 212, 1),
             appBar: AppBar(
               title: const Text(
-                'blood pressure',
+                'HyperRemedy',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,

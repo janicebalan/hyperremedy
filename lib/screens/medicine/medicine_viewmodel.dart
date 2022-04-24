@@ -92,7 +92,7 @@ class MedicineViewmodel extends Viewmodel {
     turnIdle();
   }
 
-  void removeBloodPressure(Medicine medicines, int index) async {
+  void removeMedicines(Medicine medicines, int index) async {
     turnBusy();
     //print(symptoms.id);
     await _service.removeMedicines(medicines);

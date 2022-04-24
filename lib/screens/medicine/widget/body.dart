@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../view.dart';
-import '../bloodpressure_viewmodel.dart';
+import '../medicine_viewmodel.dart';
 
 class Body extends StatelessWidget {
   Body({data}) : _viewmodel = data;
-  final BloodPressureViewmodel _viewmodel;
+  final MedicineViewmodel _viewmodel;
   String _data;
   //FoodViewmodel _foodViewmodel = FoodViewmodel();
   //SymptomsViewmodel _symptomsViewmodel = SymptomsViewmodel(_data);
@@ -84,7 +84,7 @@ class Body extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Text(
-                                'List of Readings',
+                                'List of Medicines',
                                 textAlign: TextAlign.center,
                                 style: new TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -110,10 +110,10 @@ class Body extends StatelessWidget {
     );
   }
 
-  ListView _buildListView(BloodPressureViewmodel _viewmodel) {
+  ListView _buildListView(MedicineViewmodel _viewmodel) {
     //print(_viewmodel.bloodpressureList.length);
     return ListView.separated(
-      itemCount: _viewmodel.bloodpressureList.length,
+      itemCount: _viewmodel.medicinesList.length,
       separatorBuilder: (context, index) => Divider(
         color: Colors.blueGrey,
       ),
@@ -122,14 +122,12 @@ class Body extends StatelessWidget {
   }
 
   ListTile _listTile(
-      int index, BuildContext context, BloodPressureViewmodel _viewmodel) {
+      int index, BuildContext context, MedicineViewmodel _viewmodel) {
     return ListTile(
       title: Card(
-        color: _viewmodel.bloodpressureListById[index].range.contains("high")
-            ? Color.fromRGBO(181, 9, 9, 0.7)
-            : _viewmodel.bloodpressureListById[index].range == "Low"
-                ? Color.fromRGBO(4, 25, 136, 0.7)
-                : Color.fromRGBO(5, 233, 49, 0.7),
+        color: _viewmodel.medicinesListById[index].pillsLeft < 1
+            ? Color.fromRGBO(106, 119, 205, 0.7)
+            : Color.fromRGBO(4, 25, 136, 0.7),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -151,14 +149,15 @@ class Body extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Text(
-                '${_viewmodel.bloodpressureListById[index].systolic} sys / ${_viewmodel.bloodpressureListById[index].diastolic} dia / ${_viewmodel.bloodpressureListById[index].pulse} pulse',
+                '${_viewmodel.medicinesListById[index].medicineName}',
                 style: const TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' ${_viewmodel.bloodpressureListById[index].date}',
+                Text(
+                    ' ${_viewmodel.medicinesListById[index].datetime}\n${_viewmodel.medicinesListById[index].freqIntake}',
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -166,7 +165,7 @@ class Body extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {},
                     child: Text(
-                        "${_viewmodel.bloodpressureListById[index].range}"))
+                        "${_viewmodel.medicinesListById[index].pillsLeft} pills left"))
               ],
             ),
             trailing: RaisedButton(
@@ -179,8 +178,8 @@ class Body extends StatelessWidget {
                     actions: [
                       ElevatedButton(
                           onPressed: () {
-                            _viewmodel.removeBloodPressure(
-                                _viewmodel.bloodpressureListById[index], index);
+                            _viewmodel.removeMedicines(
+                                _viewmodel.medicinesListById[index], index);
                             Navigator.pop(context);
                           },
                           child: Text('Yes')),

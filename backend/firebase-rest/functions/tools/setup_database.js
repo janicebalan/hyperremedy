@@ -33,16 +33,14 @@ const _collectionsJson = {
 			photoUrl:
 				'https://res.cloudinary.com/grohealth/image/upload/f_auto,fl_lossy,q_auto/v1583748085/DCUK/Content/Cod-Trout-Fillet-Vegetable-Prepared-Fish_Medium.jpg',
 			foodName: 'Lean Meat',
-			foodDetails:
-				'Lean meat is a broad category used to define white meat, poultry or fish that has lower calories and fat content as compared to its fatty red counterparts'
+			foodDetails: 'Has lower calories and fat content as compared to its fatty red counterparts'
 		},
 		{
 			id: 'food2',
 			range: 'normal',
 			photoUrl: 'https://fooddoodles.com/wp-content/uploads/2021/01/broccoli-1200.jpg',
 			foodName: 'Broccoli',
-			foodDetails:
-				'Broccoli provides good amount of phytonutrients. Phytonutrients are compounds that reduce the risk of developing heart disease, diabetes, and some cancers.'
+			foodDetails: 'Reduce the risk of developing heart disease, diabetes, and some cancers.'
 		},
 		{
 			id: 'food3',
@@ -65,14 +63,14 @@ const _collectionsJson = {
 		{
 			id: 'symptoms1',
 			type: 'Cough',
-			date: '19-18-2022',
+			date: 'Apr 23, 2022',
 			description: 'Feeling extremely pain in the chest',
 			userID: 'user1'
 		},
 		{
 			id: 'symptoms2',
 			type: 'Cough',
-			date: '19-18-2022',
+			date: 'Apr 23, 2022',
 			description: 'Feeling extremely pain in the chest',
 			userID: 'user1'
 		}
@@ -83,7 +81,7 @@ const _collectionsJson = {
 			diastolic: 140,
 			systolic: 80,
 			pulse: 90,
-			date: '19-18-2022',
+			date: 'Apr 23, 2022',
 			range: 'High',
 			userID: 'user1'
 		},
@@ -92,29 +90,50 @@ const _collectionsJson = {
 			diastolic: 150,
 			systolic: 80,
 			pulse: 90,
-			date: '19-18-2022',
+			date: 'Apr 23, 2022',
 			range: 'Low',
 			userID: 'user1'
 		}
 	],
 	medicines: [
 		{
-			id: 'bp1',
-			diastolic: 140,
-			systolic: 80,
-			pulse: 90,
-			date: '19-18-2022',
-			range: 'High',
-			userID: 'user1'
+			id: 'med1',
+			medicineName: 'Blood pressure medicine',
+			freqIntake: 'Once a day',
+			totalPills: 20,
+			datetime: 'Apr 20, 2022',
+			pillsLeft: 10,
+			pillsNotify: 'true',
+			medsNotify: 'true',
+			userID: 'user1',
+			duration: '25 days',
+			dose: 10
 		},
 		{
-			id: 'bp2',
-			diastolic: 150,
-			systolic: 80,
-			pulse: 90,
-			date: '19-18-2022',
-			range: 'Low',
-			userID: 'user1'
+			id: 'med2',
+			medicineName: 'Cough medicine',
+			freqIntake: 'Twice a day',
+			totalPills: 20,
+			datetime: 'Apr 20, 2022',
+			pillsLeft: 5,
+			pillsNotify: 'true',
+			medsNotify: 'true',
+			userID: 'user1',
+			duration: '25 days',
+			dose: 10
+		},
+		{
+			id: 'med3',
+			medicineName: 'Blood pressure medicine',
+			freqIntake: 'Once a day',
+			totalPills: 20,
+			datetime: 'Apr 1, 2022',
+			pillsLeft: 0,
+			pillsNotify: 'true',
+			medsNotify: 'true',
+			userID: 'user1',
+			duration: '25 days',
+			dose: 10
 		}
 	]
 };

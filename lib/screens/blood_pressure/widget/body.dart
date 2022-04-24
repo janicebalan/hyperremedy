@@ -125,7 +125,7 @@ class Body extends StatelessWidget {
       int index, BuildContext context, BloodPressureViewmodel _viewmodel) {
     return ListTile(
       title: Card(
-        color: _viewmodel.bloodpressureListById[index].range == "High"
+        color: _viewmodel.bloodpressureListById[index].range.contains("high")
             ? Color.fromRGBO(181, 9, 9, 0.7)
             : _viewmodel.bloodpressureListById[index].range == "Low"
                 ? Color.fromRGBO(4, 25, 136, 0.7)

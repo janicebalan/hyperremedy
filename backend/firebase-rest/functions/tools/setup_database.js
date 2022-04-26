@@ -37,13 +37,70 @@ const _collectionsJson = {
 		},
 		{
 			id: 'food2',
-			range: 'normal',
-			photoUrl: 'https://fooddoodles.com/wp-content/uploads/2021/01/broccoli-1200.jpg',
-			foodName: 'Broccoli',
-			foodDetails: 'Reduce the risk of developing heart disease, diabetes, and some cancers.'
+			range: 'high',
+			photoUrl:
+				'https://www.eatthis.com/wp-content/uploads/sites/4/2021/11/shutterstock_175231781.jpg?quality=82&strip=all',
+			foodName: 'Yogurt',
+			foodDetails: 'Calcium rich foods can lower blood pressure'
 		},
 		{
 			id: 'food3',
+			range: 'high',
+			photoUrl: 'https://rasamalaysia.com/wp-content/uploads/2020/05/boneless-chicken-breasts-thumb-480x480.jpg',
+			foodName: 'Skinless turkey and chicken',
+			foodDetails: ''
+		},
+		{
+			id: 'food4',
+			range: 'high',
+			photoUrl:
+				'https://www.unlockfood.ca/EatRightOntario/media/Website-images-resized/How-to-store-fruit-to-keep-it-fresh-resized.jpg',
+			foodName: 'Fruits',
+			foodDetails: 'Fresh, frozen, or canned without added salt'
+		},
+		{
+			id: 'food5',
+			range: 'high',
+			photoUrl:
+				'https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-2foodgroups_vegetables_detailfeature.jpg?sfvrsn=226f1bc7_6',
+			foodName: 'Vegetables',
+			foodDetails: 'Fresh, frozen, or canned without added salt'
+		},
+		{
+			id: 'food6',
+			range: 'high',
+			photoUrl:
+				'https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Blank_button.svg/1200px-Blank_button.svg.png',
+			foodName: 'Use less oil, butter margarine',
+			foodDetails: ''
+		},
+		{
+			id: 'food7',
+			range: 'high',
+			photoUrl:
+				'https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Blank_button.svg/1200px-Blank_button.svg.png',
+			foodName: 'Eat foods with lower in fat and calories',
+			foodDetails: ''
+		},
+		{
+			id: 'food8',
+			range: 'high',
+			photoUrl:
+				'https://www.foodnavigator.com/var/wrbm_gb_food_pharma/storage/images/5/7/9/9/1159975-1-eng-GB/Study-identifies-quick-and-simple-test-for-salt-levels-in-food.jpg',
+			foodName: 'Eat foods with less salt',
+			foodDetails: 'Use spices and herbs, vinegar, lemon or fruit juices instead of salt to flavor foods'
+		},
+
+		{
+			id: 'food9',
+			range: 'normal',
+			photoUrl: 'https://img.freepik.com/free-vector/healthy-food-pyramid-chart_1308-47113.jpg?w=2000',
+			foodName: 'Eating a balanced diet',
+			foodDetails: 'For more information, go to https://www.healthdirect.gov.au/balanced-diet '
+		},
+
+		{
+			id: 'food10',
 			range: 'low',
 			photoUrl: 'https://www.jessicagavin.com/wp-content/uploads/2020/09/how-to-fry-an-egg-3-1200.jpg',
 			foodName: 'Eggs',
@@ -51,12 +108,33 @@ const _collectionsJson = {
 				'Egg yolk significantly increased blood pressure. This helps improve both your cholesterol and your blood pressure while keeping you satisfied'
 		},
 		{
-			id: 'food4',
+			id: 'food11',
 			range: 'low',
-			photoUrl: 'https://www.jessicagavin.com/wp-content/uploads/2020/09/how-to-fry-an-egg-3-1200.jpg',
-			foodName: 'Eggs',
-			foodDetails:
-				'Egg yolk significantly increased blood pressure. This helps improve both your cholesterol and your blood pressure while keeping you satisfied'
+			photoUrl:
+				'https://i.guim.co.uk/img/media/eda873838f940582d1210dcf51900efad3fa8c9b/0_469_7360_4417/master/7360.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=4136d0378a9d158831c65d13dcc16389',
+			foodName: 'Water',
+			foodDetails: 'Water increase blood volume and help prevent dehydration'
+		},
+		{
+			id: 'food12',
+			range: 'low',
+			photoUrl: 'https://thebrownidentity.com/wp-content/uploads/2020/07/Food-ingredients-first.jpeg',
+			foodName: 'Foods high in vitamin b12',
+			foodDetails: 'Eggs, meat, milk products'
+		},
+		{
+			id: 'food13',
+			range: 'low',
+			photoUrl: 'https://betterme.world/articles/wp-content/uploads/2021/06/shutterstock_390988792.jpg',
+			foodName: 'Food high in folate ',
+			foodDetails: 'Dark leafy green vegetable, fruits, nuts, beans, eggs, dairy, meat, poultry, seafood, grains'
+		},
+		{
+			id: 'food14',
+			range: 'low',
+			photoUrl: 'https://www.eatthis.com/wp-content/uploads/sites/4/2020/10/junk-food.jpg?quality=82&strip=1',
+			foodName: 'Salty foods',
+			foodDetails: 'Salt helps prevent a drop in blood pressure'
 		}
 	],
 	symptoms: [
@@ -69,29 +147,65 @@ const _collectionsJson = {
 		},
 		{
 			id: 'symptoms2',
-			type: 'Cough',
+			type: 'Fever',
 			date: 'Apr 23, 2022',
-			description: 'Feeling extremely pain in the chest',
+			description: 'Shivering with high fever',
 			userID: 'user1'
 		}
 	],
 	bloodpressures: [
 		{
 			id: 'bp1',
-			diastolic: 140,
-			systolic: 80,
-			pulse: 90,
-			date: 'Apr 23, 2022',
-			range: 'High',
+			diastolic: 89,
+			systolic: 59,
+			pulse: 70,
+			date: 'Apr 24, 2022',
+			range: 'Low',
 			userID: 'user1'
 		},
 		{
 			id: 'bp2',
-			diastolic: 150,
-			systolic: 80,
-			pulse: 90,
-			date: 'Apr 23, 2022',
-			range: 'Low',
+			diastolic: 119,
+			systolic: 79,
+			pulse: 70,
+			date: 'Apr 24, 2022',
+			range: 'Normal',
+			userID: 'user1'
+		},
+		{
+			id: 'bp3',
+			diastolic: 125,
+			systolic: 79,
+			pulse: 70,
+			date: 'Apr 24, 2022',
+			range: 'Elevated (high)',
+			userID: 'user1'
+		},
+		{
+			id: 'bp4',
+			diastolic: 134,
+			systolic: 83,
+			pulse: 70,
+			date: 'Apr 24, 2022',
+			range: 'Stage 1 (high)',
+			userID: 'user1'
+		},
+		{
+			id: 'bp5',
+			diastolic: 143,
+			systolic: 100,
+			pulse: 70,
+			date: 'Apr 24, 2022',
+			range: 'Stage 2 (high)',
+			userID: 'user1'
+		},
+		{
+			id: 'bp6',
+			diastolic: 180,
+			systolic: 120,
+			pulse: 70,
+			date: 'Apr 24, 2022',
+			range: 'Hypertensive Crisis (high)',
 			userID: 'user1'
 		}
 	],

@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:hyperremedy/screens/symptoms/symptoms_viewmodel.dart';
 import 'package:intl/intl.dart';
-import 'package:ionicons/ionicons.dart';
-import '../../models/symptom.dart';
-import '../view.dart';
 
-class AddSymptomsScreen extends StatelessWidget {
-  AddSymptomsScreen({data, viewmodel})
+import '../../models/medicine.dart';
+import '../view.dart';
+import 'medicine_viewmodel.dart';
+
+class AddMedicineReminderScreen extends StatelessWidget {
+  AddMedicineReminderScreen({data, viewmodel})
       : _data = data,
         _viewmodel = viewmodel;
   String _data;
-  SymptomsViewmodel _viewmodel;
+  MedicineViewmodel _viewmodel;
 
   String _selectedDate;
   void _onSave(context, _viewmodel, _data) {
-    var _symptoms = new Symptom(
-        type: _viewmodel.type,
-        date: _viewmodel.date,
-        description: _viewmodel.description,
-        userID: _data);
-    Navigator.pop(context, _symptoms);
+    var _medicines = new Medicine(
+        duration: _viewmodel.duration,
+        medsNotify: _viewmodel.medsNotify,
+        dose: _viewmodel.dose);
+    Navigator.pop(context, _medicines);
   }
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("Body pain"), value: "Body pain"),
+      DropdownMenuItem(child: Text("5 hours"), value: "5 hours"),
       DropdownMenuItem(child: Text("Cramps"), value: "Cramps"),
       DropdownMenuItem(child: Text("Coughs"), value: "Coughs"),
       DropdownMenuItem(child: Text("Fatigue"), value: "Fatigue"),
@@ -49,7 +48,7 @@ class AddSymptomsScreen extends StatelessWidget {
           return new Scaffold(
             appBar: new AppBar(
               title: Text(
-                'Add New Symptoms',
+                'Add New Medicines',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
@@ -66,50 +65,40 @@ class AddSymptomsScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: new Column(
                   children: <Widget>[
+                    _buildTextLisTile(
+                      leading: null,
+                      label: 'Duration',
+                      onChanged: (value) => _viewmodel.duration = value,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Type'),
+                          Text('Remind Every'),
                           DropdownButtonFormField(
-                            value: _viewmodel.selectedValue,
+                            value: _viewmodel.selectedValueMedicine,
                             items: dropdownItems,
                             onChanged: (value) {
-                              _viewmodel.type = value;
-                              _viewmodel.selectedValue = value;
+                              _viewmodel.medsNotify = value;
+                              _viewmodel.selectedValueMedicine = value;
                             },
                           ),
                         ],
                       ),
                     ),
-
-                    // _buildTextLisTile(
-                    //   leading: const Icon(Icons.sports_tennis_rounded),
-                    //   label: 'Type',
-                    //   onChanged: (value) => _viewmodel.type = value,
-                    // ),
-                    _buildTextLisTile(
+                    ListTile(
                       leading: null,
-                      label: 'Description',
-                      onChanged: (value) => _viewmodel.description = value,
-                    ),
-                    ElevatedButton(
-                      child: Text(
-                        'Pick Date',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () => _selectDate(context, _viewmodel),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(6, 72, 130, 1),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      title: TextFormField(
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          labelText: 'Dose',
                         ),
+                        onChanged: (value) =>
+                            _viewmodel.dose = int.parse(value),
+                        onTap: () {},
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                     SizedBox(height: 30.0),
@@ -137,7 +126,7 @@ class AddSymptomsScreen extends StatelessWidget {
   }
 
   Row _buildButtons(
-      BuildContext context, SymptomsViewmodel viewmodel, String data) {
+      BuildContext context, MedicineViewmodel viewmodel, String data) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -173,7 +162,7 @@ class AddSymptomsScreen extends StatelessWidget {
   }
 
   Future<void> _selectDate(
-      BuildContext context, SymptomsViewmodel viewmodel) async {
+      BuildContext context, MedicineViewmodel viewmodel) async {
     DateTime newSelectedDate = await showDatePicker(
         context: context,
         initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
@@ -195,7 +184,8 @@ class AddSymptomsScreen extends StatelessWidget {
         });
 
     if (newSelectedDate != null) {
-      viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
+      viewmodel.datetime =
+          DateFormat.yMMMd().format(newSelectedDate).toString();
       _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
       //print(viewmodel.date);
     }

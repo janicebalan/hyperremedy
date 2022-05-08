@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../view.dart';
+import '../add_medicine_screen.dart';
 import '../medicine_viewmodel.dart';
 
 class Float extends StatelessWidget {
@@ -11,20 +12,20 @@ class Float extends StatelessWidget {
   String _data;
   MedicineViewmodel _viewmodel;
 
-  // void _onPlusPressed(BuildContext context, String data,
-  //     MedicineViewmodel viewmodel) async {
-  //   final bloodpressures = await Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //           builder: (context) =>
-  //               AddBloodPressureScreen(data: data, viewmodel: viewmodel)));
+  void _onPlusPressed(
+      BuildContext context, String data, MedicineViewmodel viewmodel) async {
+    final medicines = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                AddMedicineScreen(data: data, viewmodel: viewmodel)));
 
-  //   if (bloodpressures != null) {
-  //     viewmodel.addBloodPressures(bloodpressures);
-  //   } else {
-  //     print("Null value");
-  //   }
-  // }
+    if (medicines != null) {
+      viewmodel.addMedicines(medicines);
+    } else {
+      print("Null value");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +36,12 @@ class Float extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton.extended(
-                tooltip: 'Add a new medicine',
-                label: Text('Add Medicines'),
-                icon: Icon(Icons.add),
-                heroTag: null,
-                onPressed:
-                    () {} //=> _onPlusPressed(context, _data, _viewmodel),
-                ),
+              tooltip: 'Add a new medicine',
+              label: Text('Add Medicines'),
+              icon: Icon(Icons.add),
+              heroTag: null,
+              onPressed: () => _onPlusPressed(context, _data, _viewmodel),
+            ),
           ],
         );
       },

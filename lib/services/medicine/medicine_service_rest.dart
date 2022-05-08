@@ -18,9 +18,9 @@ class MedicineServiceRest implements MedicineService {
   Future<void> removeMedicines(Medicine medicines) async {
     await rest.delete('medicines/${medicines.id}');
   }
-  // Future<BloodPressure> addBloodPressures(BloodPressure bloodpressures) async {
-  //   final json = await rest.post('bloodpressures', data: bloodpressures);
-  //   return BloodPressure.fromJson(json);
-  // }
 
+  Future<Medicine> addMedicines(Medicine medicines) async {
+    final json = await rest.post('medicines', data: medicines);
+    return Medicine.fromJson(json);
+  }
 }

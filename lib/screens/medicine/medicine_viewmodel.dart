@@ -23,6 +23,8 @@ class MedicineViewmodel extends Viewmodel {
   String _userID;
   String _duration;
   int _dose;
+  String _selectedValue = "Twice a day";
+  String _selectedValueMedicine = "5 hours";
 
   get medicine => _medicine;
   set medicine(value) => _medicine = value;
@@ -36,8 +38,15 @@ class MedicineViewmodel extends Viewmodel {
   get totalPills => _totalPills;
   set totalPills(value) => _totalPills = value;
 
+  // get datetime => _datetime;
+  // set datetime(value) => _datetime = value;
+
   get datetime => _datetime;
-  set datetime(value) => _datetime = value;
+  set datetime(value) {
+    turnBusy();
+    _datetime = value;
+    turnIdle();
+  }
 
   get pillsLeft => _pillsLeft;
   set pillsLeft(value) => _pillsLeft = value;
@@ -56,6 +65,20 @@ class MedicineViewmodel extends Viewmodel {
 
   get dose => _dose;
   set dose(value) => _dose = value;
+
+  get selectedValue => _selectedValue;
+  set selectedValue(value) {
+    turnBusy();
+    _selectedValue = value;
+    turnIdle();
+  }
+
+  get selectedValueMedicine => _selectedValueMedicine;
+  set selectedValueMedicine(value) {
+    turnBusy();
+    _selectedValueMedicine = value;
+    turnIdle();
+  }
 
   // get systolic => _systolic;
   // set systolic(value) => _systolic = value;
@@ -100,11 +123,10 @@ class MedicineViewmodel extends Viewmodel {
     turnIdle();
   }
 
-  // void addBloodPressures(BloodPressure bloodpressures) async {
-  //   turnBusy();
-  //   final BloodPressure symptom =
-  //       await _service.addBloodPressures(bloodpressures);
-  //   bloodpressureListById.add(bloodpressures);
-  //   turnIdle();
-  // }
+  void addMedicines(Medicine medicines) async {
+    turnBusy();
+    final Medicine medicine = await _service.addMedicines(medicines);
+    medicinesListById.add(medicines);
+    turnIdle();
+  }
 }

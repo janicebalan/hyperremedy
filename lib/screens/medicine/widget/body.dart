@@ -100,10 +100,19 @@ class Body extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: _buildListView(_viewmodel)),
+                child: _viewmodel.medicinesList.length == 0
+                    ? Container(
+                        child: Center(
+                          child: Text(
+                            "No medicines",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: double.infinity,
+                        width: double.infinity,
+                        child: _buildListView(_viewmodel)),
               ),
             ],
           )),

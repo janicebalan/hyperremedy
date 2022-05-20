@@ -6,6 +6,7 @@ import '../../view.dart';
 import 'package:intl/intl.dart';
 
 import '../report_viewmodel.dart';
+import 'symptom_statistic.dart';
 
 class Body extends StatelessWidget {
   Body({data}) : _viewmodel = data;
@@ -49,7 +50,7 @@ class Body extends StatelessWidget {
                                         color: Colors.grey, width: 0.5))),
                             child: TabBarView(children: <Widget>[
                               BloodPressureGraph(data: _viewmodel),
-                              Container(),
+                              SymptomStatistic(data: _viewmodel),
                             ]))
                       ])),
             ],

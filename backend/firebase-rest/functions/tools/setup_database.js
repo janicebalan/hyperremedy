@@ -159,7 +159,7 @@ const _collectionsJson = {
 			diastolic: 89,
 			systolic: 59,
 			pulse: 70,
-			date: 'Apr 24, 2022',
+			date: '2022-10-01',
 			range: 'Low',
 			userID: 'user1'
 		},
@@ -168,7 +168,7 @@ const _collectionsJson = {
 			diastolic: 119,
 			systolic: 79,
 			pulse: 70,
-			date: 'Apr 24, 2022',
+			date: '2021-04-10',
 			range: 'Normal',
 			userID: 'user1'
 		},
@@ -177,7 +177,7 @@ const _collectionsJson = {
 			diastolic: 125,
 			systolic: 79,
 			pulse: 70,
-			date: 'Apr 24, 2022',
+			date: '2022-02-17',
 			range: 'Elevated (high)',
 			userID: 'user1'
 		},
@@ -186,7 +186,7 @@ const _collectionsJson = {
 			diastolic: 134,
 			systolic: 83,
 			pulse: 70,
-			date: 'Apr 24, 2022',
+			date: '2022-06-09',
 			range: 'Stage 1 (high)',
 			userID: 'user1'
 		},
@@ -195,7 +195,7 @@ const _collectionsJson = {
 			diastolic: 143,
 			systolic: 100,
 			pulse: 70,
-			date: 'Apr 24, 2022',
+			date: '2022-12-29',
 			range: 'Stage 2 (high)',
 			userID: 'user1'
 		},
@@ -204,7 +204,7 @@ const _collectionsJson = {
 			diastolic: 180,
 			systolic: 120,
 			pulse: 70,
-			date: 'Apr 24, 2022',
+			date: '2020-01-01',
 			range: 'Hypertensive Crisis (high)',
 			userID: 'user1'
 		}

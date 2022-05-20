@@ -8,8 +8,6 @@ class Body extends StatelessWidget {
   Body({data}) : _viewmodel = data;
   final BloodPressureViewmodel _viewmodel;
   String _data;
-  //FoodViewmodel _foodViewmodel = FoodViewmodel();
-  //SymptomsViewmodel _symptomsViewmodel = SymptomsViewmodel(_data);
 
   String formattedDate =
       DateFormat('EEEEE, d MMMM yyyy').format(DateTime.now().toLocal());

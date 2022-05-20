@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/user.dart';
-import '../blood_pressure/bloodpressure_viewmodel.dart';
 import '../view.dart';
-import 'widget/blood_pressure_graph.dart';
+import 'report_viewmodel.dart';
 import 'widget/body.dart';
 
 class ReportScreen extends StatefulWidget {
@@ -19,7 +18,7 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return View(
-        viewmodel: BloodPressureViewmodel.overloadedContructorNamedArguements(
+        viewmodel: ReportViewmodel.overloadedContructorNamedArguements(
             widget._data.id),
         builder: (_context, _viewmodel, _child) {
           //_viewmodel.sortByFilter(_viewmodel.bloodpressureListById);

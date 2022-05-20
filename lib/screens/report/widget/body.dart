@@ -2,19 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:hyperremedy/screens/report/widget/blood_pressure_graph.dart';
-import '../../blood_pressure/bloodpressure_viewmodel.dart';
 import '../../view.dart';
 import 'package:intl/intl.dart';
 
+import '../report_viewmodel.dart';
+
 class Body extends StatelessWidget {
-  // Body({index, state})
-  //     : _index = index,
-  //       _state = state;
-  // var _index;
-  // final _state;
   Body({data}) : _viewmodel = data;
-  final BloodPressureViewmodel _viewmodel;
-  // BloodPressureViewmodel _bloodPressureViewmodel = BloodPressureViewmodel();
+  final ReportViewmodel _viewmodel;
 
   String formattedDate =
       DateFormat('EEEEE, d MMMM yyyy').format(DateTime.now().toLocal());

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import '../../report/widget/graph_day.dart';
 import '../../report/widget/graph_overall.dart';
 import '../../report/widget/graph_year.dart';
-import '../../blood_pressure/bloodpressure_viewmodel.dart';
 import '../../view.dart';
+import '../report_viewmodel.dart';
 import 'graph_month.dart';
 
 class BloodPressureGraph extends StatelessWidget {
   BloodPressureGraph({data}) : _viewmodel = data;
-  final BloodPressureViewmodel _viewmodel;
+  final ReportViewmodel _viewmodel;
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../../blood_pressure/bloodpressure_viewmodel.dart';
 import '../../view.dart';
+import '../report_viewmodel.dart';
 
 class GraphMonth extends StatelessWidget {
   GraphMonth({data}) : _viewmodel = data;
-  final BloodPressureViewmodel _viewmodel;
+  final ReportViewmodel _viewmodel;
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
@@ -95,7 +96,7 @@ class GraphMonth extends StatelessWidget {
     return Text(text, style: style, textAlign: TextAlign.left);
   }
 
-  LineChartData mainData(BloodPressureViewmodel viewmodel) {
+  LineChartData mainData(ReportViewmodel viewmodel) {
     return LineChartData(
       gridData: FlGridData(
         show: true,

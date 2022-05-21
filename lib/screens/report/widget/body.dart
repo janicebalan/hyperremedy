@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         Container(
-                            height: 400, //height of TabBarView
+                            height: 550, //height of TabBarView
                             decoration: BoxDecoration(
                                 border: Border(
                                     top: BorderSide(

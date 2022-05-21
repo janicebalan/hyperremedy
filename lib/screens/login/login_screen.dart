@@ -61,10 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
-                                  radius: 50,
-                                ),
+                                    // backgroundImage: NetworkImage(
+                                    //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
+                                    // radius: 50,
+                                    ),
                               ),
                               // #signup_text
                               Text(

@@ -1,5 +1,9 @@
+#config.js
+functions/api/config.js
+functions/tools/___test_requests_with-firebase-auth..rest
 # custom folder - emulator backup 
 .data
+.vscode
 
 # Logs
 logs

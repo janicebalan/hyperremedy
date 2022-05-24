@@ -13,10 +13,10 @@ import '../screens/symptoms/symptoms_screen.dart';
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
     case '/':
-    case '/home':
-      return HomeScreen.route();
     case '/login':
       return LoginScreen.route();
+    case '/home':
+      return HomeScreen.route();
     case '/register':
       return RegisterScreen.route();
     case '/food':

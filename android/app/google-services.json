@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36157427772",
+    "project_id": "hyperremedy-61c71",
+    "storage_bucket": "hyperremedy-61c71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36157427772:android:e174c1b28912a0445bb339",
+        "android_client_info": {
+          "package_name": "com.example.hyperremedy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36157427772-jndt9v297ll8cm198hm1n6lorc5uevfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6ZNE6nJ-KmDcI4XhMufJwBjSz241QrkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36157427772-jndt9v297ll8cm198hm1n6lorc5uevfu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

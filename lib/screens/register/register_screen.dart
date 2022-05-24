@@ -17,18 +17,23 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   RegisterViewmodel _viewmodel;
 
-  String _onSave(viewmodel) {
-    var _users = new User(
-        name: viewmodel.name,
-        password: viewmodel.password,
-        phoneNo: viewmodel.phoneNo,
-        email: viewmodel.email,
-        yearBorn: viewmodel.yearBorn);
+  void _onSave(RegisterViewmodel viewmodel, BuildContext context) async {
+    final User _user = await viewmodel.authenticate();
 
-    if (_users != null) {
-      viewmodel.signUp(_users);
+    if (_user != null) {}
+
+    // var _users = new User(
+    //     name: viewmodel.name,
+    //     password: viewmodel.password,
+    //     phoneNo: viewmodel.phoneNo,
+    //     email: viewmodel.email,
+    //     yearBorn: viewmodel.yearBorn);
+
+    if (_user != null) {
       Navigator.push(context, LoginScreen.route());
-      return "done";
+    }
+    if (_user == null) {
+      print("failed");
     }
   }
 
@@ -81,11 +86,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: const [
                               Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
-                                  radius: 50,
-                                ),
+                                // child: CircleAvatar(
+                                //   backgroundImage: NetworkImage(
+                                //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
+                                //   radius: 50,
+                                // ),
                               ),
                               // #signup_text
                               Text(
@@ -270,15 +275,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: MaterialButton(
                                 onPressed: () {
                                   if (_formKey.currentState.validate()) {
-                                    var result = _onSave(_viewmodel);
-                                    if (result == "done") {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            content: Text(
-                                                'Account successfully created')),
-                                      );
-                                    }
+                                    _onSave(_viewmodel, context);
+                                    // if (result == "done") {
+                                    //   ScaffoldMessenger.of(context)
+                                    //       .showSnackBar(
+                                    //     const SnackBar(
+                                    //         content: Text(
+                                    //             'Account successfully created')),
+                                    //   );
+                                    // }
                                   }
                                 },
                                 height: 45,

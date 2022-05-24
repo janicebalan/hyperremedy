@@ -1,9 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:hyperremedy/services/auth_signup/auth_service_firebase_token_signup.dart';
 
 import '../screens/food/food_viewmodel.dart';
+import '../screens/login/login_viewmodel.dart';
 import '../screens/medicine/medicine_viewmodel.dart';
 import '../screens/register/register_viewmodel.dart';
 import '../screens/symptoms/symptoms_viewmodel.dart';
+import '../services/auth/auth_service_secured_rest.dart';
 import '../services/bloodpressure/bloodpressure_service.dart';
 import '../services/bloodpressure/bloodpressure_service_rest.dart';
 import '../services/food/food_service.dart';
@@ -17,8 +20,8 @@ import '../services/auth/auth_service.dart';
 import '../services/auth_signup/auth_service_signup.dart';
 // import '../services/counter/counter_service.dart';
 
-import '../services/auth/auth_service_rest.dart';
-import '../services/auth_signup/auth_service_signup_rest.dart';
+// import '../services/auth/auth_service_rest.dart';
+// import '../services/auth_signup/auth_service_signup_rest.dart';
 import '../services/symptoms/symptoms_service.dart';
 import '../services/symptoms/symptoms_service_rest.dart';
 // import '../services/counter/counter_service_rest.dart';
@@ -35,20 +38,25 @@ void init() {
     // () => RestService(baseUrl: 'http://192.168.0.112:3000'),
 
     //firebase
-    () => RestService(
-        baseUrl: 'http://192.168.0.112:5001/hyperremedy-61c71/us-central1/api'),
+    // () => RestService(
+    //     baseUrl: 'http://192.168.0.112:5001/hyperremedy-61c71/us-central1/api',
+    //     enableSession: true),
 
     //firebase online
 
-    // () => RestService(
-    //     baseUrl:
-    //         'https://us-central1-hyperremedy-61c71.cloudfunctions.net/api'),
+    () => RestService(
+        baseUrl: 'https://us-central1-hyperremedy-61c71.cloudfunctions.net/api',
+        enableSession: true),
   );
 
   //Dependency Inversion Principle
 
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceRest());
-  dependency.registerLazySingleton<AuthService>(() => AuthServiceRest());
+  //dependency.registerLazySingleton<AuthService>(() => AuthServiceRest());
+  dependency.registerLazySingleton<AuthService>(() => AuthServiceSecuredRest());
+  dependency.registerLazySingleton<AuthServiceSignup>(
+      () => AuthServiceSignupFirebaseToken());
+
   dependency.registerLazySingleton<FoodService>(() => FoodServiceRest());
   dependency
       .registerLazySingleton<MedicineService>(() => MedicineServiceRest());
@@ -56,8 +64,8 @@ void init() {
       () => BloodPressureServiceRest());
   dependency
       .registerLazySingleton<SymptomsService>(() => SymptomsServiceRest());
-  dependency
-      .registerLazySingleton<AuthServiceSignup>(() => AuthServiceSignupRest());
+  // dependency
+  //     .registerLazySingleton<AuthServiceSignup>(() => AuthServiceSignupRest());
 
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceMock());
   // dependency.registerLazySingleton<AuthService>(() => AuthServiceMock());
@@ -68,4 +76,5 @@ void init() {
   dependency.registerLazySingleton(() => FoodViewmodel());
   dependency.registerLazySingleton(() => SymptomsViewmodel());
   dependency.registerLazySingleton(() => MedicineViewmodel());
+  dependency.registerLazySingleton(() => LoginViewmodel());
 }

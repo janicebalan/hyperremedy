@@ -23,6 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
       //print(_user.id);
       Navigator.push(context, HomeScreen.route(user: _user));
     }
+    if (_user == null) {
+      print("No user created or found");
+    }
   }
 
   @override

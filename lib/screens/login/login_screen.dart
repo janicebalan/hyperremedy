@@ -20,8 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
     final User _user = await viewmodel.authenticate();
 
     if (_user != null) {
-      //print(_user.id);
-      Navigator.push(context, HomeScreen.route(user: _user));
+      print(_user.id);
+      Navigator.push(context, HomeScreen.route(id: _user.id));
     }
     if (_user == null) {
       print("No user created or found");

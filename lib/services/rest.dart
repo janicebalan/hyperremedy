@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'session_service.dart';
 
@@ -25,14 +26,16 @@ class RestService {
       : _baseUrl = baseUrl,
         _session = enableSession ? SessionService() : null;
 
-  Future<void> openSession(token) async {
+  Future<void> openSession(token, id) async {
     if (_session == null) return;
-    await _session.setToken(token);
+    await _session.setToken(token, id);
   }
 
   Future<void> closeSession() async {
     if (_session == null) return;
-    await _session.setToken(null);
+    await _session.setToken(null, null);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
   }
 
   Future<Map<String, String>> get _defaultHeaders async {
@@ -71,7 +74,7 @@ class RestService {
     if (response.statusCode == successCode) {
       return jsonDecode(response.body);
     }
-    throw response;
+    throw response.statusCode;
   }
 
 // Send a GET request to retrieve data from a REST server

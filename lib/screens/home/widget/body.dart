@@ -12,7 +12,7 @@ import '../../view.dart';
 
 class Body extends StatelessWidget {
   Body({data}) : _data = data;
-  User _data;
+  String _data;
 
   UserViewmodel viewmodel = UserViewmodel();
 
@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
             style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
           Text(
-            _data != null ? 'Welcome ${_data.name}' : 'Welcome unknown!',
+            'Welcome',
             textAlign: TextAlign.left,
             style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
           ),

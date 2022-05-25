@@ -9,7 +9,7 @@ class MedicineScreen extends StatefulWidget {
   MedicineScreen({data}) : _data = data;
   static Route route({data}) =>
       MaterialPageRoute(builder: (context) => MedicineScreen(data: data));
-  User _data;
+  String _data;
 
   @override
   _MedicineScreenState createState() => _MedicineScreenState();
@@ -20,7 +20,7 @@ class _MedicineScreenState extends State<MedicineScreen> {
   Widget build(BuildContext context) {
     return View(
       viewmodel:
-          MedicineViewmodel.overloadedContructorNamedArguemnts(widget._data.id),
+          MedicineViewmodel.overloadedContructorNamedArguemnts(widget._data),
       builder: (_context, _viewmodel, _child) => WillPopScope(
         onWillPop: () => Future.value(true),
         child: SafeArea(
@@ -42,7 +42,7 @@ class _MedicineScreenState extends State<MedicineScreen> {
                 ? Body(data: _viewmodel)
                 : Body(data: widget._data),
             floatingActionButton: widget._data != null
-                ? Float(data: _viewmodel, user: widget._data.id)
+                ? Float(data: _viewmodel, user: widget._data)
                 : null,
           ),
         ),

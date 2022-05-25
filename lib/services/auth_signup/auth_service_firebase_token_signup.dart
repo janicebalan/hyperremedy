@@ -50,7 +50,8 @@ class AuthServiceSignupFirebaseToken implements AuthServiceSignup {
       _storeNewFirebaseUser(
           json['localId'], name, json['email'], password, phoneNo, yearBorn);
       // Get the access token and let the rest object stores that
-      rest.openSession(json['idToken']);
+      //rest.openSession(json['idToken']);
+      rest.closeSession();
 
       final _user = user.User.fromJson(json);
       return _user;

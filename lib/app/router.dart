@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../bottomNav.dart';
+import '../main.dart';
 import '../screens/blood_pressure/bloodpressure_screen.dart';
 import '../screens/food/food_screen.dart';
 import '../screens/home/home_screen.dart';
@@ -13,6 +14,8 @@ import '../screens/symptoms/symptoms_screen.dart';
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
     case '/':
+    case '/splash':
+      return SplashScreen.route();
     case '/login':
       return LoginScreen.route();
     case '/home':

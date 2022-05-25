@@ -9,7 +9,7 @@ class SymptomsScreen extends StatefulWidget {
   SymptomsScreen({data}) : _data = data;
   static Route route({data}) =>
       MaterialPageRoute(builder: (context) => SymptomsScreen(data: data));
-  User _data;
+  String _data;
 
   @override
   _SymptomsScreenState createState() => _SymptomsScreenState();
@@ -24,7 +24,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
 
     return View(
       viewmodel:
-          SymptomsViewmodel.overloadedContructorNamedArguemnts(widget._data.id),
+          SymptomsViewmodel.overloadedContructorNamedArguemnts(widget._data),
       builder: (_context, _viewmodel, _child) => WillPopScope(
         onWillPop: () => Future.value(true),
         child: SafeArea(
@@ -46,7 +46,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                 ? Body(data: _viewmodel)
                 : Body(data: widget._data),
             floatingActionButton: widget._data != null
-                ? Float(data: _viewmodel, user: widget._data.id)
+                ? Float(data: _viewmodel, user: widget._data)
                 : null,
           ),
         ),

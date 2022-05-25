@@ -21,11 +21,10 @@ class AuthServiceSecuredRest implements AuthService {
       json['id'] = json['localId'];
       json['name'] = json['displayName'];
       //json['photoUrl'] = json['profilePicture'];
-
-      // Get the access token and let the rest object stores that
-      rest.openSession(json['idToken']);
-
       final _user = User.fromJson(json);
+      // Get the access token and let the rest object stores that
+      rest.openSession(json['idToken'], _user.id);
+
       return _user;
     } catch (e) {
       print(e);

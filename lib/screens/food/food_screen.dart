@@ -7,7 +7,7 @@ class FoodScreen extends StatefulWidget {
   FoodScreen({data}) : _data = data;
   static Route route({data}) =>
       MaterialPageRoute(builder: (context) => FoodScreen(data: data));
-  User _data;
+  String _data;
 
   @override
   _FoodScreenState createState() => _FoodScreenState();

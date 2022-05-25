@@ -8,7 +8,7 @@ class ReportScreen extends StatefulWidget {
   ReportScreen({data}) : _data = data;
   static Route route({data}) =>
       MaterialPageRoute(builder: (context) => ReportScreen(data: data));
-  User _data;
+  String _data;
 
   @override
   _ReportScreenState createState() => _ReportScreenState();
@@ -18,8 +18,8 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return View(
-        viewmodel: ReportViewmodel.overloadedContructorNamedArguements(
-            widget._data.id),
+        viewmodel:
+            ReportViewmodel.overloadedContructorNamedArguements(widget._data),
         builder: (_context, _viewmodel, _child) {
           //_viewmodel.sortByFilter(_viewmodel.bloodpressureListById);
           return WillPopScope(

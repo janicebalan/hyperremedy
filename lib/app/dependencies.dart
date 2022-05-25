@@ -24,6 +24,8 @@ import '../services/auth_signup/auth_service_signup.dart';
 // import '../services/auth_signup/auth_service_signup_rest.dart';
 import '../services/symptoms/symptoms_service.dart';
 import '../services/symptoms/symptoms_service_rest.dart';
+import '../services/user/user_service.dart';
+import '../services/user/user_service_rest.dart';
 // import '../services/counter/counter_service_rest.dart';
 
 // import '../services/auth/auth_service_mock.dart';
@@ -54,6 +56,7 @@ void init() {
   // dependency.registerLazySingleton<CounterService>(() => CounterServiceRest());
   //dependency.registerLazySingleton<AuthService>(() => AuthServiceRest());
   dependency.registerLazySingleton<AuthService>(() => AuthServiceSecuredRest());
+  dependency.registerLazySingleton<UserService>(() => UserServiceRest());
   dependency.registerLazySingleton<AuthServiceSignup>(
       () => AuthServiceSignupFirebaseToken());
 

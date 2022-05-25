@@ -2,25 +2,69 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'app/dependencies.dart' as di;
 import 'app/router.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'services/auth/auth_service_firebase.dart';
+import 'dart:async';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   di.init();
+
   runApp(
     MaterialApp(
       title: 'HyperRemedy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/login',
+      initialRoute: '/splash',
       onGenerateRoute: createRoute,
     ),
   );
+}
+
+class SplashScreen extends StatefulWidget {
+  static Route route() =>
+      MaterialPageRoute(builder: (context) => SplashScreen());
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(child: Text("hello spalsh screen")),
+    );
+  }
+
+  void startTimer() {
+    Timer(Duration(seconds: 3), () {
+      print("doing navigating");
+      navigateUser(); //It will redirect  after 3 seconds
+    });
+  }
+
+  void navigateUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var id = prefs.getString('id');
+    if (token != null && id != null) {
+      Navigator.push(context, HomeScreen.route(id: id));
+    } else {
+      Navigator.push(context, LoginScreen.route());
+    }
+  }
 }
 
 class MyApp extends StatelessWidget {

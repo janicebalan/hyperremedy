@@ -9,7 +9,7 @@ class BloodPressureScreen extends StatefulWidget {
   BloodPressureScreen({data}) : _data = data;
   static Route route({data}) =>
       MaterialPageRoute(builder: (context) => BloodPressureScreen(data: data));
-  User _data;
+  String _data;
 
   @override
   _BloodPressureScreenState createState() => _BloodPressureScreenState();
@@ -20,7 +20,7 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
   Widget build(BuildContext context) {
     return View(
       viewmodel: BloodPressureViewmodel.overloadedContructorNamedArguemnts(
-          widget._data.id),
+          widget._data),
       builder: (_context, _viewmodel, _child) => WillPopScope(
         onWillPop: () => Future.value(true),
         child: SafeArea(
@@ -42,7 +42,7 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
                 ? Body(data: _viewmodel)
                 : Body(data: widget._data),
             floatingActionButton: widget._data != null
-                ? Float(data: _viewmodel, user: widget._data.id)
+                ? Float(data: _viewmodel, user: widget._data)
                 : null,
           ),
         ),

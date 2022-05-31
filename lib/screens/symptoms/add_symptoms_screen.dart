@@ -195,8 +195,10 @@ class AddSymptomsScreen extends StatelessWidget {
         });
 
     if (newSelectedDate != null) {
-      viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
-      _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
+      // viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
+      // _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
+
+      viewmodel.date = newSelectedDate.toString();
       //print(viewmodel.date);
     }
   }

@@ -13,6 +13,8 @@ import '../services/food/food_service.dart';
 import '../services/food/food_service_rest.dart';
 import '../services/medicine/medicine_service.dart';
 import '../services/medicine/medicine_service_rest.dart';
+import '../services/reminder/reminder_service.dart';
+import '../services/reminder/reminder_service_rest.dart';
 import '../services/rest.dart';
 import '../screens/user/user_viewmodel.dart';
 
@@ -61,6 +63,8 @@ void init() {
       () => AuthServiceSignupFirebaseToken());
 
   dependency.registerLazySingleton<FoodService>(() => FoodServiceRest());
+  dependency
+      .registerLazySingleton<ReminderService>(() => ReminderServiceRest());
   dependency
       .registerLazySingleton<MedicineService>(() => MedicineServiceRest());
   dependency.registerLazySingleton<BloodPressureService>(

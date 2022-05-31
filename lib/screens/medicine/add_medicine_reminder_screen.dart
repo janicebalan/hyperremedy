@@ -2,53 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/medicine.dart';
+import '../../models/reminder.dart';
 import '../view.dart';
 import 'medicine_viewmodel.dart';
 
 class AddMedicineReminderScreen extends StatelessWidget {
-  AddMedicineReminderScreen({data, viewmodel})
-      : _data = data,
-        _viewmodel = viewmodel;
-  String _data;
-  MedicineViewmodel _viewmodel;
+  AddMedicineReminderScreen({index, viewmodel})
+      : _index = index,
+        _viewmodelMed = viewmodel;
+  int _index;
+  MedicineViewmodel _viewmodelMed;
 
-  String _selectedDate;
-  void _onSave(context, _viewmodel, _data) {
-    var _medicines = new Medicine(
-        duration: _viewmodel.duration,
-        medsNotify: _viewmodel.medsNotify,
-        dose: _viewmodel.dose);
-    Navigator.pop(context, _medicines);
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("5 hours"), value: "5 hours"),
-      DropdownMenuItem(child: Text("Cramps"), value: "Cramps"),
-      DropdownMenuItem(child: Text("Coughs"), value: "Coughs"),
-      DropdownMenuItem(child: Text("Fatigue"), value: "Fatigue"),
-      DropdownMenuItem(child: Text("Headaches"), value: "Headaches"),
-      DropdownMenuItem(child: Text("Allergies"), value: "Allergies"),
-      DropdownMenuItem(child: Text("Memory loss"), value: "Memory loss"),
-      DropdownMenuItem(child: Text("Cough"), value: "Cough"),
-      DropdownMenuItem(child: Text("Fever"), value: "Fever"),
-      DropdownMenuItem(child: Text("Sore throat"), value: "Sore throat"),
-      DropdownMenuItem(child: Text("Others"), value: "Others"),
-    ];
-    return menuItems;
-  }
+  // void _onSave(context, _viewmodel, _data) {
+  //   var _medicines = new Medicine(dose: _viewmodel.dose);
+  //   Navigator.pop(context, _medicines);
+  // }
 
   //String selectedValue = "USA";
 
   @override
   Widget build(BuildContext context) {
     return View(
-        viewmodel: _viewmodel,
+        viewmodel: MedicineViewmodel.overloadedContructorNamedArguments(
+            _viewmodelMed.medicinesListById[_index].id),
         builder: (_context, _viewmodel, _child) {
+          print(_viewmodelMed.medicinesListById[_index].id);
           return new Scaffold(
             appBar: new AppBar(
               title: Text(
-                'Add New Medicines',
+                'Medicine Reminder',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
@@ -58,75 +40,120 @@ class AddMedicineReminderScreen extends StatelessWidget {
               ),
               backgroundColor: Color.fromRGBO(64, 64, 64, 1),
             ),
-            body: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(color: Colors.grey[100]),
-              child: SingleChildScrollView(
-                child: new Column(
-                  children: <Widget>[
-                    _buildTextLisTile(
-                      leading: null,
-                      label: 'Duration',
-                      onChanged: (value) => _viewmodel.duration = value,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Remind Every'),
-                          DropdownButtonFormField(
-                            value: _viewmodel.selectedValueMedicine,
-                            items: dropdownItems,
-                            onChanged: (value) {
-                              _viewmodel.medsNotify = value;
-                              _viewmodel.selectedValueMedicine = value;
-                            },
-                          ),
-                        ],
+            body: _viewmodel.remindersListById.length == 0
+                ? Container(
+                    child: Center(
+                      child: Text(
+                        "No reminders",
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    ListTile(
-                      leading: null,
-                      title: TextFormField(
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Dose',
-                        ),
-                        onChanged: (value) =>
-                            _viewmodel.dose = int.parse(value),
-                        onTap: () {},
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                    SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel, _data)
-                  ],
-                ),
-              ),
+                  )
+                : Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: _buildListView(
+                        _viewmodel.remindersListById, _viewmodel)),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                _selectTime(context, _viewmodelMed.medicinesListById[_index].id,
+                    _viewmodel);
+              },
+              label: Text('Add Reminder Time'),
+              icon: Icon(Icons.alarm),
             ),
           );
         });
   }
 
-  ListTile _buildTextLisTile({leading, label, onChanged, onTap}) {
-    return new ListTile(
-      leading: leading,
-      title: TextFormField(
-        autofocus: false,
-        decoration: InputDecoration(
-          labelText: label,
+  ListView _buildListView(List _remindersList, MedicineViewmodel _viewmodel) {
+    return ListView.separated(
+      itemCount: _remindersList.length,
+      separatorBuilder: (context, index) => Divider(
+        color: Colors.blueGrey,
+      ),
+      itemBuilder: (context, index) =>
+          _listTile(index, context, _remindersList, _viewmodel),
+    );
+  }
+
+  ListTile _listTile(int index, BuildContext context, List _remindersList,
+      MedicineViewmodel _viewmodel) {
+    return ListTile(
+      title: Card(
+        color: Color.fromRGBO(0, 48, 97, 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
         ),
-        onChanged: onChanged,
-        onTap: onTap,
+        child: ListTile(
+          iconColor: Colors.white,
+          leading: Icon(Icons.access_alarms),
+          title: Text(
+            '${_remindersList[index].hour}:${_remindersList[index].minute}',
+            style: const TextStyle(color: Colors.white, fontSize: 20.0),
+          ),
+          trailing: InkWell(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('Are you sure you want to remove this reminder?'),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          _viewmodel.removeReminders(
+                              _viewmodel.remindersList[index],
+                              index,
+                              _viewmodel.remindersList[index].id);
+                          Navigator.pop(context);
+                        },
+                        child: Text('Yes')),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Cancel')),
+                  ],
+                ),
+              );
+            },
+            child: IconButton(
+              icon: Icon(Icons.delete, color: Colors.red),
+            ),
+          ),
+        ),
       ),
     );
   }
 
+  Future<void> _selectTime(
+      BuildContext context, String id, MedicineViewmodel viewmodel) async {
+    TimeOfDay selectedTime = TimeOfDay.now();
+    final TimeOfDay picked_s = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child,
+          );
+        });
+
+    if (picked_s != null) {
+      var _reminders = new Reminder(
+        hour: picked_s.hour,
+        minute: picked_s.minute,
+        medsId: id,
+      );
+      viewmodel.addReminders(_reminders);
+
+      selectedTime = picked_s;
+    }
+    ;
+  }
+
   Row _buildButtons(
-      BuildContext context, MedicineViewmodel viewmodel, String data) {
+      BuildContext context, MedicineViewmodel viewmodel, int index) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -146,7 +173,7 @@ class AddMedicineReminderScreen extends StatelessWidget {
         SizedBox(width: 100.0),
         ElevatedButton(
           child: Text('Save'),
-          onPressed: () => _onSave(context, viewmodel, data),
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
             primary: Color.fromRGBO(0, 102, 102, 1),
             onPrimary: Colors.white,
@@ -159,35 +186,5 @@ class AddMedicineReminderScreen extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Future<void> _selectDate(
-      BuildContext context, MedicineViewmodel viewmodel) async {
-    DateTime newSelectedDate = await showDatePicker(
-        context: context,
-        initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2040),
-        builder: (BuildContext context, Widget child) {
-          return Theme(
-            data: ThemeData.light().copyWith(
-              colorScheme: ColorScheme.light(
-                primary: Color.fromRGBO(0, 60, 129, 1),
-                onPrimary: Colors.white,
-                surface: Colors.white,
-                onSurface: Colors.black,
-              ),
-              dialogBackgroundColor: Colors.white,
-            ),
-            child: child,
-          );
-        });
-
-    if (newSelectedDate != null) {
-      viewmodel.datetime =
-          DateFormat.yMMMd().format(newSelectedDate).toString();
-      _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
-      //print(viewmodel.date);
-    }
   }
 }

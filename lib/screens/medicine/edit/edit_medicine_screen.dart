@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../models/medicine.dart';
-import '../view.dart';
-import 'add_inventory_reminder_screen.dart';
-import 'add_medicine_reminder_screen.dart';
-import 'medicine_viewmodel.dart';
+import '../../../models/medicine.dart';
+import '../../view.dart';
+import '../medicine_viewmodel.dart';
+import 'edit_inventory_reminder_screen.dart';
 
-class AddMedicineScreen extends StatelessWidget {
-  AddMedicineScreen({data, viewmodel})
-      : _data = data,
+class EditMedicineScreen extends StatelessWidget {
+  EditMedicineScreen({index, viewmodel})
+      : _index = index,
         _viewmodel = viewmodel;
-  String _data;
+  int _index;
   MedicineViewmodel _viewmodel;
 
   String _selectedDate;
-  void _onSave(context, _viewmodel, _data) {
+  void _onSave(context, _viewmodel, _index) {
     var _medicines = new Medicine(
-      medicineName: _viewmodel.medicineName,
-      freqIntake: _viewmodel.freqIntake,
-      totalPills: _viewmodel.totalPills,
-      pillsLeft: _viewmodel.pillsLeft,
-      pillsNotify: _viewmodel.pillsNotify,
-      userID: _data,
-      dose: _viewmodel.dose,
-      date: _viewmodel.date,
+      id: _viewmodel.medicinesListById[_index].id,
+      medicineName: _viewmodel.medicinesListById[_index].medicineName,
+      freqIntake: _viewmodel.medicinesListById[_index].freqIntake,
+      totalPills: _viewmodel.medicinesListById[_index].totalPills,
+      pillsLeft: _viewmodel.medicinesListById[_index].pillsLeft,
+      pillsNotify: _viewmodel.medicinesListById[_index].pillsNotify,
+      userID: _viewmodel.medicinesListById[_index].userID,
+      dose: _viewmodel.medicinesListById[_index].dose,
+      date: _viewmodel.medicinesListById[_index].date,
     );
     Navigator.pop(context, _medicines);
   }
@@ -45,16 +45,16 @@ class AddMedicineScreen extends StatelessWidget {
   // }
 
   void _onReminderInventoryPressed(
-      BuildContext context, String data, MedicineViewmodel viewmodel) async {
+      BuildContext context, int index, MedicineViewmodel viewmodel) async {
     final medicines = await Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                AddInventoryReminderScreen(data: data, viewmodel: viewmodel)));
+            builder: (context) => EditInventoryReminderScreen(
+                index: index, viewmodel: viewmodel)));
 
     if (medicines != null) {
-      medicines.pillsLeft = _viewmodel.pillsLeft;
-      medicines.pillsNotify = _viewmodel.pillsNotify;
+      medicines.pillsLeft = _viewmodel.medicinesListById[index].pillsLeft;
+      medicines.pillsNotify = _viewmodel.medicinesListById[index].pillsNotify;
     } else {
       print("Null value");
     }
@@ -73,13 +73,16 @@ class AddMedicineScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("hello1");
+    print(_viewmodel.medicinesListById[_index].medicineName);
     return View(
         viewmodel: _viewmodel,
         builder: (_context, _viewmodel, _child) {
+          print(_viewmodel.medicinesListById[_index].medicineName);
           return new Scaffold(
             appBar: new AppBar(
               title: Text(
-                'Add New Medicines',
+                'Edit Medicine',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
@@ -99,7 +102,9 @@ class AddMedicineScreen extends StatelessWidget {
                     _buildTextLisTile(
                       leading: null,
                       label: 'Medicine Name',
-                      onChanged: (value) => _viewmodel.medicineName = value,
+                      value: _viewmodel.medicinesListById[_index].medicineName,
+                      onChanged: (value) => _viewmodel
+                          .medicinesListById[_index].medicineName = value,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -109,11 +114,12 @@ class AddMedicineScreen extends StatelessWidget {
                         children: [
                           Text('Frequency of Intake'),
                           DropdownButtonFormField(
-                            value: _viewmodel.selectedValue,
+                            value:
+                                _viewmodel.medicinesListById[_index].freqIntake,
                             items: dropdownItems,
                             onChanged: (value) {
-                              _viewmodel.freqIntake = value;
-                              _viewmodel.selectedValue = value;
+                              _viewmodel.medicinesListById[_index].freqIntake =
+                                  value;
                             },
                           ),
                         ],
@@ -122,11 +128,14 @@ class AddMedicineScreen extends StatelessWidget {
                     ListTile(
                       leading: null,
                       title: TextFormField(
+                        initialValue:
+                            _viewmodel.medicinesListById[_index].totalPills,
                         autofocus: false,
                         decoration: InputDecoration(
                           labelText: 'Total Pills',
                         ),
-                        onChanged: (value) => _viewmodel.totalPills = value,
+                        onChanged: (value) => _viewmodel
+                            .medicinesListById[_index].totalPills = value,
                         onTap: () {},
                         keyboardType: TextInputType.number,
                       ),
@@ -134,11 +143,13 @@ class AddMedicineScreen extends StatelessWidget {
                     ListTile(
                       leading: null,
                       title: TextFormField(
+                        initialValue: _viewmodel.medicinesListById[_index].dose,
                         autofocus: false,
                         decoration: InputDecoration(
                           labelText: 'Dose',
                         ),
-                        onChanged: (value) => _viewmodel.dose = value,
+                        onChanged: (value) =>
+                            _viewmodel.medicinesListById[_index].dose = value,
                         onTap: () {},
                         keyboardType: TextInputType.number,
                       ),
@@ -148,7 +159,7 @@ class AddMedicineScreen extends StatelessWidget {
                         'Pick Date',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: () => _selectDate(context, _viewmodel),
+                      onPressed: () => _selectDate(context, _viewmodel, _index),
                       style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(6, 72, 130, 1),
                         padding:
@@ -162,11 +173,11 @@ class AddMedicineScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                       child: Text(
-                        'Set Inventory Reminder',
+                        'Update Inventory Reminder',
                         style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () => _onReminderInventoryPressed(
-                          context, _data, _viewmodel),
+                          context, _index, _viewmodel),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.yellow,
                         padding:
@@ -179,7 +190,7 @@ class AddMedicineScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel, _data)
+                    _buildButtons(context, _viewmodel, _index)
                   ],
                 ),
               ),
@@ -188,10 +199,11 @@ class AddMedicineScreen extends StatelessWidget {
         });
   }
 
-  ListTile _buildTextLisTile({leading, label, onChanged, onTap}) {
+  ListTile _buildTextLisTile({leading, label, onChanged, onTap, value}) {
     return new ListTile(
       leading: leading,
       title: TextFormField(
+        initialValue: value,
         autofocus: false,
         decoration: InputDecoration(
           labelText: label,
@@ -203,7 +215,7 @@ class AddMedicineScreen extends StatelessWidget {
   }
 
   Row _buildButtons(
-      BuildContext context, MedicineViewmodel viewmodel, String data) {
+      BuildContext context, MedicineViewmodel viewmodel, int _index) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -224,7 +236,8 @@ class AddMedicineScreen extends StatelessWidget {
         ElevatedButton(
           child: Text('Save'),
           onPressed: () {
-            if (_viewmodel.pillsLeft == '' || _viewmodel.pillsNotify == '') {
+            if (_viewmodel.medicinesListById[_index].pillsLeft == '' ||
+                _viewmodel.medicinesListById[_index].pillsNotify == '') {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -239,7 +252,7 @@ class AddMedicineScreen extends StatelessWidget {
                 ),
               );
             } else
-              _onSave(context, viewmodel, data);
+              _onSave(context, viewmodel, _index);
           },
           style: ElevatedButton.styleFrom(
             primary: Color.fromRGBO(0, 102, 102, 1),
@@ -256,7 +269,7 @@ class AddMedicineScreen extends StatelessWidget {
   }
 
   Future<void> _selectDate(
-      BuildContext context, MedicineViewmodel viewmodel) async {
+      BuildContext context, MedicineViewmodel viewmodel, int index) async {
     DateTime newSelectedDate = await showDatePicker(
         context: context,
         initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
@@ -278,7 +291,8 @@ class AddMedicineScreen extends StatelessWidget {
         });
 
     if (newSelectedDate != null) {
-      viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
+      viewmodel.medicinesListById[_index].date =
+          DateFormat.yMMMd().format(newSelectedDate).toString();
       _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
     }
   }

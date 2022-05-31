@@ -7,6 +7,7 @@ const countersRouter = require('./api/controllers/counters_controller');
 const foodsRouter = require('./api/controllers/foods_controller');
 const bloodpressuresRouter = require('./api/controllers/bloodpressures_controller');
 const medicinesRouter = require('./api/controllers/medicines_controller');
+const remindersRouter = require('./api/controllers/reminders_controller');
 const symptomsRouter = require('./api/controllers/symptoms_controller');
 const { authsRouter, verifyAccessToken } = require('./api/controllers/auths_controller');
 
@@ -17,6 +18,7 @@ app.use('/counters', countersRouter);
 app.use('/foods', foodsRouter);
 app.use('/bloodpressures', bloodpressuresRouter);
 app.use('/medicines', medicinesRouter);
+app.use('/reminders', remindersRouter);
 app.use('/symptoms', symptomsRouter);
 app.use('/auths', authsRouter);
 app.use('/users', verifyAccessToken, usersRouter);

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../../models/medicine.dart';
-import '../view.dart';
-import 'medicine_viewmodel.dart';
+import '../../../models/medicine.dart';
+import '../../view.dart';
+import '../medicine_viewmodel.dart';
 
-class AddInventoryReminderScreen extends StatelessWidget {
-  AddInventoryReminderScreen({data, viewmodel})
-      : _data = data,
+class EditInventoryReminderScreen extends StatelessWidget {
+  EditInventoryReminderScreen({index, viewmodel})
+      : _index = index,
         _viewmodel = viewmodel;
-  String _data;
+  int _index;
   MedicineViewmodel _viewmodel;
 
   String _selectedDate;
-  void _onSave(context, _viewmodel, _data) {
+  void _onSave(context, _viewmodel, _index) {
     var _medicines = new Medicine(
-        pillsLeft: _viewmodel.pillsLeft, pillsNotify: _viewmodel.pillsNotify);
+        pillsLeft: _viewmodel.medicinesListById[_index].pillsLeft,
+        pillsNotify: _viewmodel.medicinesListById[_index].pillsNotify);
     Navigator.pop(context, _medicines);
   }
 
@@ -47,11 +47,14 @@ class AddInventoryReminderScreen extends StatelessWidget {
                     ListTile(
                       leading: null,
                       title: TextFormField(
+                        initialValue:
+                            _viewmodel.medicinesListById[_index].pillsLeft,
                         autofocus: false,
                         decoration: InputDecoration(
                           labelText: 'Pills Left in Inventory',
                         ),
-                        onChanged: (value) => _viewmodel.pillsLeft = value,
+                        onChanged: (value) => _viewmodel
+                            .medicinesListById[_index].pillsLeft = value,
                         onTap: () {},
                         keyboardType: TextInputType.number,
                       ),
@@ -59,11 +62,14 @@ class AddInventoryReminderScreen extends StatelessWidget {
                     ListTile(
                       leading: null,
                       title: TextFormField(
+                        initialValue:
+                            _viewmodel.medicinesListById[_index].pillsNotify,
                         autofocus: false,
                         decoration: InputDecoration(
                           labelText: 'Remind when only',
                         ),
-                        onChanged: (value) => _viewmodel.pillsNotify = value,
+                        onChanged: (value) => _viewmodel
+                            .medicinesListById[_index].pillsNotify = value,
                         onTap: () {},
                         keyboardType: TextInputType.number,
                       ),
@@ -74,7 +80,7 @@ class AddInventoryReminderScreen extends StatelessWidget {
                     //   onChanged: (value) => _viewmodel.pillsNotify = value,
                     // ),
                     SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel, _data)
+                    _buildButtons(context, _viewmodel, _index)
                   ],
                 ),
               ),
@@ -98,7 +104,7 @@ class AddInventoryReminderScreen extends StatelessWidget {
   // }
 
   Row _buildButtons(
-      BuildContext context, MedicineViewmodel viewmodel, String data) {
+      BuildContext context, MedicineViewmodel viewmodel, int index) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -118,7 +124,7 @@ class AddInventoryReminderScreen extends StatelessWidget {
         const SizedBox(width: 100.0),
         ElevatedButton(
           child: Text('Save'),
-          onPressed: () => _onSave(context, viewmodel, data),
+          onPressed: () => _onSave(context, viewmodel, index),
           style: ElevatedButton.styleFrom(
             primary: Color.fromRGBO(0, 102, 102, 1),
             onPrimary: Colors.white,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hyperremedy/screens/medicine/notification/notification_api.dart';
 import 'package:intl/intl.dart';
 
 import '../../view.dart';
+import '../add_medicine_reminder_screen.dart';
+import '../edit/edit_medicine_screen.dart';
 import '../medicine_viewmodel.dart';
 
 class Body extends StatelessWidget {
@@ -10,6 +13,36 @@ class Body extends StatelessWidget {
   String _data;
   //FoodViewmodel _foodViewmodel = FoodViewmodel();
   //SymptomsViewmodel _symptomsViewmodel = SymptomsViewmodel(_data);
+
+  void _onEdit(
+      MedicineViewmodel viewmodel, int index, BuildContext context) async {
+    print("hello");
+    final medicines = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                EditMedicineScreen(index: index, viewmodel: viewmodel)));
+    if (medicines != null) {
+      viewmodel.updateMedicines(index, medicines);
+    } else {
+      print("Null value");
+      print(medicines);
+    }
+  }
+
+  void _onReminder(
+      BuildContext context, int index, MedicineViewmodel viewmodel) async {
+    final reminders = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                AddMedicineReminderScreen(index: index, viewmodel: viewmodel)));
+
+    if (reminders != null) {
+    } else {
+      print("Null value");
+    }
+  }
 
   String formattedDate =
       DateFormat('EEEEE, d MMMM yyyy').format(DateTime.now().toLocal());
@@ -119,8 +152,25 @@ class Body extends StatelessWidget {
     );
   }
 
+  Future<void> _selectTime(BuildContext context) async {
+    TimeOfDay selectedTime = TimeOfDay.now();
+    final TimeOfDay picked_s = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child,
+          );
+        });
+
+// if (picked_s != null && picked_s != selectedTime )
+//   setState(() {
+//     selectedTime = picked_s;
+//   });
+  }
+
   ListView _buildListView(MedicineViewmodel _viewmodel) {
-    //print(_viewmodel.bloodpressureList.length);
     return ListView.separated(
       itemCount: _viewmodel.medicinesList.length,
       separatorBuilder: (context, index) => Divider(
@@ -133,76 +183,91 @@ class Body extends StatelessWidget {
   ListTile _listTile(
       int index, BuildContext context, MedicineViewmodel _viewmodel) {
     return ListTile(
-      title: Card(
-        color: _viewmodel.medicinesListById[index].pillsLeft < 1
-            ? Color.fromRGBO(106, 119, 205, 0.7)
-            : Color.fromRGBO(4, 25, 136, 0.7),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            // leading: ConstrainedBox(
-            //   constraints: BoxConstraints(
-            //     minWidth: 44,
-            //     minHeight: 70,
-            //     maxWidth: 80,
-            //     maxHeight: 80,
-            //   ),
-            //   child: Image.network(
-            //     _viewmodel.symptomListById[index].type,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: Text(
-                '${_viewmodel.medicinesListById[index].medicineName}',
-                style: const TextStyle(color: Colors.white, fontSize: 20.0),
+      title: InkWell(
+        onTap: () {
+          _onEdit(_viewmodel, index, context);
+        },
+        child: Card(
+          color: int.parse(_viewmodel.medicinesListById[index].pillsLeft) < 1
+              ? Color.fromRGBO(106, 119, 205, 0.7)
+              : Color.fromRGBO(4, 25, 136, 0.7),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              dense: true,
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 15.0),
+                child: Text(
+                  '${_viewmodel.medicinesListById[index].medicineName}',
+                  style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                ),
               ),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                    ' ${_viewmodel.medicinesListById[index].datetime}\n${_viewmodel.medicinesListById[index].freqIntake}',
-                    style: const TextStyle(
-                      color: Colors.white,
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      ' ${_viewmodel.medicinesListById[index].date}\n${_viewmodel.medicinesListById[index].freqIntake}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.justify),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                          "${_viewmodel.medicinesListById[index].pillsLeft} pills left"))
+                ],
+              ),
+              trailing: Column(
+                children: [
+                  InkWell(
+                    //onTap: () => _onReminder(context, index, _viewmodel),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddMedicineReminderScreen(
+                                  index: index, viewmodel: _viewmodel)));
+                    },
+                    child: Icon(
+                      Icons.alarm,
+                      color: Colors.green,
                     ),
-                    textAlign: TextAlign.justify),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                        "${_viewmodel.medicinesListById[index].pillsLeft} pills left"))
-              ],
-            ),
-            trailing: RaisedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title:
-                        Text('Are you sure you want to remove this reading?'),
-                    actions: [
-                      ElevatedButton(
-                          onPressed: () {
-                            _viewmodel.removeMedicines(
-                                _viewmodel.medicinesListById[index], index);
-                            Navigator.pop(context);
-                          },
-                          child: Text('Yes')),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text('Cancel')),
-                    ],
                   ),
-                );
-              },
-              color: Colors.yellow,
-              child: Text('Remove'),
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text(
+                              'Are you sure you want to remove this reading?'),
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  _viewmodel.removeMedicines(
+                                      _viewmodel.medicinesListById[index],
+                                      index);
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Yes')),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Cancel')),
+                          ],
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -141,14 +141,14 @@ const _collectionsJson = {
 		{
 			id: 'symptoms1',
 			type: 'Cough',
-			date: 'Apr 23, 2022',
+			date: '2022-10-24',
 			description: 'Feeling extremely pain in the chest',
 			userID: 'user1'
 		},
 		{
 			id: 'symptoms2',
 			type: 'Fever',
-			date: 'Apr 23, 2022',
+			date: '2022-10-24',
 			description: 'Shivering with high fever',
 			userID: 'user1'
 		}
@@ -214,40 +214,48 @@ const _collectionsJson = {
 			id: 'med1',
 			medicineName: 'Blood pressure medicine',
 			freqIntake: 'Once a day',
-			totalPills: 20,
-			datetime: 'Apr 20, 2022',
-			pillsLeft: 10,
-			pillsNotify: 'true',
-			medsNotify: 'true',
+			totalPills: 20.0,
+			pillsLeft: 10.0,
+			pillsNotify: 5.0,
 			userID: 'user1',
-			duration: '25 days',
-			dose: 10
+			dose: 2.0,
+			date: '2022-10-24'
 		},
 		{
 			id: 'med2',
 			medicineName: 'Cough medicine',
-			freqIntake: 'Twice a day',
-			totalPills: 20,
-			datetime: 'Apr 20, 2022',
-			pillsLeft: 5,
-			pillsNotify: 'true',
-			medsNotify: 'true',
+			freqIntake: 'Once a day',
+			totalPills: 20.0,
+			pillsLeft: 10.0,
+			pillsNotify: 5.0,
 			userID: 'user1',
-			duration: '25 days',
-			dose: 10
+			dose: 2.0,
+			date: '2022-10-24'
 		},
 		{
 			id: 'med3',
-			medicineName: 'Blood pressure medicine',
+			medicineName: 'Blood medicine',
 			freqIntake: 'Once a day',
-			totalPills: 20,
-			datetime: 'Apr 1, 2022',
-			pillsLeft: 0,
-			pillsNotify: 'true',
-			medsNotify: 'true',
+			totalPills: 20.0,
+			pillsLeft: 0.0,
+			pillsNotify: 5.0,
 			userID: 'user1',
-			duration: '25 days',
-			dose: 10
+			dose: 2.0,
+			date: '2022-10-24'
+		}
+	],
+	reminders: [
+		{
+			id: 'rem1',
+			hour: 15,
+			minute: 25,
+			medsId: 'med1'
+		},
+		{
+			id: 'rem2',
+			hour: 03,
+			minute: 10,
+			medsId: 'med1'
 		}
 	]
 };

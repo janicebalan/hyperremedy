@@ -1,30 +1,25 @@
+import 'package:hyperremedy/screens/medicine/notification/notification_api.dart';
+
 import '../../app/dependencies.dart';
 import '../../models/medicine.dart';
+import '../../models/reminder.dart';
 import '../../services/medicine/medicine_service.dart';
+import '../../services/reminder/reminder_service.dart';
 import '../viewmodel.dart';
 
 class MedicineViewmodel extends Viewmodel {
   MedicineService get _service => dependency();
 
   Medicine _medicine;
-  // int _diastolic;
-  // int _systolic;
-  // int _pulse;
-  // String _date;
-  // String _range;
-  // String _userID;
   String _medicineName;
   String _freqIntake;
-  int _totalPills;
-  String _datetime;
-  int _pillsLeft;
-  String _pillsNotify;
-  String _medsNotify;
+  String _totalPills;
+  String _pillsLeft = '';
+  String _pillsNotify = '';
   String _userID;
-  String _duration;
-  int _dose;
-  String _selectedValue = "Twice a day";
-  String _selectedValueMedicine = "5 hours";
+  String _dose;
+  String _date;
+  String _selectedValue = "Once a day";
 
   get medicine => _medicine;
   set medicine(value) => _medicine = value;
@@ -38,33 +33,24 @@ class MedicineViewmodel extends Viewmodel {
   get totalPills => _totalPills;
   set totalPills(value) => _totalPills = value;
 
-  // get datetime => _datetime;
-  // set datetime(value) => _datetime = value;
-
-  get datetime => _datetime;
-  set datetime(value) {
-    turnBusy();
-    _datetime = value;
-    turnIdle();
-  }
-
   get pillsLeft => _pillsLeft;
   set pillsLeft(value) => _pillsLeft = value;
 
   get pillsNotify => _pillsNotify;
   set pillsNotify(value) => _pillsNotify = value;
 
-  get medsNotify => _medsNotify;
-  set medsNotify(value) => _medsNotify = value;
-
   get userID => _userID;
   set userID(value) => _userID = value;
 
-  get duration => _duration;
-  set duration(value) => _duration = value;
-
   get dose => _dose;
   set dose(value) => _dose = value;
+
+  get date => _date;
+  set date(value) {
+    turnBusy();
+    _date = value;
+    turnIdle();
+  }
 
   get selectedValue => _selectedValue;
   set selectedValue(value) {
@@ -73,51 +59,21 @@ class MedicineViewmodel extends Viewmodel {
     turnIdle();
   }
 
-  get selectedValueMedicine => _selectedValueMedicine;
-  set selectedValueMedicine(value) {
-    turnBusy();
-    _selectedValueMedicine = value;
-    turnIdle();
-  }
-
-  // get systolic => _systolic;
-  // set systolic(value) => _systolic = value;
-
-  // get pulse => _pulse;
-  // set pulse(value) => _pulse = value;
-
-  // get date => _date;
-  // set date(value) {
-  //   turnBusy();
-  //   _date = value;
-  //   turnIdle();
-  // }
-
-  // get range => _range;
-  // set range(value) => _range = value;
-
-  // get userID => _userID;
-  // set userID(value) => _userID = value;
-
   List<Medicine> medicinesListById;
   get medicinesList => medicinesListById;
   MedicineViewmodel();
   MedicineViewmodel.overloadedContructorNamedArguemnts(dynamic id) {
-    //print(id);
     getMedicines(id);
   }
 
   void getMedicines(dynamic id) async {
-    //print(id);
     turnBusy();
     medicinesListById = await _service.getMedicinesById(id);
-    // print(symptomListById);
     turnIdle();
   }
 
   void removeMedicines(Medicine medicines, int index) async {
     turnBusy();
-    //print(symptoms.id);
     await _service.removeMedicines(medicines);
     medicinesListById.removeAt(index);
     turnIdle();
@@ -126,7 +82,86 @@ class MedicineViewmodel extends Viewmodel {
   void addMedicines(Medicine medicines) async {
     turnBusy();
     final Medicine medicine = await _service.addMedicines(medicines);
-    medicinesListById.add(medicines);
+    medicinesListById.insert(0, medicines);
+    turnIdle();
+  }
+
+  void updateMedicines(int index, Medicine medicine) async {
+    turnBusy();
+    final Medicine medicines = await _service.updateMedicines(medicine);
+    medicinesListById[index] = medicines;
+    turnIdle();
+  }
+
+  //REMINDER
+
+  ReminderService get _serviceReminder => dependency();
+  Reminder _reminder;
+  int _hour;
+  int _minute;
+  String _medsId;
+
+  get reminder => _reminder;
+  set reminder(value) => _reminder = value;
+
+  get hour => _hour;
+  set hour(value) {
+    turnBusy();
+    _hour = value;
+    turnIdle();
+  }
+
+  get minute => _minute;
+  set minute(value) {
+    turnBusy();
+    _minute = value;
+    turnIdle();
+  }
+
+  get medsId => _medsId;
+  set medsId(value) => _medsId = value;
+
+  List<Reminder> remindersListById;
+  get remindersList => remindersListById;
+  set remindersList(value) {
+    turnBusy();
+    remindersListById = value;
+    turnIdle();
+  }
+
+  MedicineViewmodel.overloadedContructorNamedArguments(dynamic id) {
+    print("do remidner cosnt");
+    getReminders(id);
+  }
+
+  void getReminders(dynamic id) async {
+    turnBusy();
+    remindersListById = await _serviceReminder.getRemindersById(id);
+    print(remindersListById.length);
+    print("hello get reminder");
+    turnIdle();
+  }
+
+  void removeReminders(Reminder reminders, int index, String id) async {
+    turnBusy();
+    await _serviceReminder.removeReminders(reminders);
+    remindersListById.removeAt(index);
+    NotificationApi.cancelNotification(id: id.hashCode);
+    turnIdle();
+  }
+
+  void addReminders(Reminder reminders) async {
+    turnBusy();
+    final Reminder reminder = await _serviceReminder.addReminders(reminders);
+    remindersListById.add(reminders);
+    NotificationApi.showScheduledNotification(
+      id: reminder.id.hashCode,
+      title: 'Take your medicine!',
+      body: 'Click on this once you have taken your medicine',
+      payload: '${reminder.medsId}',
+      hour: reminder.hour,
+      minute: reminder.minute,
+    );
     turnIdle();
   }
 }

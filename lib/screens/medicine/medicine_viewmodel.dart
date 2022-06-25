@@ -61,9 +61,39 @@ class MedicineViewmodel extends Viewmodel {
 
   List<Medicine> medicinesListById;
   get medicinesList => medicinesListById;
+
+  Medicine medicinesReminder;
+  get medicinesRemind => medicinesReminder;
+
   MedicineViewmodel();
   MedicineViewmodel.overloadedContructorNamedArguemnts(dynamic id) {
     getMedicines(id);
+  }
+  MedicineViewmodel.overloadedContructorGetMedicine(dynamic id) {
+    getMedicinesOne(id);
+  }
+
+  void getMedicinesOne(dynamic id) async {
+    turnBusy();
+    medicinesReminder = await _service.getMedicinesReminder(id);
+    if (medicinesReminder.pillsLeft != "0") {
+      int newValue = int.parse(medicinesReminder.pillsLeft) -
+          int.parse(medicinesReminder.dose);
+      medicinesReminder.pillsLeft = newValue.toString();
+      if (medicinesReminder.pillsLeft == "0") {
+        NotificationApi.cancelNotification(id: id.hashCode);
+      }
+    }
+
+    updateMedicinesReminder(medicinesReminder);
+    turnIdle();
+  }
+
+  void updateMedicinesReminder(Medicine medicine) async {
+    turnBusy();
+    final Medicine medicines = await _service.updateMedicines(medicine);
+    medicinesReminder = medicines;
+    turnIdle();
   }
 
   void getMedicines(dynamic id) async {
@@ -82,7 +112,7 @@ class MedicineViewmodel extends Viewmodel {
   void addMedicines(Medicine medicines) async {
     turnBusy();
     final Medicine medicine = await _service.addMedicines(medicines);
-    medicinesListById.insert(0, medicines);
+    medicinesListById.insert(0, medicine);
     turnIdle();
   }
 
@@ -130,15 +160,12 @@ class MedicineViewmodel extends Viewmodel {
   }
 
   MedicineViewmodel.overloadedContructorNamedArguments(dynamic id) {
-    print("do remidner cosnt");
     getReminders(id);
   }
 
   void getReminders(dynamic id) async {
     turnBusy();
     remindersListById = await _serviceReminder.getRemindersById(id);
-    print(remindersListById.length);
-    print("hello get reminder");
     turnIdle();
   }
 

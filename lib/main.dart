@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hyperremedy/screens/medicine/notification_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app/dependencies.dart' as di;
@@ -22,6 +23,7 @@ Future<void> main() async {
       title: 'HyperRemedy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
+      //initialRoute: '/splash',
       initialRoute: '/splash',
       onGenerateRoute: createRoute,
     ),
@@ -40,7 +42,16 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     startTimer();
+
+    listenNotifications();
   }
+
+  void listenNotifications() =>
+      NotificationApi.onNotifications.stream.listen(onClickedNotification);
+
+  void onClickedNotification(String payload) =>
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => NotificationScreen(payload: payload)));
 
   @override
   @override

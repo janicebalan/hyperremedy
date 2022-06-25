@@ -24,20 +24,79 @@ class GraphOverall extends StatelessWidget {
     return View(
         viewmodel: _viewmodel,
         builder: (_context, _viewmodel, _child) {
-          return Stack(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 1.2,
-                child: Container(
-                  decoration: const BoxDecoration(color: Color(0xff232d37)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        right: 18.0, left: 12.0, top: 24, bottom: 12),
-                    child: LineChart(
-                      mainData(_viewmodel),
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 70,
+                    height: 20,
+                    decoration: BoxDecoration(color: Colors.blue),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Diatolic',
+                          textAlign: TextAlign.left,
+                          style: new TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  Container(
+                    width: 70,
+                    height: 20,
+                    decoration: BoxDecoration(color: Colors.red),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Systolic',
+                          textAlign: TextAlign.left,
+                          style: new TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 70,
+                    height: 20,
+                    decoration: BoxDecoration(color: Colors.green),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Pulse',
+                          textAlign: TextAlign.left,
+                          style: new TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Stack(
+                children: <Widget>[
+                  AspectRatio(
+                    aspectRatio: 1.2,
+                    child: Container(
+                      decoration: const BoxDecoration(color: Color(0xff232d37)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            right: 18.0, left: 12.0, top: 24, bottom: 12),
+                        child: LineChart(
+                          mainData(_viewmodel),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           );
@@ -123,6 +182,11 @@ class GraphOverall extends StatelessWidget {
           sideTitles: SideTitles(showTitles: false),
         ),
         bottomTitles: AxisTitles(
+          axisNameWidget: Text(
+            'Timeline',
+            style:
+                new TextStyle(fontStyle: FontStyle.italic, color: Colors.white),
+          ),
           sideTitles: SideTitles(
             showTitles: false,
             reservedSize: 30,
@@ -131,6 +195,11 @@ class GraphOverall extends StatelessWidget {
           ),
         ),
         leftTitles: AxisTitles(
+          axisNameWidget: Text(
+            'Dia/Sys/Pulse',
+            style:
+                new TextStyle(fontStyle: FontStyle.italic, color: Colors.white),
+          ),
           sideTitles: SideTitles(
             showTitles: true,
             interval: 1,

@@ -71,6 +71,13 @@ class SymptomStatistic extends StatelessWidget {
                             titlesData: FlTitlesData(
                               show: true,
                               leftTitles: AxisTitles(
+                                axisNameWidget: Text(
+                                  'Amount',
+                                  style: new TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.greenAccent,
+                                  ),
+                                ),
                                 sideTitles: SideTitles(showTitles: false),
                               ),
                               rightTitles: AxisTitles(
@@ -80,6 +87,13 @@ class SymptomStatistic extends StatelessWidget {
                                 sideTitles: SideTitles(showTitles: false),
                               ),
                               bottomTitles: AxisTitles(
+                                axisNameWidget: Text(
+                                  'Symptoms',
+                                  style: new TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.greenAccent,
+                                  ),
+                                ),
                                 sideTitles: SideTitles(
                                   showTitles: true,
                                   getTitlesWidget: bottomTitles,

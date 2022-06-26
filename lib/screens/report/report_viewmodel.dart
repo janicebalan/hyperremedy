@@ -123,12 +123,86 @@ class ReportViewmodel extends Viewmodel {
   List<FlSpot> pulse_arrWeek = [];
   get pulseWeek => pulse_arrWeek;
 
+  List<int> systolic_Week = [];
+  get sysWeek => systolic_Week;
+  List<int> diastolic_Week = [];
+  get diaWeek => diastolic_Week;
+  List<int> pulse_Week = [];
+  get pulWeek => pulse_Week;
+
+  int _maxDiaWeek = 0;
+  get maxDiaWeek => _maxDiaWeek;
+  set maxDiaWeek(value) => _maxDiaWeek = value;
+  int _maxSysWeek = 0;
+  get maxSysWeek => _maxSysWeek;
+  set maxSysWeek(value) => _maxSysWeek = value;
+  int _maxPulWeek = 0;
+  get maxPulWeek => _maxPulWeek;
+  set maxPulWeek(value) => _maxPulWeek = value;
+
+  int _minDiaWeek = 0;
+  get minDiaWeek => _minDiaWeek;
+  set minDiaWeek(value) => _minDiaWeek = value;
+  int _minSysWeek = 0;
+  get minSysWeek => _minSysWeek;
+  set minSysWeek(value) => _minSysWeek = value;
+  int _minPulWeek = 0;
+  get minPulWeek => _minPulWeek;
+  set minPulWeek(value) => _minPulWeek = value;
+
+  double _avgDiaWeek = 0.0;
+  get avgDiaWeek => _avgDiaWeek;
+  set avgDiaWeek(value) => _avgDiaWeek = value;
+  double _avgSysWeek = 0.0;
+  get avgSysWeek => _avgSysWeek;
+  set avgSysWeek(value) => _avgSysWeek = value;
+  double _avgPulWeek = 0.0;
+  get avgPulWeek => _avgPulWeek;
+  set avgPulWeek(value) => _avgPulWeek = value;
+
   List<FlSpot> systolic_arrMonth = [];
   get systolicMonth => systolic_arrMonth;
   List<FlSpot> diastolic_arrMonth = [];
   get diastolicMonth => diastolic_arrMonth;
   List<FlSpot> pulse_arrMonth = [];
   get pulseMonth => pulse_arrMonth;
+
+  List<int> systolic_Month = [];
+  get sysMonth => systolic_Month;
+  List<int> diastolic_Month = [];
+  get diaMonth => diastolic_Month;
+  List<int> pulse_Month = [];
+  get pulMonth => pulse_Month;
+
+  int _maxDiaMonth = 0;
+  get maxDiaMonth => _maxDiaMonth;
+  set maxDiaMonth(value) => _maxDiaMonth = value;
+  int _maxSysMonth = 0;
+  get maxSysMonth => _maxSysMonth;
+  set maxSysMonth(value) => _maxSysMonth = value;
+  int _maxPulMonth = 0;
+  get maxPulMonth => _maxPulMonth;
+  set maxPulMonth(value) => _maxPulMonth = value;
+
+  int _minDiaMonth = 0;
+  get minDiaMonth => _minDiaMonth;
+  set minDiaMonth(value) => _minDiaMonth = value;
+  int _minSysMonth = 0;
+  get minSysMonth => _minSysMonth;
+  set minSysMonth(value) => _minSysMonth = value;
+  int _minPulMonth = 0;
+  get minPulMonth => _minPulMonth;
+  set minPulMonth(value) => _minPulMonth = value;
+
+  double _avgDiaMonth = 0.0;
+  get avgDiaMonth => _avgDiaMonth;
+  set avgDiaMonth(value) => _avgDiaMonth = value;
+  double _avgSysMonth = 0.0;
+  get avgSysMonth => _avgSysMonth;
+  set avgSysMonth(value) => _avgSysMonth = value;
+  double _avgPulMonth = 0.0;
+  get avgPulMonth => _avgPulMonth;
+  set avgPulMonth(value) => _avgPulMonth = value;
 
   List<FlSpot> systolic_arrYear = [];
   get systolicYear => systolic_arrYear;
@@ -137,12 +211,86 @@ class ReportViewmodel extends Viewmodel {
   List<FlSpot> pulse_arrYear = [];
   get pulseYear => pulse_arrYear;
 
+  List<int> systolic_Year = [];
+  get sysYear => systolic_Year;
+  List<int> diastolic_Year = [];
+  get diaYear => diastolic_Year;
+  List<int> pulse_Year = [];
+  get pulYear => pulse_Year;
+
+  int _maxDiaYear = 0;
+  get maxDiaYear => _maxDiaYear;
+  set maxDiaYear(value) => _maxDiaYear = value;
+  int _maxSysYear = 0;
+  get maxSysYear => _maxSysYear;
+  set maxSysYear(value) => _maxSysYear = value;
+  int _maxPulYear = 0;
+  get maxPulYear => _maxPulYear;
+  set maxPulYear(value) => _maxPulYear = value;
+
+  int _minDiaYear = 0;
+  get minDiaYear => _minDiaYear;
+  set minDiaYear(value) => _minDiaYear = value;
+  int _minSysYear = 0;
+  get minSysYear => _minSysYear;
+  set minSysYear(value) => _minSysYear = value;
+  int _minPulYear = 0;
+  get minPulYear => _minPulYear;
+  set minPulYear(value) => _minPulYear = value;
+
+  double _avgDiaYear = 0.0;
+  get avgDiaYear => _avgDiaYear;
+  set avgDiaYear(value) => _avgDiaYear = value;
+  double _avgSysYear = 0.0;
+  get avgSysYear => _avgSysYear;
+  set avgSysYear(value) => _avgSysYear = value;
+  double _avgPulYear = 0.0;
+  get avgPulYear => _avgPulYear;
+  set avgPulYear(value) => _avgPulYear = value;
+
   List<FlSpot> systolic_arrAll = [];
   get systolicAll => systolic_arrAll;
   List<FlSpot> diastolic_arrAll = [];
   get diastolicAll => diastolic_arrAll;
   List<FlSpot> pulse_arrAll = [];
   get pulseAll => pulse_arrAll;
+
+  List<int> systolic_All = [];
+  get sysAll => systolic_All;
+  List<int> diastolic_All = [];
+  get diaAll => diastolic_All;
+  List<int> pulse_All = [];
+  get pulAll => pulse_All;
+
+  int _maxDiaAll = 0;
+  get maxDiaAll => _maxDiaAll;
+  set maxDiaAll(value) => _maxDiaAll = value;
+  int _maxSysAll = 0;
+  get maxSysAll => _maxSysAll;
+  set maxSysAll(value) => _maxSysAll = value;
+  int _maxPulAll = 0;
+  get maxPulAll => _maxPulAll;
+  set maxPulAll(value) => _maxPulAll = value;
+
+  int _minDiaAll = 0;
+  get minDiaAll => _minDiaAll;
+  set minDiaAll(value) => _minDiaAll = value;
+  int _minSysAll = 0;
+  get minSysAll => _minSysAll;
+  set minSysAll(value) => _minSysAll = value;
+  int _minPulAll = 0;
+  get minPulAll => _minPulAll;
+  set minPulAll(value) => _minPulAll = value;
+
+  double _avgDiaAll = 0.0;
+  get avgDiaAll => _avgDiaAll;
+  set avgDiaAll(value) => _avgDiaAll = value;
+  double _avgSysAll = 0.0;
+  get avgSysAll => _avgSysAll;
+  set avgSysAll(value) => _avgSysAll = value;
+  double _avgPulAll = 0.0;
+  get avgPulAll => _avgPulAll;
+  set avgPulAll(value) => _avgPulAll = value;
 
   var now_1w = DateTime.now().subtract(Duration(days: 7));
   var now_1m = new DateTime(
@@ -152,14 +300,36 @@ class ReportViewmodel extends Viewmodel {
 
   void sortByFilter(List<BloodPressure> bpList) {
     for (int i = 0; i < bpList.length; i++) {
+      systolic_All.add(bpList[i].systolic);
       systolic_arrAll.add(FlSpot((i * 1.0), bpList[i].systolic.toDouble()));
     }
     for (int i = 0; i < bpList.length; i++) {
+      diastolic_All.add(bpList[i].diastolic);
       diastolic_arrAll.add(FlSpot((i * 1.0), bpList[i].diastolic.toDouble()));
     }
     for (int i = 0; i < bpList.length; i++) {
+      pulse_All.add(bpList[i].pulse);
       pulse_arrAll.add(FlSpot((i * 1.0), bpList[i].pulse.toDouble()));
     }
+
+    //getting maximum value
+    _maxDiaAll =
+        (diastolic_All.reduce((curr, next) => curr > next ? curr : next));
+    _maxSysAll =
+        (systolic_All.reduce((curr, next) => curr > next ? curr : next));
+    _maxPulAll = (pulse_All.reduce((curr, next) => curr > next ? curr : next));
+
+    //getting minimum value
+    _minDiaAll =
+        (diastolic_All.reduce((curr, next) => curr < next ? curr : next));
+    _minSysAll =
+        (systolic_All.reduce((curr, next) => curr < next ? curr : next));
+    _minPulAll = (pulse_All.reduce((curr, next) => curr < next ? curr : next));
+
+    //getting average value
+    _avgDiaAll = diastolic_All.reduce((a, b) => a + b) / diastolic_All.length;
+    _avgSysAll = systolic_All.reduce((a, b) => a + b) / systolic_All.length;
+    _avgPulAll = pulse_All.reduce((a, b) => a + b) / pulse_All.length;
 
     //sort by 7 days
     for (int i = 0; i < bpList.length; i++) {
@@ -168,15 +338,40 @@ class ReportViewmodel extends Viewmodel {
       }
     }
     for (int i = 0; i < bpByWeek.length; i++) {
+      systolic_Week.add(bpByWeek[i].systolic);
       systolic_arrWeek.add(FlSpot((i * 1.0), bpByWeek[i].systolic.toDouble()));
     }
     for (int i = 0; i < bpByWeek.length; i++) {
+      diastolic_Week.add(bpByWeek[i].diastolic);
       diastolic_arrWeek
           .add(FlSpot((i * 1.0), bpByWeek[i].diastolic.toDouble()));
     }
     for (int i = 0; i < bpByWeek.length; i++) {
+      pulse_Week.add(bpByWeek[i].pulse);
       pulse_arrWeek.add(FlSpot((i * 1.0), bpByWeek[i].pulse.toDouble()));
     }
+
+    //getting maximum value
+    _maxDiaWeek =
+        (diastolic_Week.reduce((curr, next) => curr > next ? curr : next));
+    _maxSysWeek =
+        (systolic_Week.reduce((curr, next) => curr > next ? curr : next));
+    _maxPulWeek =
+        (pulse_Week.reduce((curr, next) => curr > next ? curr : next));
+
+    //getting minimum value
+    _minDiaWeek =
+        (diastolic_Week.reduce((curr, next) => curr < next ? curr : next));
+    _minSysWeek =
+        (systolic_Week.reduce((curr, next) => curr < next ? curr : next));
+    _minPulWeek =
+        (pulse_Week.reduce((curr, next) => curr < next ? curr : next));
+
+    //getting average value
+    _avgDiaWeek =
+        diastolic_Week.reduce((a, b) => a + b) / diastolic_Week.length;
+    _avgSysWeek = systolic_Week.reduce((a, b) => a + b) / systolic_Week.length;
+    _avgPulWeek = pulse_Week.reduce((a, b) => a + b) / pulse_Week.length;
 
     //sort by 1 month
     for (int i = 0; i < bpList.length; i++) {
@@ -185,16 +380,42 @@ class ReportViewmodel extends Viewmodel {
       }
     }
     for (int i = 0; i < bpByMonth.length; i++) {
+      systolic_Month.add(bpByMonth[i].systolic);
       systolic_arrMonth
           .add(FlSpot((i * 1.0), bpByMonth[i].systolic.toDouble()));
     }
     for (int i = 0; i < bpByMonth.length; i++) {
+      diastolic_Month.add(bpByMonth[i].diastolic);
       diastolic_arrMonth
           .add(FlSpot((i * 1.0), bpByMonth[i].diastolic.toDouble()));
     }
     for (int i = 0; i < bpByMonth.length; i++) {
+      pulse_Month.add(bpByMonth[i].pulse);
       pulse_arrMonth.add(FlSpot((i * 1.0), bpByMonth[i].pulse.toDouble()));
     }
+
+    //getting maximum value
+    _maxDiaMonth =
+        (diastolic_Month.reduce((curr, next) => curr > next ? curr : next));
+    _maxSysMonth =
+        (systolic_Month.reduce((curr, next) => curr > next ? curr : next));
+    _maxPulMonth =
+        (pulse_Month.reduce((curr, next) => curr > next ? curr : next));
+
+    //getting minimum value
+    _minDiaMonth =
+        (diastolic_Month.reduce((curr, next) => curr < next ? curr : next));
+    _minSysMonth =
+        (systolic_Month.reduce((curr, next) => curr < next ? curr : next));
+    _minPulMonth =
+        (pulse_Month.reduce((curr, next) => curr < next ? curr : next));
+
+    //getting average value
+    _avgDiaMonth =
+        diastolic_Month.reduce((a, b) => a + b) / diastolic_Month.length;
+    _avgSysMonth =
+        systolic_Month.reduce((a, b) => a + b) / systolic_Month.length;
+    _avgPulMonth = pulse_Month.reduce((a, b) => a + b) / pulse_Month.length;
 
     //sort by 1 year
     for (int i = 0; i < bpList.length; i++) {
@@ -203,15 +424,40 @@ class ReportViewmodel extends Viewmodel {
       }
     }
     for (int i = 0; i < bpByYear.length; i++) {
+      systolic_Year.add(bpByYear[i].systolic);
       systolic_arrYear.add(FlSpot((i * 1.0), bpByYear[i].systolic.toDouble()));
     }
     for (int i = 0; i < bpByYear.length; i++) {
+      diastolic_Year.add(bpByYear[i].diastolic);
       diastolic_arrYear
           .add(FlSpot((i * 1.0), bpByYear[i].diastolic.toDouble()));
     }
     for (int i = 0; i < bpByYear.length; i++) {
+      pulse_Year.add(bpByYear[i].pulse);
       pulse_arrYear.add(FlSpot((i * 1.0), bpByYear[i].pulse.toDouble()));
     }
+
+    //getting maximum value
+    _maxDiaYear =
+        (diastolic_Year.reduce((curr, next) => curr > next ? curr : next));
+    _maxSysYear =
+        (systolic_Year.reduce((curr, next) => curr > next ? curr : next));
+    _maxPulYear =
+        (pulse_Year.reduce((curr, next) => curr > next ? curr : next));
+
+    //getting minimum value
+    _minDiaYear =
+        (diastolic_Year.reduce((curr, next) => curr < next ? curr : next));
+    _minSysYear =
+        (systolic_Year.reduce((curr, next) => curr < next ? curr : next));
+    _minPulYear =
+        (pulse_Year.reduce((curr, next) => curr < next ? curr : next));
+
+    //getting average value
+    _avgDiaYear =
+        diastolic_Year.reduce((a, b) => a + b) / diastolic_Year.length;
+    _avgSysYear = systolic_Year.reduce((a, b) => a + b) / systolic_Year.length;
+    _avgPulYear = pulse_Year.reduce((a, b) => a + b) / pulse_Year.length;
   }
 
   get symp0 => _symp0;

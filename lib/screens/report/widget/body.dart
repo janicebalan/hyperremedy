@@ -43,7 +43,8 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         Container(
-                            height: 550, //height of TabBarView
+                            height: MediaQuery.of(context).size.height -
+                                150, //height of TabBarView
                             decoration: BoxDecoration(
                                 border: Border(
                                     top: BorderSide(

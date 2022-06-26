@@ -21,6 +21,31 @@ class GraphMonth extends StatelessWidget {
     const Color(0xff02d39a),
   ];
 
+  final _cardGradient = const LinearGradient(
+    colors: [
+      Colors.greenAccent,
+      Colors.green,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+  );
+  final _highGradient = const LinearGradient(
+    colors: [
+      Colors.redAccent,
+      Colors.red,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+  );
+  final _lowGradient = const LinearGradient(
+    colors: [
+      Colors.lightBlueAccent,
+      Colors.blue,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+  );
+
   @override
   Widget build(BuildContext context) {
     return View(
@@ -28,6 +53,146 @@ class GraphMonth extends StatelessWidget {
         builder: (_context, _viewmodel, _child) {
           return Column(
             children: [
+              Text(
+                'Last 30 days',
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+              Container(
+                height: 60,
+                width: 350,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        const Text(
+                          'Average',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                        Text(
+                          'Diastolic:${_viewmodel.avgDiaMonth.toStringAsFixed(2)}  Systolic:${_viewmodel.avgSysMonth.toStringAsFixed(2)}  Pulse:${_viewmodel.avgPulMonth.toStringAsFixed(2)}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  gradient: _cardGradient,
+                  //color: const Color.fromRGBO(23, 102, 155, 1),
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(1),
+
+                      spreadRadius: 2,
+                      blurRadius: 7,
+                      offset: Offset(4, 8), // changes position of shadow
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(height: 10),
+              Container(
+                height: 60,
+                width: 350,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        const Text(
+                          'Highest',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                        Text(
+                          'Diastolic:${_viewmodel.maxDiaMonth}  Systolic:${_viewmodel.maxSysMonth}  Pulse:${_viewmodel.maxPulMonth}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  gradient: _highGradient,
+                  //color: const Color.fromRGBO(23, 102, 155, 1),
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(1),
+                      spreadRadius: 2,
+                      blurRadius: 7,
+                      offset: Offset(4, 8), // changes position of shadow
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(height: 10),
+              Container(
+                height: 60,
+                width: 350,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        const Text(
+                          'Lowest',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                        Text(
+                          'Diastolic:${_viewmodel.minDiaMonth}  Systolic:${_viewmodel.minSysMonth}  Pulse:${_viewmodel.minPulMonth}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  gradient: _lowGradient,
+                  //color: const Color.fromRGBO(23, 102, 155, 1),
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(1),
+                      spreadRadius: 2,
+                      blurRadius: 7,
+                      offset: Offset(4, 8), // changes position of shadow
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(height: 10),
               Row(
                 children: [
                   Container(

@@ -52,9 +52,10 @@ class GraphOverall extends StatelessWidget {
           return Column(
             children: [
               Text(
-                'Overall',
+                'Your statistics of BP readings overall',
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
+              SizedBox(height: 5.0),
               Container(
                 height: 60,
                 width: 350,
@@ -86,9 +87,9 @@ class GraphOverall extends StatelessWidget {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  gradient: _cardGradient,
-                  //color: const Color.fromRGBO(23, 102, 155, 1),
-                  borderRadius: BorderRadius.circular(25),
+                  //gradient: _cardGradient,
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(15.0),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(1),
@@ -132,9 +133,9 @@ class GraphOverall extends StatelessWidget {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  gradient: _highGradient,
-                  //color: const Color.fromRGBO(23, 102, 155, 1),
-                  borderRadius: BorderRadius.circular(25),
+                  //gradient: _highGradient,
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(15.0),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(1),
@@ -177,9 +178,9 @@ class GraphOverall extends StatelessWidget {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  gradient: _lowGradient,
-                  //color: const Color.fromRGBO(23, 102, 155, 1),
-                  borderRadius: BorderRadius.circular(25),
+                  //gradient: _lowGradient,
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(15.0),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(1),

@@ -28,25 +28,25 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
+              toolbarHeight: 70,
               title: const Text(
                 'HyperRemedy',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
               actions: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.logout, color: Colors.white),
+                  icon: const Icon(Icons.logout, color: Colors.white),
                   onPressed: () {
                     logout();
                     Navigator.pushNamed(context, "/login");
                   },
                 )
               ],
-              backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: Body(data: _data),
           ),

@@ -57,7 +57,33 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: Text("hello spalsh screen")),
+      backgroundColor: Color.fromRGBO(82, 86, 232, 1),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
+                  radius: 50,
+                ),
+              ),
+              // #signup_text
+              Text(
+                "HyperRemedy",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 30.5),
+              ),
+
+              // #welcome
+            ],
+          ),
+        ),
+      ),
     );
   }
 

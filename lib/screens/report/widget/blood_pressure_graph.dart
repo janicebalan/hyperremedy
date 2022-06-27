@@ -85,7 +85,12 @@ class BloodPressureGraph extends StatelessWidget {
         builder: (_context, _viewmodel, _child) {
           return Column(
             children: [
+              SizedBox(height: 5.0),
               FloatingActionButton.extended(
+                shape: RoundedRectangleBorder(
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(15.0))),
+                backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
                 tooltip: 'Export PDF',
                 label: Text('Export PDF'),
                 icon: Icon(Icons.add),

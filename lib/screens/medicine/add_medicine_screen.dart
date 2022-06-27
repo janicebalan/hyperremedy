@@ -78,109 +78,134 @@ class AddMedicineScreen extends StatelessWidget {
         builder: (_context, _viewmodel, _child) {
           return new Scaffold(
             appBar: new AppBar(
+              toolbarHeight: 70,
               title: Text(
                 'Add New Medicines',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: Color.fromRGBO(64, 64, 64, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: Container(
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(color: Colors.grey[100]),
               child: SingleChildScrollView(
-                child: new Column(
-                  children: <Widget>[
-                    _buildTextLisTile(
-                      leading: null,
-                      label: 'Medicine Name',
-                      onChanged: (value) => _viewmodel.medicineName = value,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Column(
+                    children: <Widget>[
+                      _buildTextLisTile(
+                        leading: null,
+                        label: 'Medicine Name',
+                        onChanged: (value) => _viewmodel.medicineName = value,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Frequency of Intake'),
+                            DropdownButtonFormField(
+                              value: _viewmodel.selectedValue,
+                              items: dropdownItems,
+                              onChanged: (value) {
+                                _viewmodel.freqIntake = value;
+                                _viewmodel.selectedValue = value;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      ListTile(
+                        leading: null,
+                        title: TextFormField(
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: 'Total Pills',
+                          ),
+                          onChanged: (value) => _viewmodel.totalPills = value,
+                          onTap: () {},
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      ListTile(
+                        leading: null,
+                        title: TextFormField(
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: 'Dose',
+                          ),
+                          onChanged: (value) => _viewmodel.dose = value,
+                          onTap: () {},
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Frequency of Intake'),
-                          DropdownButtonFormField(
-                            value: _viewmodel.selectedValue,
-                            items: dropdownItems,
-                            onChanged: (value) {
-                              _viewmodel.freqIntake = value;
-                              _viewmodel.selectedValue = value;
-                            },
+                          ElevatedButton(
+                            child: Text(
+                              'Pick Date',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () => _selectDate(context, _viewmodel),
+                            style: ElevatedButton.styleFrom(
+                              side: BorderSide(
+                                color: Colors.black,
+                              ),
+                              primary: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 13),
+                              textStyle: TextStyle(
+                                fontSize: 15,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          ElevatedButton(
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.doorbell_outlined,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(width: 2.0),
+                                Text(
+                                  'Set Inventory Reminder',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            onPressed: () => _onReminderInventoryPressed(
+                                context, _data, _viewmodel),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.yellow,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    ListTile(
-                      leading: null,
-                      title: TextFormField(
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Total Pills',
-                        ),
-                        onChanged: (value) => _viewmodel.totalPills = value,
-                        onTap: () {},
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                    ListTile(
-                      leading: null,
-                      title: TextFormField(
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Dose',
-                        ),
-                        onChanged: (value) => _viewmodel.dose = value,
-                        onTap: () {},
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                    ElevatedButton(
-                      child: Text(
-                        'Pick Date',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () => _selectDate(context, _viewmodel),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(6, 72, 130, 1),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      child: Text(
-                        'Set Inventory Reminder',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () => _onReminderInventoryPressed(
-                          context, _data, _viewmodel),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.yellow,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel, _data)
-                  ],
+                      SizedBox(height: 260.0),
+                      _buildButtons(context, _viewmodel, _data),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -208,15 +233,24 @@ class AddMedicineScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          child: Text('Cancel'),
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+          ),
           onPressed: () => Navigator.pop(context, null),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(200, 200, 200, 1),
+            side: BorderSide(
+              width: 2.0,
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+            primary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             textStyle: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color.fromRGBO(200, 200, 200, 1),
             ),
           ),
         ),
@@ -242,7 +276,7 @@ class AddMedicineScreen extends StatelessWidget {
               _onSave(context, viewmodel, data);
           },
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(0, 102, 102, 1),
+            primary: Color.fromRGBO(82, 86, 232, 1),
             onPrimary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             textStyle: TextStyle(
@@ -266,7 +300,7 @@ class AddMedicineScreen extends StatelessWidget {
           return Theme(
             data: ThemeData.light().copyWith(
               colorScheme: ColorScheme.light(
-                primary: Color.fromRGBO(0, 60, 129, 1),
+                primary: Color.fromRGBO(82, 86, 232, 1),
                 onPrimary: Colors.white,
                 surface: Colors.white,
                 onSurface: Colors.black,
@@ -278,8 +312,9 @@ class AddMedicineScreen extends StatelessWidget {
         });
 
     if (newSelectedDate != null) {
-      viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
-      _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
+      //viewmodel.date = DateFormat.yMMMd().format(newSelectedDate).toString();
+      //_selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
+      viewmodel.date = newSelectedDate.toString();
     }
   }
 }

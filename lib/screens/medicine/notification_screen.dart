@@ -21,8 +21,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         onWillPop: () => Future.value(true),
         child: SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
             appBar: AppBar(
+              toolbarHeight: 70,
               title: const Text(
                 'HyperRemedy',
                 textAlign: TextAlign.center,
@@ -32,7 +33,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -80,7 +81,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         MedicineScreen.route(
                             data: _viewmodel.medicinesReminder.userID)),
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(0, 102, 102, 1),
+                      primary: Color.fromRGBO(82, 86, 232, 1),
                       onPrimary: Colors.white,
                       padding:
                           EdgeInsets.symmetric(horizontal: 25, vertical: 10),

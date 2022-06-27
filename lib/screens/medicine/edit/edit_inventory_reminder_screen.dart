@@ -26,6 +26,7 @@ class EditInventoryReminderScreen extends StatelessWidget {
         builder: (_context, _viewmodel, _child) {
           return new Scaffold(
             appBar: new AppBar(
+              toolbarHeight: 70,
               title: Text(
                 'Inventory Reminder',
                 textAlign: TextAlign.center,
@@ -35,7 +36,7 @@ class EditInventoryReminderScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: Color.fromRGBO(64, 64, 64, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: Container(
               width: double.infinity,
@@ -79,7 +80,7 @@ class EditInventoryReminderScreen extends StatelessWidget {
                     //   label: 'Remind when only',
                     //   onChanged: (value) => _viewmodel.pillsNotify = value,
                     // ),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: 430.0),
                     _buildButtons(context, _viewmodel, _index)
                   ],
                 ),
@@ -109,15 +110,24 @@ class EditInventoryReminderScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          child: Text('Cancel'),
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+          ),
           onPressed: () => Navigator.pop(context, null),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(200, 200, 200, 1),
+            side: BorderSide(
+              width: 2.0,
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+            primary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             textStyle: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color.fromRGBO(200, 200, 200, 1),
             ),
           ),
         ),
@@ -126,7 +136,7 @@ class EditInventoryReminderScreen extends StatelessWidget {
           child: Text('Save'),
           onPressed: () => _onSave(context, viewmodel, index),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(0, 102, 102, 1),
+            primary: Color.fromRGBO(82, 86, 232, 1),
             onPrimary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             textStyle: TextStyle(

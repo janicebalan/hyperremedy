@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(0, 48, 97, 1),
+                              color: Color.fromRGBO(82, 86, 232, 1),
                             ),
                             alignment: Alignment.center,
                             child: Column(
@@ -57,7 +57,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(216, 212, 212, 1),
+                              color: Color.fromRGBO(245, 245, 245, 1),
                             ),
                           ),
                         ),
@@ -227,8 +227,9 @@ class Body extends StatelessWidget {
                                     color: Colors.black, fontSize: 20),
                               ),
                               TabBar(
-                                labelColor: Colors.blue,
+                                labelColor: Color.fromRGBO(82, 86, 232, 1),
                                 unselectedLabelColor: Colors.black,
+                                indicatorColor: Color.fromRGBO(82, 86, 232, 1),
                                 tabs: [
                                   Tab(text: 'Low'),
                                   Tab(text: 'Normal'),
@@ -239,7 +240,7 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         Container(
-                            height: 400, //height of TabBarView
+                            height: 500, //height of TabBarView
                             decoration: BoxDecoration(
                                 border: Border(
                                     top: BorderSide(
@@ -273,7 +274,7 @@ class Body extends StatelessWidget {
     return ListView.separated(
       itemCount: _foodList.length,
       separatorBuilder: (context, index) => Divider(
-        color: Colors.blueGrey,
+        color: Color.fromRGBO(245, 245, 245, 1),
       ),
       itemBuilder: (context, index) => _listTile(index, context, _foodList),
     );
@@ -282,7 +283,7 @@ class Body extends StatelessWidget {
   ListTile _listTile(int index, BuildContext context, List _foodList) {
     return ListTile(
       title: Card(
-        color: Color.fromRGBO(0, 48, 97, 1),
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -305,12 +306,12 @@ class Body extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Text(
                 '${_foodList[index].foodName}',
-                style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                style: const TextStyle(color: Colors.black, fontSize: 20.0),
               ),
             ),
-            subtitle: Text(' ${_foodList[index].foodDetails}',
+            subtitle: Text('${_foodList[index].foodDetails}',
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.black45,
                 ),
                 textAlign: TextAlign.justify),
           ),

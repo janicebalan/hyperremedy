@@ -27,13 +27,13 @@ class Body extends StatelessWidget {
                   Container(
                     height: 120,
                     width: MediaQuery.of(context).size.width,
-                    color: const Color.fromRGBO(221, 223, 237, 0.25),
+                    color: const Color.fromRGBO(245, 245, 245, 1),
                     child: Column(
                       children: <Widget>[
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(0, 48, 97, 1),
+                              color: Color.fromRGBO(82, 86, 232, 1),
                             ),
                             alignment: Alignment.center,
                             child: Column(
@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(221, 223, 237, 0.25),
+                              color: Color.fromRGBO(245, 245, 245, 1),
                             ),
                           ),
                         ),
@@ -124,7 +124,7 @@ class Body extends StatelessWidget {
     return ListView.separated(
       itemCount: _viewmodel.symptomList.length,
       separatorBuilder: (context, index) => Divider(
-        color: Colors.blueGrey,
+        color: Color.fromRGBO(245, 245, 245, 1),
       ),
       itemBuilder: (context, index) => _listTile(index, context, _viewmodel),
     );
@@ -132,9 +132,12 @@ class Body extends StatelessWidget {
 
   ListTile _listTile(
       int index, BuildContext context, SymptomsViewmodel _viewmodel) {
+    var dateTime = DateTime.parse("${_viewmodel.symptomListById[index].date}");
+
+    var formatDate = "${dateTime.day}-${dateTime.month}-${dateTime.year}";
     return ListTile(
       title: Card(
-        color: Color.fromRGBO(4, 25, 136, 0.7),
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -157,19 +160,19 @@ class Body extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Text(
                 '${_viewmodel.symptomListById[index].type}',
-                style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                style: const TextStyle(color: Colors.black, fontSize: 20.0),
               ),
             ),
             subtitle: Text(
-                ' ${_viewmodel.symptomListById[index].description}\n\n${_viewmodel.symptomListById[index].date}',
+                '${_viewmodel.symptomListById[index].description}\n\n${formatDate}',
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.black54,
                 ),
                 textAlign: TextAlign.justify),
 
             trailing: RaisedButton(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
+                  borderRadius: BorderRadius.circular(10.0),
                   side: BorderSide(color: Colors.red)),
               onPressed: () {
                 showDialog(

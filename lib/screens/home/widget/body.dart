@@ -23,15 +23,13 @@ class Body extends StatelessWidget {
     return new Container(
       child: Column(
         children: [
-          Text(
-            formattedDate,
-            textAlign: TextAlign.left,
-            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-          ),
-          Text(
-            'Welcome',
-            textAlign: TextAlign.left,
-            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0, bottom: 8),
+            child: Text(
+              formattedDate,
+              textAlign: TextAlign.left,
+              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
@@ -49,7 +47,7 @@ class Body extends StatelessWidget {
                                 context, MedicineScreen.route(data: _data));
                           },
                           child: Container(
-                            height: 130,
+                            height: 170,
                             width: 200,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,6 +55,7 @@ class Body extends StatelessWidget {
                                 const Icon(
                                   Icons.health_and_safety,
                                   color: Colors.white,
+                                  size: 40.0,
                                 ),
                                 const Divider(height: 10),
                                 const Text(
@@ -72,7 +71,7 @@ class Body extends StatelessWidget {
                               ],
                             ),
                             decoration: BoxDecoration(
-                              color: const Color.fromRGBO(23, 102, 155, 1),
+                              color: const Color.fromRGBO(51, 51, 255, 0.7),
                               borderRadius: BorderRadius.circular(25),
                               boxShadow: [
                                 BoxShadow(
@@ -96,7 +95,7 @@ class Body extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 130,
+                              height: 170,
                               width: 200,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -104,6 +103,7 @@ class Body extends StatelessWidget {
                                   const Icon(
                                     Icons.cable,
                                     color: Colors.white,
+                                    size: 40.0,
                                   ),
                                   const Divider(height: 10),
                                   const Text(
@@ -119,7 +119,7 @@ class Body extends StatelessWidget {
                                 ],
                               ),
                               decoration: BoxDecoration(
-                                color: const Color.fromRGBO(23, 102, 155, 1),
+                                color: const Color.fromRGBO(51, 51, 255, 0.7),
                                 borderRadius: BorderRadius.circular(25),
                                 boxShadow: [
                                   BoxShadow(
@@ -149,7 +149,7 @@ class Body extends StatelessWidget {
                                 context, FoodScreen.route(data: _data));
                           },
                           child: Container(
-                            height: 130,
+                            height: 170,
                             width: 200,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -157,6 +157,7 @@ class Body extends StatelessWidget {
                                 const Icon(
                                   Icons.fastfood,
                                   color: Colors.white,
+                                  size: 40.0,
                                 ),
                                 const Divider(height: 10),
                                 const Text(
@@ -172,7 +173,7 @@ class Body extends StatelessWidget {
                               ],
                             ),
                             decoration: BoxDecoration(
-                              color: const Color.fromRGBO(23, 102, 155, 1),
+                              color: const Color.fromRGBO(51, 51, 255, 0.7),
                               borderRadius: BorderRadius.circular(25),
                               boxShadow: [
                                 BoxShadow(
@@ -196,7 +197,7 @@ class Body extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 130,
+                              height: 170,
                               width: 200,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -204,6 +205,7 @@ class Body extends StatelessWidget {
                                   const Icon(
                                     Icons.analytics_outlined,
                                     color: Colors.white,
+                                    size: 40.0,
                                   ),
                                   const Divider(height: 10),
                                   const Text(
@@ -219,7 +221,7 @@ class Body extends StatelessWidget {
                                 ],
                               ),
                               decoration: BoxDecoration(
-                                color: const Color.fromRGBO(23, 102, 155, 1),
+                                color: const Color.fromRGBO(51, 51, 255, 0.7),
                                 borderRadius: BorderRadius.circular(25),
                                 boxShadow: [
                                   BoxShadow(
@@ -238,45 +240,49 @@ class Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context, BloodPressureScreen.route(data: _data));
-                  },
-                  child: Container(
-                    height: 130,
-                    width: 200,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.bloodtype_outlined,
-                          color: Colors.white,
-                        ),
-                        const Divider(height: 10),
-                        const Text(
-                          'Blood Pressure',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto Stab',
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context, BloodPressureScreen.route(data: _data));
+                    },
+                    child: Container(
+                      height: 170,
+                      width: 200,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.bloodtype_outlined,
+                            color: Colors.white,
+                            size: 50.0,
                           ),
-                        ),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(23, 102, 155, 1),
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(1),
-                          spreadRadius: 2,
-                          blurRadius: 7,
-                          offset: Offset(4, 8), // changes position of shadow
-                        ),
-                      ],
+                          const Divider(height: 10),
+                          const Text(
+                            'Blood Pressure',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Roboto Stab',
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                          ),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(51, 51, 255, 0.7),
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(1),
+                            spreadRadius: 2,
+                            blurRadius: 7,
+                            offset: Offset(4, 8), // changes position of shadow
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

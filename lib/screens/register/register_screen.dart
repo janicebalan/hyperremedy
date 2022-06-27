@@ -72,10 +72,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Expanded(
                         child: Container(
                           decoration: const BoxDecoration(
-                            color: Color.fromRGBO(0, 48, 97, 1),
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                bottomRight: Radius.circular(15)),
+                            color: Color.fromRGBO(82, 86, 232, 1),
+                            // borderRadius: BorderRadius.only(
+                            //     bottomLeft: Radius.circular(15),
+                            //     bottomRight: Radius.circular(15)),
                           ),
                           //padding for the log and title
                           padding: const EdgeInsets.symmetric(
@@ -86,11 +86,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: const [
                               Padding(
                                 padding: EdgeInsets.all(8.0),
-                                // child: CircleAvatar(
-                                //   backgroundImage: NetworkImage(
-                                //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
-                                //   radius: 50,
-                                // ),
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Sz8264VVV7430MzqD2TE3gZueW_gQqPLrxyCk4V79SJVe8z69UUIEODfYWvtJ0JQqFk&usqp=CAU'),
+                                  radius: 50,
+                                ),
                               ),
                               // #signup_text
                               Text(
@@ -102,13 +102,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                               // #welcome
                             ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(216, 212, 212, 1),
                           ),
                         ),
                       ),
@@ -160,8 +153,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                             ),
-                            const Divider(
-                              thickness: 0.5,
+                            const SizedBox(
+                              //thickness: 0.5,
                               height: 10,
                             ),
                             Expanded(
@@ -186,11 +179,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         icon: !_viewmodel.showPassword
                                             ? Icon(
                                                 Icons.visibility_off,
-                                                color: Colors.black,
+                                                color: Color.fromRGBO(
+                                                    82, 86, 232, 1),
                                               )
                                             : Icon(
                                                 Icons.visibility,
-                                                color: Colors.black,
+                                                color: Color.fromRGBO(
+                                                    82, 86, 232, 1),
                                               ),
                                         onPressed: () =>
                                             _viewmodel.showPassword =
@@ -199,8 +194,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                             ),
-                            const Divider(
-                              thickness: 0.5,
+                            const SizedBox(
                               height: 10,
                             ),
                             Expanded(
@@ -208,6 +202,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 padding: const EdgeInsets.only(
                                     left: 12, right: 12, top: 12),
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please enter your phone number';
@@ -223,8 +218,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                             ),
-                            const Divider(
-                              thickness: 0.5,
+                            const SizedBox(
                               height: 10,
                             ),
                             Expanded(
@@ -242,8 +236,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                             ),
-                            const Divider(
-                              thickness: 0.5,
+                            const SizedBox(
                               height: 10,
                             ),
                             Expanded(
@@ -251,6 +244,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 padding: const EdgeInsets.only(
                                     left: 12, right: 12, top: 12),
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please enter your year Born';
@@ -266,9 +260,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                             ),
-                            const Divider(
-                              thickness: 0.5,
-                              height: 10,
+                            const SizedBox(
+                              height: 20,
                             ),
                             // login_button
                             Expanded(
@@ -290,7 +283,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 minWidth: 200,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
-                                color: const Color.fromRGBO(0, 61, 122, 1),
+                                color: Color.fromRGBO(82, 86, 232, 1),
                                 child: const Text(
                                   "Register",
                                   style: TextStyle(
@@ -313,7 +306,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: Text(
                                   "Already have an account? Log In",
                                   style: TextStyle(
-                                      color: Colors.blue,
+                                      color: Color.fromRGBO(82, 86, 232, 1),
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
                                 ),

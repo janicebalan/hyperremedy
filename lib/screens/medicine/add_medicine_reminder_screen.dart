@@ -28,7 +28,9 @@ class AddMedicineReminderScreen extends StatelessWidget {
         builder: (_context, _viewmodel, _child) {
           print(_viewmodelMed.medicinesListById[_index].id);
           return new Scaffold(
+            backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
             appBar: new AppBar(
+              toolbarHeight: 70.0,
               title: Text(
                 'Medicine Reminder',
                 textAlign: TextAlign.center,
@@ -38,7 +40,7 @@ class AddMedicineReminderScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: Color.fromRGBO(64, 64, 64, 1),
+              backgroundColor: Color.fromRGBO(82, 86, 232, 1),
             ),
             body: _viewmodel.remindersListById.length == 0
                 ? Container(
@@ -55,6 +57,9 @@ class AddMedicineReminderScreen extends StatelessWidget {
                     child: _buildListView(
                         _viewmodel.remindersListById, _viewmodel)),
             floatingActionButton: FloatingActionButton.extended(
+              shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
               onPressed: () {
                 _selectTime(context, _viewmodelMed.medicinesListById[_index].id,
                     _viewmodel);
@@ -81,16 +86,16 @@ class AddMedicineReminderScreen extends StatelessWidget {
       MedicineViewmodel _viewmodel) {
     return ListTile(
       title: Card(
-        color: Color.fromRGBO(0, 48, 97, 1),
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: ListTile(
-          iconColor: Colors.white,
+          iconColor: Color.fromRGBO(82, 86, 232, 1),
           leading: Icon(Icons.access_alarms),
           title: Text(
             '${_remindersList[index].hour}:${_remindersList[index].minute}',
-            style: const TextStyle(color: Colors.white, fontSize: 20.0),
+            style: const TextStyle(color: Colors.black, fontSize: 20.0),
           ),
           trailing: InkWell(
             onTap: () {

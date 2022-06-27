@@ -48,6 +48,7 @@ class AddSymptomsScreen extends StatelessWidget {
         builder: (_context, _viewmodel, _child) {
           return new Scaffold(
             appBar: new AppBar(
+              toolbarHeight: 70,
               title: Text(
                 'Add New Symptoms',
                 textAlign: TextAlign.center,
@@ -57,64 +58,72 @@ class AddSymptomsScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: Color.fromRGBO(64, 64, 64, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: Container(
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(color: Colors.grey[100]),
               child: SingleChildScrollView(
-                child: new Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Type'),
-                          DropdownButtonFormField(
-                            value: _viewmodel.selectedValue,
-                            items: dropdownItems,
-                            onChanged: (value) {
-                              _viewmodel.type = value;
-                              _viewmodel.selectedValue = value;
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // _buildTextLisTile(
-                    //   leading: const Icon(Icons.sports_tennis_rounded),
-                    //   label: 'Type',
-                    //   onChanged: (value) => _viewmodel.type = value,
-                    // ),
-                    _buildTextLisTile(
-                      leading: null,
-                      label: 'Description',
-                      onChanged: (value) => _viewmodel.description = value,
-                    ),
-                    ElevatedButton(
-                      child: Text(
-                        'Pick Date',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () => _selectDate(context, _viewmodel),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(6, 72, 130, 1),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Type'),
+                            DropdownButtonFormField(
+                              value: _viewmodel.selectedValue,
+                              items: dropdownItems,
+                              onChanged: (value) {
+                                _viewmodel.type = value;
+                                _viewmodel.selectedValue = value;
+                              },
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel, _data)
-                  ],
+
+                      // _buildTextLisTile(
+                      //   leading: const Icon(Icons.sports_tennis_rounded),
+                      //   label: 'Type',
+                      //   onChanged: (value) => _viewmodel.type = value,
+                      // ),
+                      _buildTextLisTile(
+                        leading: null,
+                        label: 'Description',
+                        onChanged: (value) => _viewmodel.description = value,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      ElevatedButton(
+                        child: Text(
+                          'Pick Date',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () => _selectDate(context, _viewmodel),
+                        style: ElevatedButton.styleFrom(
+                          side: BorderSide(
+                            color: Colors.black,
+                          ),
+                          primary: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          textStyle: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 350.0),
+                      _buildButtons(context, _viewmodel, _data)
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -142,15 +151,24 @@ class AddSymptomsScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          child: Text('Cancel'),
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+          ),
           onPressed: () => Navigator.pop(context, null),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(200, 200, 200, 1),
+            side: BorderSide(
+              width: 2.0,
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+            primary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             textStyle: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color.fromRGBO(200, 200, 200, 1),
             ),
           ),
         ),
@@ -159,7 +177,7 @@ class AddSymptomsScreen extends StatelessWidget {
           child: Text('Save'),
           onPressed: () => _onSave(context, viewmodel, data),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(0, 102, 102, 1),
+            primary: Color.fromRGBO(82, 86, 232, 1),
             onPrimary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             textStyle: TextStyle(
@@ -183,7 +201,7 @@ class AddSymptomsScreen extends StatelessWidget {
           return Theme(
             data: ThemeData.light().copyWith(
               colorScheme: ColorScheme.light(
-                primary: Color.fromRGBO(0, 60, 129, 1),
+                primary: Color.fromRGBO(82, 86, 232, 1),
                 onPrimary: Colors.white,
                 surface: Colors.white,
                 onSurface: Colors.black,

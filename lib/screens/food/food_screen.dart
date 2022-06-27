@@ -28,8 +28,9 @@ class _FoodScreenState extends State<FoodScreen> {
       onWillPop: () => Future.value(true),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromRGBO(216, 212, 212, 1),
+          backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
           appBar: AppBar(
+            toolbarHeight: 70,
             title: const Text(
               'HyperRemedy',
               textAlign: TextAlign.center,
@@ -39,7 +40,7 @@ class _FoodScreenState extends State<FoodScreen> {
                 color: Colors.white,
               ),
             ),
-            backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
+            backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
           ),
           body: Body(),
         ),

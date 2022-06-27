@@ -25,8 +25,9 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
         onWillPop: () => Future.value(true),
         child: SafeArea(
           child: Scaffold(
-            backgroundColor: Color.fromRGBO(216, 212, 212, 1),
+            backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
             appBar: AppBar(
+              toolbarHeight: 70,
               title: const Text(
                 'HyperRemedy',
                 textAlign: TextAlign.center,
@@ -36,7 +37,7 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: widget._data != null
                 ? Body(data: _viewmodel)

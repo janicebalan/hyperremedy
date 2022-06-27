@@ -26,6 +26,7 @@ class _ReportScreenState extends State<ReportScreen> {
             onWillPop: () => Future.value(true),
             child: SafeArea(
               child: Scaffold(
+                backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
                 appBar: AppBar(
                   title: const Text(
                     'Graph & Statistics',
@@ -36,7 +37,7 @@ class _ReportScreenState extends State<ReportScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  backgroundColor: const Color.fromRGBO(0, 48, 97, 1),
+                  backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
                 ),
                 body: widget._data != null
                     ? Body(data: _viewmodel)

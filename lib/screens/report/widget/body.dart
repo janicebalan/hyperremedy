@@ -32,8 +32,9 @@ class Body extends StatelessWidget {
                           child: Column(
                             children: [
                               TabBar(
-                                labelColor: Colors.blue,
+                                labelColor: Color.fromRGBO(82, 86, 232, 1),
                                 unselectedLabelColor: Colors.black,
+                                indicatorColor: Color.fromRGBO(82, 86, 232, 1),
                                 tabs: [
                                   Tab(text: 'BloodPressure'),
                                   Tab(text: 'Symptoms'),
@@ -44,7 +45,7 @@ class Body extends StatelessWidget {
                         ),
                         Container(
                             height: MediaQuery.of(context).size.height -
-                                150, //height of TabBarView
+                                140, //height of TabBarView
                             decoration: BoxDecoration(
                                 border: Border(
                                     top: BorderSide(

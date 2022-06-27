@@ -37,6 +37,9 @@ class Float extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton.extended(
+              shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
               tooltip: 'Add a new symptom',
               label: Text('Add Symptoms'),
               icon: Icon(Icons.add),

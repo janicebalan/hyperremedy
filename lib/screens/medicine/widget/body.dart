@@ -66,7 +66,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(0, 48, 97, 1),
+                              color: Color.fromRGBO(82, 86, 232, 1),
                             ),
                             alignment: Alignment.center,
                             child: Column(
@@ -88,7 +88,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(221, 223, 237, 0.25),
+                              color: Color.fromRGBO(245, 245, 245, 1),
                             ),
                           ),
                         ),
@@ -152,29 +152,11 @@ class Body extends StatelessWidget {
     );
   }
 
-  Future<void> _selectTime(BuildContext context) async {
-    TimeOfDay selectedTime = TimeOfDay.now();
-    final TimeOfDay picked_s = await showTimePicker(
-        context: context,
-        initialTime: selectedTime,
-        builder: (BuildContext context, Widget child) {
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
-            child: child,
-          );
-        });
-
-// if (picked_s != null && picked_s != selectedTime )
-//   setState(() {
-//     selectedTime = picked_s;
-//   });
-  }
-
   ListView _buildListView(MedicineViewmodel _viewmodel) {
     return ListView.separated(
       itemCount: _viewmodel.medicinesList.length,
       separatorBuilder: (context, index) => Divider(
-        color: Colors.blueGrey,
+        color: Color.fromRGBO(245, 245, 245, 1),
       ),
       itemBuilder: (context, index) => _listTile(index, context, _viewmodel),
     );
@@ -182,6 +164,10 @@ class Body extends StatelessWidget {
 
   ListTile _listTile(
       int index, BuildContext context, MedicineViewmodel _viewmodel) {
+    var dateTime =
+        DateTime.parse("${_viewmodel.medicinesListById[index].date}");
+
+    var formatDate = "${dateTime.day}-${dateTime.month}-${dateTime.year}";
     return ListTile(
       title: InkWell(
         onTap: () {
@@ -189,8 +175,8 @@ class Body extends StatelessWidget {
         },
         child: Card(
           color: int.parse(_viewmodel.medicinesListById[index].pillsLeft) < 1
-              ? Color.fromRGBO(106, 119, 205, 0.7)
-              : Color.fromRGBO(4, 25, 136, 0.7),
+              ? Color.fromRGBO(82, 86, 232, 0.5)
+              : Color.fromRGBO(82, 86, 232, 1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -209,15 +195,23 @@ class Body extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      ' ${_viewmodel.medicinesListById[index].date}\n${_viewmodel.medicinesListById[index].freqIntake}',
+                      '${formatDate}\n${_viewmodel.medicinesListById[index].freqIntake}',
                       style: const TextStyle(
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.justify),
                   ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                          "${_viewmodel.medicinesListById[index].pillsLeft} pills left"))
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "${_viewmodel.medicinesListById[index].pillsLeft} pills left",
+                      style: TextStyle(
+                        color: Color.fromRGBO(82, 86, 232, 1),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               trailing: Column(
@@ -233,7 +227,7 @@ class Body extends StatelessWidget {
                     },
                     child: Icon(
                       Icons.alarm,
-                      color: Colors.green,
+                      color: Colors.white,
                     ),
                   ),
                   InkWell(

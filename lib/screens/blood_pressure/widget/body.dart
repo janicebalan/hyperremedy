@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(0, 48, 97, 1),
+                              color: Color.fromRGBO(82, 86, 232, 1),
                             ),
                             alignment: Alignment.center,
                             child: Column(
@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromRGBO(221, 223, 237, 0.25),
+                              color: Color.fromRGBO(245, 245, 245, 1),
                             ),
                           ),
                         ),
@@ -123,7 +123,7 @@ class Body extends StatelessWidget {
     return ListView.separated(
       itemCount: _viewmodel.bloodpressureList.length,
       separatorBuilder: (context, index) => Divider(
-        color: Colors.blueGrey,
+        color: Color.fromRGBO(245, 245, 245, 1),
       ),
       itemBuilder: (context, index) => _listTile(index, context, _viewmodel),
     );
@@ -131,54 +131,54 @@ class Body extends StatelessWidget {
 
   ListTile _listTile(
       int index, BuildContext context, BloodPressureViewmodel _viewmodel) {
+    var dateTime =
+        DateTime.parse("${_viewmodel.bloodpressureListById[index].date}");
+
+    var formatDate = "${dateTime.day}-${dateTime.month}-${dateTime.year}";
     return ListTile(
       title: Card(
-        color: _viewmodel.bloodpressureListById[index].range.contains("high")
-            ? Color.fromRGBO(181, 9, 9, 0.7)
-            : _viewmodel.bloodpressureListById[index].range == "Low"
-                ? Color.fromRGBO(4, 25, 136, 0.7)
-                : Color.fromRGBO(5, 233, 49, 0.7),
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            // leading: ConstrainedBox(
-            //   constraints: BoxConstraints(
-            //     minWidth: 44,
-            //     minHeight: 70,
-            //     maxWidth: 80,
-            //     maxHeight: 80,
-            //   ),
-            //   child: Image.network(
-            //     _viewmodel.symptomListById[index].type,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
             title: Padding(
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Text(
                 '${_viewmodel.bloodpressureListById[index].systolic} sys / ${_viewmodel.bloodpressureListById[index].diastolic} dia / ${_viewmodel.bloodpressureListById[index].pulse} pulse',
-                style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                style: const TextStyle(color: Colors.black, fontSize: 17.0),
               ),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' ${_viewmodel.bloodpressureListById[index].date}',
+                Text('${formatDate}',
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black45,
                     ),
                     textAlign: TextAlign.justify),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
+                      primary: _viewmodel.bloodpressureListById[index].range
+                              .contains("high")
+                          ? Color.fromRGBO(181, 9, 9, 0.7)
+                          : _viewmodel.bloodpressureListById[index].range ==
+                                  "Low"
+                              ? Color.fromRGBO(4, 25, 136, 0.7)
+                              : Color.fromRGBO(5, 233, 49, 0.7),
+                    ),
                     onPressed: () {},
                     child: Text(
                         "${_viewmodel.bloodpressureListById[index].range}"))
               ],
             ),
-            trailing: RaisedButton(
-              onPressed: () {
+            trailing: InkWell(
+              onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
@@ -201,8 +201,10 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-              color: Colors.yellow,
-              child: Text('Remove'),
+              child: Icon(
+                Icons.delete,
+                color: Colors.red,
+              ),
             ),
           ),
         ),

@@ -37,7 +37,9 @@ class _AddBloodPressureScreenState extends State<AddBloodPressureScreen> {
         viewmodel: widget._viewmodel,
         builder: (_context, _viewmodel, _child) {
           return new Scaffold(
+            backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
             appBar: new AppBar(
+              toolbarHeight: 70,
               title: Text(
                 'Add New Readings',
                 textAlign: TextAlign.center,
@@ -47,82 +49,100 @@ class _AddBloodPressureScreenState extends State<AddBloodPressureScreen> {
                   color: Colors.white,
                 ),
               ),
-              backgroundColor: Color.fromRGBO(64, 64, 64, 1),
+              backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
             ),
             body: Container(
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(color: Colors.grey[100]),
               child: SingleChildScrollView(
-                child: new Column(
-                  children: <Widget>[
-                    // _buildTextLisTile(
-                    //   leading: const Icon(Icons.sports_tennis_rounded),
-                    //   label: 'Type',
-                    //   onChanged: (value) => _viewmodel.range = value,
-                    // ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Readings Value'),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText:
-                                  '${_viewmodel.systolic} sys / ${_viewmodel.diastolic} dia / ${_viewmodel.pulse} pulse',
-                              labelStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Column(
+                    children: <Widget>[
+                      // _buildTextLisTile(
+                      //   leading: const Icon(Icons.sports_tennis_rounded),
+                      //   label: 'Type',
+                      //   onChanged: (value) => _viewmodel.range = value,
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Readings Value',
+                              style: TextStyle(fontSize: 17.0),
                             ),
-                            onChanged: (value) {
-                              _viewmodel.type = value;
-                              _viewmodel.selectedValue = value;
-                            },
-                            enabled: false,
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText:
+                                    '${_viewmodel.systolic} sys / ${_viewmodel.diastolic} dia / ${_viewmodel.pulse} pulse',
+                                labelStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              onChanged: (value) {
+                                _viewmodel.type = value;
+                                _viewmodel.selectedValue = value;
+                              },
+                              enabled: false,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            child: Text(
+                              'Input Readings',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () => pickValue(context, _viewmodel),
+                            style: ElevatedButton.styleFrom(
+                              side: BorderSide(
+                                color: Colors.black,
+                              ),
+                              primary: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              textStyle: TextStyle(
+                                fontSize: 17.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25.0,
+                          ),
+                          ElevatedButton(
+                            child: Text(
+                              'Pick Date',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () => _selectDate(context, _viewmodel),
+                            style: ElevatedButton.styleFrom(
+                              side: BorderSide(
+                                color: Colors.black,
+                              ),
+                              primary: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              textStyle: TextStyle(
+                                fontSize: 17.0,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    ElevatedButton(
-                      child: Text(
-                        'Input Readings',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () => pickValue(context, _viewmodel),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(6, 72, 130, 1),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
 
-                    ElevatedButton(
-                      child: Text(
-                        'Pick Date',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () => _selectDate(context, _viewmodel),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(6, 72, 130, 1),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        textStyle: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 30.0),
-                    _buildButtons(context, _viewmodel)
-                  ],
+                      SizedBox(height: 420.0),
+                      _buildButtons(context, _viewmodel)
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -149,15 +169,24 @@ class _AddBloodPressureScreenState extends State<AddBloodPressureScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          child: Text('Cancel'),
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+          ),
           onPressed: () => Navigator.pop(context, null),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(200, 200, 200, 1),
+            side: BorderSide(
+              width: 2.0,
+              color: Color.fromRGBO(82, 86, 232, 1),
+            ),
+            primary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             textStyle: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color.fromRGBO(200, 200, 200, 1),
             ),
           ),
         ),
@@ -166,7 +195,7 @@ class _AddBloodPressureScreenState extends State<AddBloodPressureScreen> {
           child: Text('Save'),
           onPressed: () => _onSave(context, viewmodel, widget._data),
           style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(0, 102, 102, 1),
+            primary: Color.fromRGBO(82, 86, 232, 1),
             onPrimary: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             textStyle: TextStyle(

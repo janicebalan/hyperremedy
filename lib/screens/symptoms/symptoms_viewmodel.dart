@@ -66,7 +66,7 @@ class SymptomsViewmodel extends Viewmodel {
   void addSymptoms(Symptom symptoms) async {
     turnBusy();
     final Symptom symptom = await _service.addSymptoms(symptoms);
-    symptomListById.add(symptoms);
+    symptomListById.insert(0, symptoms);
     turnIdle();
   }
 }

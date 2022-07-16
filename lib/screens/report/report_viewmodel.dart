@@ -566,99 +566,121 @@ class ReportViewmodel extends Viewmodel {
         _symp0++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp0Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp0Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp0Year++;
         }
       } else if (sympList[i].type == 'Cramps') {
         _symp1++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp1Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp1Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp1Year++;
         }
       } else if (sympList[i].type == 'Coughs') {
         _symp2++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp2Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp2Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp2Year++;
         }
       } else if (sympList[i].type == 'Fatigue') {
         _symp3++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp3Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp3Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp3Year++;
         }
       } else if (sympList[i].type == 'Headaches') {
         _symp4++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp4Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp4Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp4Year++;
         }
       } else if (sympList[i].type == 'Allergies') {
         _symp5++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp5Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp5Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp5Year++;
         }
       } else if (sympList[i].type == 'Memory loss') {
         _symp6++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp6Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp6Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp6Year++;
         }
       } else if (sympList[i].type == 'Cough') {
         _symp7++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp7Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp7Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp7Year++;
         }
       } else if (sympList[i].type == 'Fever') {
         _symp8++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp8Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp8Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp8Year++;
         }
       } else if (sympList[i].type == 'Sore throat') {
         _symp9++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp9Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp9Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp9Year++;
         }
       } else if (sympList[i].type == 'Others') {
         _symp10++;
         if (now_1w.isBefore(DateTime.parse(sympList[i].date))) {
           _symp10Week++;
-        } else if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1m.isBefore(DateTime.parse(sympList[i].date))) {
           _symp10Month++;
-        } else if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
+        }
+        if (now_1y.isBefore(DateTime.parse(sympList[i].date))) {
           _symp10Year++;
         }
       }

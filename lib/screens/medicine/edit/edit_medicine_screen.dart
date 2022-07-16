@@ -326,9 +326,10 @@ class EditMedicineScreen extends StatelessWidget {
         });
 
     if (newSelectedDate != null) {
-      viewmodel.medicinesListById[_index].date =
-          DateFormat.yMMMd().format(newSelectedDate).toString();
-      _selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
+      //viewmodel.medicinesListById[_index].date =
+      //DateFormat.yMMMd().format(newSelectedDate).toString();
+      //_selectedDate = DateFormat.yMMMd().format(newSelectedDate).toString();
+      viewmodel.medicinesListById[_index].date = newSelectedDate.toString();
     }
   }
 }

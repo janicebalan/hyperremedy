@@ -80,9 +80,8 @@ class BloodPressureViewmodel extends Viewmodel {
   void addBloodPressures(BloodPressure bloodpressures) async {
     turnBusy();
     bloodpressures.range = checkRange(bloodpressures);
-    final BloodPressure symptom =
-        await _service.addBloodPressures(bloodpressures);
-    bloodpressureListById.add(bloodpressures);
+    final BloodPressure bp = await _service.addBloodPressures(bloodpressures);
+    bloodpressureListById.insert(0, bloodpressures);
     turnIdle();
   }
 

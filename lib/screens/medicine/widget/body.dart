@@ -236,7 +236,7 @@ class Body extends StatelessWidget {
                         context: context,
                         builder: (context) => AlertDialog(
                           title: Text(
-                              'Are you sure you want to remove this reading?'),
+                              'Are you sure you want to remove this medicine?'),
                           actions: [
                             ElevatedButton(
                                 onPressed: () {

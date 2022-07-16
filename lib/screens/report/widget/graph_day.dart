@@ -200,7 +200,7 @@ class GraphDay extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Diatolic',
+                          'Diastolic',
                           textAlign: TextAlign.left,
                           style: new TextStyle(
                               fontWeight: FontWeight.bold,

@@ -51,6 +51,7 @@ class SymptomsViewmodel extends Viewmodel {
     //print(id);
     turnBusy();
     symptomListById = await _service.getSymptomsById(id);
+    symptomListById.sort((a, b) => b.date.compareTo(a.date));
     // print(symptomListById);
     turnIdle();
   }
@@ -67,6 +68,7 @@ class SymptomsViewmodel extends Viewmodel {
     turnBusy();
     final Symptom symptom = await _service.addSymptoms(symptoms);
     symptomListById.insert(0, symptoms);
+    symptomListById.sort((a, b) => b.date.compareTo(a.date));
     turnIdle();
   }
 }

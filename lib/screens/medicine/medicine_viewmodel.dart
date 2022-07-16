@@ -102,6 +102,7 @@ class MedicineViewmodel extends Viewmodel {
   void getMedicines(dynamic id) async {
     turnBusy();
     medicinesListById = await _service.getMedicinesById(id);
+    medicinesListById.sort((a, b) => b.date.compareTo(a.date));
     turnIdle();
   }
 
@@ -116,6 +117,7 @@ class MedicineViewmodel extends Viewmodel {
     turnBusy();
     final Medicine medicine = await _service.addMedicines(medicines);
     medicinesListById.insert(0, medicine);
+    medicinesListById.sort((a, b) => b.date.compareTo(a.date));
     turnIdle();
   }
 
@@ -123,6 +125,7 @@ class MedicineViewmodel extends Viewmodel {
     turnBusy();
     final Medicine medicines = await _service.updateMedicines(medicine);
     medicinesListById[index] = medicines;
+    medicinesListById.sort((a, b) => b.date.compareTo(a.date));
     turnIdle();
   }
 

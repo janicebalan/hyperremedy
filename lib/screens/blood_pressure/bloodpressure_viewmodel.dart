@@ -65,6 +65,7 @@ class BloodPressureViewmodel extends Viewmodel {
     //print(id);
     turnBusy();
     bloodpressureListById = await _service.getBloodPressuresById(id);
+    bloodpressureListById.sort((a, b) => b.date.compareTo(a.date));
     // print(symptomListById);
     turnIdle();
   }
@@ -82,6 +83,7 @@ class BloodPressureViewmodel extends Viewmodel {
     bloodpressures.range = checkRange(bloodpressures);
     final BloodPressure bp = await _service.addBloodPressures(bloodpressures);
     bloodpressureListById.insert(0, bloodpressures);
+    bloodpressureListById.sort((a, b) => b.date.compareTo(a.date));
     turnIdle();
   }
 

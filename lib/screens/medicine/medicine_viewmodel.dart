@@ -79,6 +79,9 @@ class MedicineViewmodel extends Viewmodel {
     if (medicinesReminder.pillsLeft != "0") {
       int newValue = int.parse(medicinesReminder.pillsLeft) -
           int.parse(medicinesReminder.dose);
+      if (newValue <= 0) {
+        newValue = 0;
+      }
       medicinesReminder.pillsLeft = newValue.toString();
       if (medicinesReminder.pillsLeft == "0") {
         NotificationApi.cancelNotification(id: id.hashCode);

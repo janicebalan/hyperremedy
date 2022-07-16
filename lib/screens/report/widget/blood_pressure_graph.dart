@@ -66,7 +66,7 @@ class BloodPressureGraph extends StatelessWidget {
         .toIso8601String()
         .replaceAll('.', '-')
         .replaceAll(':', '-');
-    final name = 'screenshot_$time';
+    final name = 'report_$time';
     final dir = await getExternalStorageDirectory();
     File pdfFile = File('${dir.path}/$name');
     //print('${dir.path}/$name');

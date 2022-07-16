@@ -41,8 +41,25 @@ class HomeScreen extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.logout, color: Colors.white),
                   onPressed: () {
-                    logout();
-                    Navigator.pushNamed(context, "/login");
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Are you sure you want to logout?'),
+                        actions: [
+                          ElevatedButton(
+                              onPressed: () {
+                                logout();
+                                Navigator.pushNamed(context, "/login");
+                              },
+                              child: Text('Yes')),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel')),
+                        ],
+                      ),
+                    );
                   },
                 )
               ],

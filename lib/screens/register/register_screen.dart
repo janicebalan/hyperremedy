@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 padding: const EdgeInsets.only(
                                     left: 12, right: 12, top: 12),
                                 child: TextFormField(
-                                  obscureText: true,
+                                  obscureText: !_viewmodel.showPassword,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please enter your password';

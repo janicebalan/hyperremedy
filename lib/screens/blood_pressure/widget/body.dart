@@ -170,7 +170,10 @@ class Body extends StatelessWidget {
                           : _viewmodel.bloodpressureListById[index].range ==
                                   "Low"
                               ? Color.fromRGBO(4, 25, 136, 0.7)
-                              : Color.fromRGBO(5, 233, 49, 0.7),
+                              : _viewmodel.bloodpressureListById[index].range ==
+                                      "Normal"
+                                  ? Color.fromRGBO(5, 233, 49, 0.7)
+                                  : Colors.yellow,
                     ),
                     onPressed: () {},
                     child: Text(

@@ -99,12 +99,14 @@ class BloodPressureViewmodel extends Viewmodel {
       level = "Normal";
     } else if ((sys >= 120 && sys <= 129) && (dia < 80)) {
       level = "Elevated (high)";
-    } else if ((sys >= 130 && sys <= 139) && (dia >= 80 && dia <= 89)) {
+    } else if ((sys >= 130 && sys <= 139) || (dia >= 80 && dia <= 89)) {
       level = "Stage 1 (high)";
-    } else if ((sys >= 140 && sys < 180) && (dia >= 90 && dia < 120)) {
+    } else if ((sys >= 140 && sys < 180) || (dia >= 90 && dia < 120)) {
       level = "Stage 2 (high)";
-    } else {
+    } else if ((sys >= 180) || (dia >= 120)) {
       level = "Hypertensive Crisis (high)";
+    } else {
+      level = "NA";
     }
     return level;
   }

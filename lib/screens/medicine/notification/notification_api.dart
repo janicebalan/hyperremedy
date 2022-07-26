@@ -45,7 +45,6 @@ class NotificationApi {
 
   static Future<void> cancelNotification({int id}) async {
     await _notifications.cancel(id);
-    print("cancel notification");
   }
 
 // Future<void> deleteNotificationChannel(String channelId) =>
@@ -56,7 +55,6 @@ class NotificationApi {
     String body,
     String payload,
   }) async {
-    print("doing notif here");
     _notifications.show(
       id,
       title,

@@ -26,7 +26,7 @@ class AddMedicineReminderScreen extends StatelessWidget {
         viewmodel: MedicineViewmodel.overloadedContructorNamedArguments(
             _viewmodelMed.medicinesListById[_index].id),
         builder: (_context, _viewmodel, _child) {
-          print(_viewmodelMed.medicinesListById[_index].id);
+          //print(_viewmodelMed.medicinesListById[_index].id);
           return new Scaffold(
             backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
             appBar: new AppBar(

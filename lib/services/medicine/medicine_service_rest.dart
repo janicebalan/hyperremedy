@@ -16,10 +16,8 @@ class MedicineServiceRest implements MedicineService {
   }
 
   Future<Medicine> getMedicinesReminder(dynamic id) async {
-    print("Reminder medicine id in service");
-    print(id);
     final List json = await rest.get('medicines?id=$id');
-    print(json);
+
     if (json.length == null) {
       print("no value");
       return null;

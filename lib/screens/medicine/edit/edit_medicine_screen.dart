@@ -73,12 +73,9 @@ class EditMedicineScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("hello1");
-    print(_viewmodel.medicinesListById[_index].medicineName);
     return View(
         viewmodel: _viewmodel,
         builder: (_context, _viewmodel, _child) {
-          print(_viewmodel.medicinesListById[_index].medicineName);
           return new Scaffold(
             appBar: new AppBar(
               toolbarHeight: 70,

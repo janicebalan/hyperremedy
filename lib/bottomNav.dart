@@ -15,7 +15,7 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(_user.id);
+    //print(_user.id);
     final _navigatorKey = GlobalKey<NavigatorState>();
     return Scaffold(
       body: Navigator(
@@ -72,7 +72,7 @@ class BottomNav extends StatelessWidget {
                     {
                       // _navigatorKey.currentState
                       //     .push(HomeScreen.route(data: _user));
-                      print(_user.name);
+                      //print(_user.name);
                       _navigatorKey.currentState
                           .pushNamed('/home', arguments: _user);
                     }

@@ -54,7 +54,6 @@ class SymptomStatistic extends StatelessWidget {
                       ],
                       onChanged: (value) {
                         _viewmodel.filterValueSymp = value;
-                        print(_viewmodel.filterValueSymp);
                       },
                     ),
                   ),

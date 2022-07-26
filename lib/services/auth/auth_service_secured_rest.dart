@@ -15,8 +15,6 @@ class AuthServiceSecuredRest implements AuthService {
 
       String userUrl = 'users/' + json['localId'];
 
-      print("${userUrl}");
-
       // Pre-process json data to comply with the field of the User model
       json['id'] = json['localId'];
       json['name'] = json['displayName'];

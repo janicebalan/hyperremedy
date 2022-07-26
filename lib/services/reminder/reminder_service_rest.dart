@@ -7,8 +7,6 @@ class ReminderServiceRest implements ReminderService {
   RestService get rest => dependency();
 
   Future<List<Reminder>> getRemindersById(dynamic id) async {
-    print('print id in service');
-    print(id);
     final List listJson = await rest.get('reminders?medsId=$id');
     // print('print json in service');
     // print(listJson);

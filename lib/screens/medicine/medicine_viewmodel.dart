@@ -6,6 +6,7 @@ import '../../models/reminder.dart';
 import '../../services/medicine/medicine_service.dart';
 import '../../services/reminder/reminder_service.dart';
 import '../viewmodel.dart';
+import 'notification/notification_voice.dart';
 
 class MedicineViewmodel extends Viewmodel {
   MedicineService get _service => dependency();
@@ -165,13 +166,30 @@ class MedicineViewmodel extends Viewmodel {
     turnIdle();
   }
 
+  List<Reminder> voiceListById;
+  get voiceList => voiceListById;
+  set voiceList(value) {
+    turnBusy();
+    voiceListById = value;
+    turnIdle();
+  }
+
   MedicineViewmodel.overloadedContructorNamedArguments(dynamic id) {
     getReminders(id);
+  }
+  MedicineViewmodel.overloadedContructorVoice(dynamic id) {
+    getVoiceReminders(id);
   }
 
   void getReminders(dynamic id) async {
     turnBusy();
     remindersListById = await _serviceReminder.getRemindersById(id);
+    turnIdle();
+  }
+
+  void getVoiceReminders(dynamic id) async {
+    turnBusy();
+    voiceListById = await _serviceReminder.getRemindersById(id);
     turnIdle();
   }
 
@@ -183,6 +201,14 @@ class MedicineViewmodel extends Viewmodel {
     turnIdle();
   }
 
+  void removeVoiceReminders(Reminder reminders, int index, String id) async {
+    turnBusy();
+    await _serviceReminder.removeReminders(reminders);
+    voiceListById.removeAt(index);
+    NotificationVoice.cancelNotification(id: id.hashCode);
+    turnIdle();
+  }
+
   void addReminders(Reminder reminders) async {
     turnBusy();
     final Reminder reminder = await _serviceReminder.addReminders(reminders);
@@ -191,6 +217,21 @@ class MedicineViewmodel extends Viewmodel {
       id: reminder.id.hashCode,
       title: 'Take your medicine!',
       body: 'Click on this once you have taken your medicine',
+      payload: '${reminder.medsId}',
+      hour: reminder.hour,
+      minute: reminder.minute,
+    );
+    turnIdle();
+  }
+
+  void addVoiceReminders(Reminder reminders) async {
+    turnBusy();
+    final Reminder reminder = await _serviceReminder.addReminders(reminders);
+    voiceListById.add(reminders);
+    NotificationVoice.showScheduledNotification(
+      id: reminder.id.hashCode,
+      title: 'Take your blood pressure reading',
+      body: 'Do not forget to take your daily blood pressure readings!',
       payload: '${reminder.medsId}',
       hour: reminder.hour,
       minute: reminder.minute,

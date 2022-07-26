@@ -9,12 +9,14 @@ import 'app/router.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/medicine/notification/notification_api.dart';
+import 'screens/medicine/notification/notification_voice.dart';
 import 'services/auth/auth_service_firebase.dart';
 import 'dart:async';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationApi.init(initScheduled: true);
+  await NotificationVoice.init(initScheduled: true);
   await Firebase.initializeApp();
   di.init();
 

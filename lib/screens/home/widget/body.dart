@@ -4,6 +4,7 @@ import '../../food/food_screen.dart';
 import '../../medicine/medicine_screen.dart';
 import '../../report/report_screen.dart';
 import '../../symptoms/symptoms_screen.dart';
+import '../add_voice_reminder_screen.dart';
 import '/screens/user/user_viewmodel.dart';
 import 'package:intl/intl.dart';
 
@@ -25,10 +26,33 @@ class Body extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 20.0, bottom: 8),
-            child: Text(
-              formattedDate,
-              textAlign: TextAlign.left,
-              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            child: Column(
+              children: [
+                Text(
+                  formattedDate,
+                  textAlign: TextAlign.left,
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16.0),
+                ),
+                FloatingActionButton.extended(
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(15.0))),
+                  backgroundColor: const Color.fromRGBO(82, 86, 232, 1),
+                  tooltip: 'Add Voice Reminder',
+                  label: Text('Add Voice Reminder'),
+                  icon: Icon(Icons.add),
+                  heroTag: null,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddVoiceReminderScreen(
+                                  data: _data,
+                                )));
+                  },
+                ),
+              ],
             ),
           ),
           Padding(
@@ -47,7 +71,7 @@ class Body extends StatelessWidget {
                                 context, MedicineScreen.route(data: _data));
                           },
                           child: Container(
-                            height: 170,
+                            height: 160,
                             width: 200,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +119,7 @@ class Body extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 170,
+                              height: 160,
                               width: 200,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,

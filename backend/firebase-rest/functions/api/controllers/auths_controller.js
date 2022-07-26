@@ -1,8 +1,3 @@
-// Author: Jumail
-// Email: jumail@utm.my
-// Github:  github.com/jumail-utm
-// Update: 9 Jun 2021
-
 'use strict';
 const _log = require('firebase-functions').logger.log;
 

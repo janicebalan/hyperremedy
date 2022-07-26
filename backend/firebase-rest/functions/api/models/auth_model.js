@@ -1,8 +1,3 @@
-// Author: Jumail
-// Email: jumail@utm.my
-// Github:  github.com/jumail-utm
-// Update: 8 Jun 2021
-
 'use strict';
 
 const _functions = require('firebase-functions');
